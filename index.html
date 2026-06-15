@@ -828,7 +828,8 @@
 
     .btn-submit:hover:not(:disabled) { opacity: 0.85; }
 
-    .btn-submit:disabled {
+    .btn-submit:disabled,
+    #feedback-submit:disabled {
       opacity: 0.28;
       cursor: not-allowed;
     }
@@ -1766,14 +1767,17 @@
     btn.disabled    = true;
     btn.textContent = 'Sending…';
 
-    // UPDATE: Replace with your Formspree endpoint before release.
-    // Get one free at https://formspree.io — create a form and paste the URL here.
-    const ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+    const ENDPOINT = 'https://splitforms.com/api/submit';
 
     fetch(ENDPOINT, {
       method:  'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body:    JSON.stringify({ rating: selectedRating, feedback: text || '(no comment)' })
+      body:    JSON.stringify({
+        access_key: 'c49794c1410847aba97301d016d20e62',
+        botcheck:   '',
+        rating:     selectedRating,
+        feedback:   text || '(no comment)'
+      })
     })
     .catch(() => {})   // Fail silently — network errors still mark the session
     .finally(() => {
