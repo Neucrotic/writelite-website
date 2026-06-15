@@ -1607,7 +1607,7 @@
           custom:  'https://buy.stripe.com/14AdR8atFfwndBp86a4ow07'
         };
 
-        var url = donateIsCustom ? links.custom : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);
+        var url = donateIsCustom ? links.custom + '?prefilled_amount=' + (donateAmount * 100) : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);
         window.location.href = url;
       }
 
