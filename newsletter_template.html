@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WriteLite — Seasonal Newsletter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:            #0e0e0f;
+      --surface:       #18181b;
+      --surface2:      #222226;
+      --border:        rgba(255,255,255,0.07);
+      --border-strong: rgba(255,255,255,0.14);
+      --text:          #e8e6df;
+      --text-muted:    #888780;
+      --text-hint:     #4a4946;
+      --accent:        #d4a030;
+      --accent-dim:    rgba(212,160,48,0.08);
+      --accent-border: rgba(212,160,48,0.3);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding-bottom: 6rem;
+    }
+
+    /* ── BANNER ─────────────────────────────────────────────── */
+
+    .banner {
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner-artwork {
+      width: 100%;
+      height: 340px;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      /* Placeholder texture — replace with <img> for real artwork */
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          rgba(212,160,48,0.03) 0px,
+          rgba(212,160,48,0.03) 1px,
+          transparent 1px,
+          transparent 40px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(212,160,48,0.03) 0px,
+          rgba(212,160,48,0.03) 1px,
+          transparent 1px,
+          transparent 40px
+        );
+    }
+
+    .banner-artwork::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(212,160,48,0.08) 0%, transparent 65%);
+    }
+
+    .banner-artwork-placeholder {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner-artwork-placeholder .icon {
+      font-size: 48px;
+      opacity: 0.15;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .banner-artwork-placeholder p {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-hint);
+      margin: 0;
+    }
+
+    .banner-meta {
+      padding: 2.5rem 2rem 2rem;
+      border-bottom: 0.5px solid var(--border-strong);
+    }
+
+    .wordmark {
+      font-family: 'DM Serif Display', serif;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .issue-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-hint);
+      margin-bottom: 1.25rem;
+    }
+
+    .banner-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 38px;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+
+    .banner-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .banner-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* ── MAIN LAYOUT ─────────────────────────────────────────── */
+
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── TWO-COLUMN BODY ─────────────────────────────────────── */
+
+    .body-columns {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2.5rem;
+      padding: 3rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    /* Left column */
+    .col-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    /* Writing prompt card */
+    .prompt-card {
+      background: var(--surface);
+      border: 0.5px solid var(--border-strong);
+      border-top: 2px solid var(--accent);
+      border-radius: 0 0 10px 10px;
+      padding: 1.5rem;
+    }
+
+    .card-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+      font-weight: 500;
+    }
+
+    .prompt-card .prompt-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .prompt-card .prompt-note {
+      font-size: 12px;
+      color: var(--text-hint);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Social card */
+    .social-card {
+      background: var(--surface2);
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .social-card .card-label {
+      margin-bottom: 0.65rem;
+    }
+
+    .social-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: color 0.15s;
+      padding: 0.4rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .social-link:last-child {
+      border-bottom: none;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    .social-link .link-icon {
+      width: 20px;
+      height: 20px;
+      background: var(--border-strong);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      flex-shrink: 0;
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    .social-link .link-label {
+      flex: 1;
+    }
+
+    .social-link .link-arrow {
+      color: var(--text-hint);
+      font-size: 11px;
+    }
+
+    /* Right column */
+    .col-right {}
+
+    .col-right .section-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+
+    .col-right h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+    }
+
+    .col-right p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .col-right p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── DONATION SECTION ────────────────────────────────────── */
+
+    .donation-section {
+      padding: 3rem 0 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+
+    .donation-section > h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .donation-section > .meta-note {
+      font-size: 13px;
+      color: var(--text-hint);
+      margin-bottom: 1.5rem;
+    }
+
+    .donation-block {
+      background: var(--surface);
+      border: 0.5px solid var(--border-strong);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 2rem 2.25rem;
+    }
+
+    .donation-block-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-hint);
+      margin-bottom: 1.25rem;
+    }
+
+    .donation-block p {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .donation-block p:last-of-type {
+      margin-bottom: 1.5rem;
+    }
+
+    .donation-cta {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--accent-border);
+      padding-bottom: 2px;
+      transition: border-color 0.15s;
+    }
+
+    .donation-cta:hover {
+      border-color: var(--accent);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+
+    footer {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 0;
+      font-size: 12px;
+      color: var(--text-hint);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 0.5px solid var(--border);
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    footer a {
+      color: var(--text-hint);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+
+    @media (max-width: 620px) {
+      .body-columns {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .banner-title {
+        font-size: 28px;
+      }
+
+      .banner-artwork {
+        height: 220px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── BANNER ──────────────────────────────────────────────── -->
+
+  <div class="banner">
+
+    <!-- Replace the div below with an <img> tag for real seasonal artwork -->
+    <div class="banner-artwork">
+      <div class="banner-artwork-placeholder">
+        <span class="icon">◻</span>
+        <p>Seasonal artwork — replace this block with an &lt;img&gt; tag</p>
+      </div>
+    </div>
+
+    <div class="banner-meta">
+      <div class="wordmark">WriteLite</div>
+      <div class="issue-label">Seasonal Newsletter · Issue No. [N] · [Season] [Year]</div>
+      <h1 class="banner-title">Issue title goes <em>here</em></h1>
+      <p class="banner-subtitle">A short sentence setting the tone for this edition — one line, in voice.</p>
+    </div>
+
+  </div>
+
+  <!-- ── BODY ───────────────────────────────────────────────── -->
+
+  <main>
+
+    <div class="body-columns">
+
+      <!-- Left: prompt + socials -->
+      <aside class="col-left">
+
+        <div class="prompt-card">
+          <div class="card-label">Writing prompt</div>
+          <p class="prompt-text">You find a letter in a drawer. It is addressed to you, in your own handwriting — but you have no memory of writing it.</p>
+          <p class="prompt-note">No rules. No word count. Open WriteLite and see where it goes.</p>
+        </div>
+
+        <div class="social-card">
+          <div class="card-label">Find us</div>
+          <p>Come write alongside other people who take it seriously. The community is small, which is exactly the point.</p>
+          <div class="social-links">
+            <a class="social-link" href="#discord-link">
+              <span class="link-icon">D</span>
+              <span class="link-label">Join the Discord</span>
+              <span class="link-arrow">→</span>
+            </a>
+            <a class="social-link" href="#instagram-link">
+              <span class="link-icon">IG</span>
+              <span class="link-label">@writelite on Instagram</span>
+              <span class="link-arrow">→</span>
+            </a>
+            <a class="social-link" href="#website-link">
+              <span class="link-icon">W</span>
+              <span class="link-label">writelite.app</span>
+              <span class="link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- Right: main body text -->
+      <article class="col-right">
+        <div class="section-label">From the desk</div>
+        <h2>Lorem ipsum — replace this with your seasonal note</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+        <p>Ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus temporibusque autem quibusdam.</p>
+      </article>
+
+    </div>
+
+    <!-- ── DONATION ──────────────────────────────────────────── -->
+
+    <div class="donation-section">
+      <div class="section-label">Newsletter</div>
+      <h2>Support WriteLite</h2>
+      <p class="meta-note">Use this section at the end of each seasonal newsletter. Same copy each time — consistent, low-pressure, in voice.</p>
+
+      <div class="donation-block">
+        <div class="donation-block-label">Seasonal newsletter — donation section</div>
+        <p>WriteLite is free and will stay that way.</p>
+        <p>If it's become part of how you write — if it opens fast when you need it to, stays out of your way when you're in flow, and keeps your files where they belong — a small donation is a meaningful way to say so.</p>
+        <p>It goes directly toward keeping the app maintained, updated, and bug free.</p>
+        <p>If you're able to, thank you. If not, keep writing.</p>
+        <a class="donation-cta" href="#">Donate to WriteLite →</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>WriteLite · Seasonal Newsletter · [Season] [Year]</span>
+    <span>
+      <a href="#website-link">writelite.app</a> &nbsp;·&nbsp;
+      <a href="#discord-link">Discord</a> &nbsp;·&nbsp;
+      <a href="#instagram-link">Instagram</a>
+    </span>
+  </footer>
+
+</body>
+</html>
