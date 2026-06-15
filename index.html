@@ -1629,62 +1629,13 @@
           </p>
         </div>
 
-        <button class="donate-submit-btn" id="donate-submit-btn" onclick="donateGoToStripe()">Donate $3 once</button>
+        <button class="donate-submit-btn" id="donate-submit-btn" onclick="donateGoToStripe()">Donate $3 Once</button>
         <p class="donate-secure-note">
           <svg class="donate-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
           </svg>
           Payments handled securely by Stripe
         </p>
-      </div>
-
-      <!-- Stripe handoff screen -->
-      <div class="donate-stripe-screen" id="donate-stripe-page">
-        <button class="donate-back-btn" onclick="donateGoBack()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 12H5M12 5l-7 7 7 7"/>
-          </svg>
-          Back
-        </button>
-        <div class="donate-stripe-card">
-          <div class="donate-stripe-header">
-            <div class="donate-stripe-mark">S</div>
-            <div>
-              <p class="donate-stripe-meta-name">WriteLite</p>
-              <p class="donate-stripe-meta-sub">Powered by Stripe</p>
-            </div>
-          </div>
-          <div class="donate-summary-row">
-            <span class="donate-summary-label" id="donate-stripe-label">One-time donation</span>
-            <span class="donate-summary-amount" id="donate-stripe-amount">$3.00</span>
-          </div>
-          <div class="donate-field-group">
-            <span class="donate-field-label">Email</span>
-            <div class="donate-fake-input">you@example.com</div>
-          </div>
-          <div class="donate-field-group">
-            <span class="donate-field-label">Card number</span>
-            <div class="donate-fake-input">1234 5678 9012 3456</div>
-          </div>
-          <div class="donate-card-row">
-            <div class="donate-field-group">
-              <span class="donate-field-label">Expiry</span>
-              <div class="donate-fake-input">MM / YY</div>
-            </div>
-            <div class="donate-field-group">
-              <span class="donate-field-label">CVC</span>
-              <div class="donate-fake-input">•••</div>
-            </div>
-          </div>
-          <button class="donate-pay-btn" id="donate-pay-btn">Pay $3.00</button>
-          <p class="donate-secure-note" style="margin-top:14px; justify-content: center;">
-            <svg class="donate-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
-            </svg>
-            Your payment is encrypted and secure
-          </p>
-        </div>
-        <button class="donate-back-link" onclick="donateGoBack()">← Choose a different amount</button>
       </div>
 
     </div><!-- /donate-widget -->
@@ -1766,25 +1717,10 @@
           custom:  'https://buy.stripe.com/14AdR8atFfwndBp86a4ow07'
         };
 
-        // Uncomment to redirect to real Stripe links instead of mock screen:
-        // var url = donateIsCustom ? links.custom : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);
-        // window.location.href = url;
-
-        // Mockup: show fake Stripe screen
-        document.getElementById('donate-page').style.display = 'none';
-        var sp   = document.getElementById('donate-stripe-page');
-        sp.style.display = 'block';
-        var freq = (donateMonthly && !donateIsCustom) ? 'Monthly donation' : 'One-time donation';
-        document.getElementById('donate-stripe-label').textContent  = freq;
-        var amtStr = '$' + donateAmount.toFixed(2);
-        document.getElementById('donate-stripe-amount').textContent = amtStr;
-        document.getElementById('donate-pay-btn').textContent       = 'Pay ' + amtStr;
+        var url = donateIsCustom ? links.custom : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);
+        window.location.href = url;
       }
 
-      function donateGoBack() {
-        document.getElementById('donate-stripe-page').style.display = 'none';
-        document.getElementById('donate-page').style.display        = 'block';
-      }
     </script>
 
   </div>
