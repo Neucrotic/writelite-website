@@ -1551,6 +1551,10 @@
 
       .donate-submit-btn {
         width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
         padding: 14px 16px;
         border-radius: 4px;
         border: none;
@@ -1562,6 +1566,15 @@
         letter-spacing: 0.02em;
         cursor: pointer;
         transition: opacity 0.15s, transform 0.1s;
+      }
+      .donate-submit-btn::after {
+        content: "";
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+        background-color: currentColor;
+        -webkit-mask: url("new_tab.svg") center / contain no-repeat;
+                mask: url("new_tab.svg") center / contain no-repeat;
       }
       .donate-submit-btn:hover { opacity: 0.88; }
       .donate-submit-btn:active { transform: scale(0.99); }
@@ -1693,7 +1706,7 @@
         };
 
         var url = donateIsCustom ? links.custom : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);
-        window.location.href = url;
+        window.open(url, '_blank', 'noopener');
       }
 
     </script>
