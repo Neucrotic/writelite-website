@@ -1455,6 +1455,39 @@
       time you sit down to write — this is how you say so.
     </p>
 
+    <!-- ── FUNDING TRACKERS ── -->
+    <div class="funding-trackers">
+
+      <!-- Monthly development -->
+      <div class="tracker" id="tracker-monthly">
+        <div class="tracker-head">
+          <span class="tracker-label">This month's development</span>
+          <span class="tracker-pct" id="monthly-pct">0%</span>
+        </div>
+        <div class="tracker-track">
+          <div class="tracker-fill" id="monthly-fill"></div>
+          <div class="tracker-done-label">GOAL REACHED!</div>
+        </div>
+        <div class="tracker-figure" id="monthly-figure">$0 of $4,000</div>
+        <div class="tracker-note">Figures update at the end of the work day, Melbourne time (AEST).</div>
+      </div>
+
+      <!-- macOS release — gated behind the monthly tracker -->
+      <div class="tracker locked" id="tracker-macos">
+        <div class="tracker-head">
+          <span class="tracker-label">macOS release fund</span>
+          <span class="tracker-pct" id="macos-pct">0%</span>
+        </div>
+        <div class="tracker-track">
+          <div class="tracker-fill" id="macos-fill"></div>
+          <div class="tracker-done-label">GOAL REACHED!</div>
+        </div>
+        <div class="tracker-figure" id="macos-figure">$0 of $2,000</div>
+        <div class="tracker-lock-note">Unlocks once this month is funded.</div>
+      </div>
+
+    </div>
+
     <!-- ── DONATE WIDGET ── -->
     <style>
       .donate-widget { max-width: 460px; }
@@ -1599,6 +1632,87 @@
       }
       .donate-lock-icon { width: 12px; height: 12px; opacity: 0.5; }
 
+      /* ── FUNDING TRACKERS ── */
+      .funding-trackers {
+        max-width: 460px;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .tracker-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+      .tracker-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--fg-2);
+        font-family: var(--font-sans);
+      }
+      .tracker-pct {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .tracker-track {
+        position: relative;
+        height: 32px;
+        background: var(--surface);
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .tracker-fill {
+        height: 100%;
+        width: 0;
+        background: var(--accent);
+        transition: width 0.6s ease;
+      }
+      /* Done state — fires automatically at 100% (see renderTracker) */
+      .tracker.done .tracker-fill { background: var(--accent-bg); }
+      .tracker-done-label {
+        position: absolute;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        pointer-events: none;
+      }
+      .tracker.done .tracker-done-label { display: flex; }
+      .tracker-figure {
+        font-size: 12px;
+        color: var(--fg-3);
+        margin-top: 8px;
+        font-family: var(--font-sans);
+      }
+      .tracker-note {
+        font-size: 12px;
+        color: var(--fg-4);
+        margin-top: 6px;
+        font-family: var(--font-sans);
+      }
+      .tracker-lock-note {
+        font-size: 12px;
+        color: var(--fg-4);
+        margin-top: 8px;
+        font-family: var(--font-sans);
+        display: none;
+      }
+      /* Locked (macOS gated until monthly is funded) */
+      .tracker.locked { opacity: 0.5; }
+      .tracker.locked .tracker-pct { color: var(--fg-4); }
+      .tracker.locked .tracker-lock-note { display: block; }
+
     </style>
 
     <div class="donate-widget">
@@ -1639,6 +1753,40 @@
     </div><!-- /donate-widget -->
 
     <script>
+      // ── FUNDING TRACKERS — edit these numbers only ──
+      var FUNDING = {
+        monthly: { raised: 0, goal: 4000 },   // resets 1st each month
+        macos:   { raised: 0, goal: 2000 },   // one-time; unlocks at monthly goal
+      };
+
+      function fmt(n) { return '$' + n.toLocaleString('en-US'); }
+
+      function renderTracker(prefix, raised, goal) {
+        var pct = Math.min(100, (raised / goal) * 100);
+        document.getElementById(prefix + '-fill').style.width   = pct + '%';
+        document.getElementById(prefix + '-pct').textContent    = Math.round(pct) + '%';
+        document.getElementById(prefix + '-figure').textContent = fmt(raised) + ' of ' + fmt(goal);
+        document.getElementById('tracker-' + prefix).classList.toggle('done', pct >= 100);
+      }
+
+      function renderFunding() {
+        renderTracker('monthly', FUNDING.monthly.raised, FUNDING.monthly.goal);
+
+        var unlocked = FUNDING.monthly.raised >= FUNDING.monthly.goal;
+        var macosEl  = document.getElementById('tracker-macos');
+        if (unlocked) {
+          macosEl.classList.remove('locked');
+          renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
+        } else {
+          // Stay dimmed/locked, but keep showing real progress — the macOS
+          // fund accumulates across months and shouldn't appear to reset.
+          macosEl.classList.add('locked');
+          renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
+        }
+      }
+
+      renderFunding();
+
       var donateAmount  = 3;
       var donateMonthly = false;
       var donateIsCustom = false;
