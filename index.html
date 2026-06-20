@@ -199,7 +199,7 @@
 
     .download-cards {
       display: flex;
-      gap: 12px;
+      gap: 24px;
       flex-wrap: wrap;
       justify-content: center;
       align-items: stretch;
@@ -588,10 +588,11 @@
     }
 
     .blurb-points li::before {
-      content: '—';
+      content: '>';
+      font-family: 'JetBrains Mono', monospace;
       color: var(--accent);
       flex-shrink: 0;
-      margin-top: 1px;
+      margin-top: 0px;
     }
 
     /* ── FOOTER ──────────────────────────────────── */
@@ -1269,7 +1270,6 @@
         >
     </div><!-- /preview-col -->
 
-
     <!-- Blurb -->
     <div class="blurb-col">
       <div class="blurb-heading">Why WriteLite?</div>
@@ -1384,7 +1384,7 @@
 
   <footer class="site-footer">
     <span>WriteLite — a writing app by NEL</span>
-    <span>Free &amp; open format</span>
+    <span>Free &amp; Open Format</span>
   </footer>
 
 </section>
