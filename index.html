@@ -608,6 +608,12 @@
       font-family: var(--font-sans);
     }
 
+    .footer-quote {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+
     /* ── DOCUMENTATION ───────────────────────────── */
     .docs-page {
       min-height: calc(100vh - var(--nav-h));
@@ -629,7 +635,7 @@
     .about-page {
       max-width: 1600px;
       margin: 0 auto;
-      padding: 64px 64px 96px;
+      padding: 32px 64px 96px;
     }
 
     .about-sections-grid {
@@ -641,8 +647,8 @@
     }
 
     .about-sections-grid .about-section {
-      padding-bottom: 2px;
-      margin-bottom: 50px;
+      padding-bottom: 16px;
+      margin-bottom: 36px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -1287,10 +1293,6 @@
 
   <!-- About — inline on home page, scroll to read more -->
   <div class="about-page" style="border-top:1px solid var(--border)">
-
-    <h2 class="page-heading">About WriteLite</h2>
-	<p class="about-premise">"A writing app's job is to let the writer write."</p>
-
     <div class="about-sections-grid">
 
       <div class="about-section">
@@ -1377,13 +1379,13 @@
           completely and permanently.
         </p>
       </div>
-
     </div><!-- /about-sections-grid -->
 
   </div><!-- /about-on-home -->
 
   <footer class="site-footer">
     <span>WriteLite — a writing app by NEL</span>
+    <span class="footer-quote">"A writing app's job is to let the writer write."</span>
     <span>Free &amp; Open Format</span>
   </footer>
 
