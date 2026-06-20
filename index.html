@@ -631,6 +631,72 @@
       margin-bottom: 10px;
     }
 
+    .docs-page .about-premise {
+      margin-bottom: 10px;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .docs-page .docs-wip {
+      margin-bottom: 48px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Long-form docs copy — readable left-aligned column under the header */
+    .docs-body { max-width: 720px; }
+
+    .docs-section-title {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--fg-1);
+      margin-top: 16px;
+      margin-bottom: 22px;
+    }
+
+    .docs-body .docs-intro {
+      font-size: 15px;
+      color: var(--fg-3);
+      line-height: 1.9;
+      margin-bottom: 32px;
+      max-width: 640px;
+      font-family: var(--font-sans);
+    }
+
+    .docs-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .docs-list li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 15px;
+      color: var(--fg-3);
+      line-height: 1.7;
+      font-family: var(--font-sans);
+    }
+
+    .docs-list li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: var(--font-mono);
+    }
+
+    .docs-list li strong { color: var(--fg-2); font-weight: 600; }
+
+    .docs-uth {
+      font-style: italic;
+      color: var(--fg-4);
+    }
+
     /* ── ABOUT ───────────────────────────────────── */
     .about-page {
       max-width: 1600px;
@@ -836,6 +902,230 @@
       letter-spacing: 0.02em;
       font-family: var(--font-sans);
     }
+
+    /* ── SUPPORT — DONATE WIDGET & FUNDING TRACKERS ── */
+      .donate-widget { max-width: 460px; }
+
+      .donate-amt-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .donate-amt-btn {
+        padding: 16px 8px;
+        border: 1px solid var(--border-strong);
+        border-radius: 4px;
+        background: var(--surface);
+        color: var(--fg-2);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .donate-amt-btn:hover { background: var(--surface2); border-color: rgba(255,255,255,0.28); }
+      .donate-amt-btn.selected {
+        border: 1.5px solid var(--accent);
+        background: var(--accent-bg);
+        color: var(--accent-fg);
+      }
+      .donate-amt-custom { grid-column: 1 / -1; font-size: 14px; }
+
+      .donate-custom-input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid var(--border-strong);
+        border-radius: 4px;
+        background: var(--surface);
+        color: var(--fg-2);
+        font-family: var(--font-sans);
+        font-size: 15px;
+        margin-bottom: 12px;
+        outline: none;
+        transition: border-color 0.15s;
+        -moz-appearance: textfield;
+      }
+      .donate-custom-input::-webkit-outer-spin-button,
+      .donate-custom-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+      .donate-custom-input::placeholder { color: var(--fg-4); }
+      .donate-custom-input:focus { border-color: var(--accent-border); }
+      .donate-custom-input.active-field { border: 1.5px solid var(--accent); }
+
+      .donate-toggle-row {
+        padding: 14px 16px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        margin-bottom: 20px;
+        transition: opacity 0.2s;
+      }
+      .donate-toggle-inner { display: flex; align-items: center; justify-content: space-between; }
+      .donate-toggle-label { font-size: 14px; font-weight: 500; color: var(--fg-2); margin-bottom: 2px; font-family: var(--font-sans); }
+      .donate-toggle-sub   { font-size: 12px; color: var(--fg-3); font-family: var(--font-sans); }
+
+      .donate-toggle-track {
+        position: relative;
+        width: 42px; height: 24px;
+        background: var(--border-strong);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background 0.2s;
+        flex-shrink: 0;
+      }
+      .donate-toggle-track.on { background: var(--accent); }
+      .donate-toggle-track.disabled { cursor: default; }
+      .donate-toggle-thumb {
+        position: absolute;
+        top: 3px; left: 3px;
+        width: 18px; height: 18px;
+        border-radius: 50%;
+        background: white;
+        transition: transform 0.2s;
+      }
+      .donate-toggle-track.on .donate-toggle-thumb { transform: translateX(18px); }
+
+      .donate-custom-note {
+        font-size: 12px;
+        color: var(--fg-3);
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid var(--border);
+        display: none;
+        line-height: 1.5;
+        font-family: var(--font-sans);
+      }
+      .donate-custom-note.visible { display: block; }
+
+      .donate-submit-btn {
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 14px 16px;
+        border-radius: 4px;
+        border: none;
+        background: var(--accent);
+        color: #1a1200;
+        font-family: var(--font-sans);
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition: opacity 0.15s, transform 0.1s;
+      }
+      .donate-submit-btn::after {
+        content: "";
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        background-color: currentColor;
+        -webkit-mask: url("new_tab.svg") center / contain no-repeat;
+                mask: url("new_tab.svg") center / contain no-repeat;
+      }
+      .donate-submit-btn:hover { opacity: 0.88; }
+      .donate-submit-btn:active { transform: scale(0.99); }
+      .donate-submit-btn:disabled {
+        background: var(--surface2);
+        color: var(--fg-4);
+        cursor: not-allowed;
+        transform: none;
+        opacity: 1;
+      }
+
+      .donate-secure-note {
+        font-size: 12px;
+        color: var(--fg-4);
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-family: var(--font-sans);
+      }
+      .donate-lock-icon { width: 12px; height: 12px; opacity: 0.5; }
+
+      /* ── FUNDING TRACKERS ── */
+      .funding-trackers {
+        max-width: 460px;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .tracker-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+      .tracker-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--fg-2);
+        font-family: var(--font-sans);
+      }
+      .tracker-pct {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .tracker-track {
+        position: relative;
+        height: 32px;
+        background: var(--surface);
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .tracker-fill {
+        height: 100%;
+        width: 0;
+        background: var(--accent);
+        transition: width 0.6s ease;
+      }
+      /* Done state — fires automatically at 100% (see renderTracker) */
+      .tracker.done .tracker-fill { background: var(--accent-bg); }
+      .tracker-done-label {
+        position: absolute;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        pointer-events: none;
+      }
+      .tracker.done .tracker-done-label { display: flex; }
+      .tracker-figure {
+        font-size: 12px;
+        color: var(--fg-3);
+        margin-top: 8px;
+        font-family: var(--font-sans);
+      }
+      .tracker-note {
+        font-size: 12px;
+        color: var(--fg-4);
+        margin-top: 6px;
+        font-family: var(--font-sans);
+      }
+      .tracker-lock-note {
+        font-size: 12px;
+        color: var(--fg-4);
+        margin-top: 8px;
+        font-family: var(--font-sans);
+        display: none;
+      }
+      /* Locked (macOS gated until monthly is funded) */
+      .tracker.locked { opacity: 0.5; }
+      .tracker.locked .tracker-pct { color: var(--fg-4); }
+      .tracker.locked .tracker-lock-note { display: block; }
 
     /* ── FEEDBACK PAGE ───────────────────────────── */
     .feedback-page {
@@ -1101,12 +1391,6 @@
       .docs-page     { padding: 48px 24px 72px; }
       .feedback-page { padding: 48px 24px 72px; }
       .support-page  { padding: 48px 24px 72px; }
-
-
-      /* Donate widget: full width */
-      .donate-widget   { max-width: 100%; }
-      .donate-amt-grid { gap: 8px; }
-      .donate-amt-btn  { padding: 14px 8px; font-size: 15px; }
 
       /* Feedback */
       .feedback-textarea { min-height: 90px; }
@@ -1397,8 +1681,157 @@
   <div class="docs-page">
     <h2 class="page-heading">Documentation</h2>
     <p class="about-premise">"Everything you need to know, before you need to know it."</p>
+    <p class="docs-wip">Work in progress&hellip;</p>
 
-    <p> Coming soon... </p>
+    <div class="docs-body">
+
+      <!-- ── SECTION 1 — THE BASICS ── -->
+      <h3 class="docs-section-title">The basics</h3>
+      <p class="docs-intro">
+        A quick tour of the essentials: the controls you'll use day to day,
+        and where they live.
+      </p>
+
+      <div class="about-section">
+        <div class="about-section-label">The toolbar</div>
+        <p>The toolbar above your page has three parts:</p>
+        <ul class="docs-list">
+          <li><strong>Formatting</strong> — the usual word-processor controls, where you'd expect them: fonts, size, bold/italic/underline, headings, lists, alignment, and line spacing.</li>
+          <li><strong>Fullscreen</strong> — hides everything but your page. Press it (or F11) to write distraction-free; Esc brings the rest back.</li>
+          <li><strong>Settings</strong> — the gear at the far right, for your preferences and project options.</li>
+        </ul>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label">Where everything lives</div>
+        <p>WriteLite has four areas, and that's the whole map:</p>
+        <ul class="docs-list">
+          <li><strong>The sidebar</strong>, on the left, holds your projects, folders, and documents. Click a file to open it. Right-click anywhere in the tree to create, rename, or delete — that's where your file actions live.</li>
+          <li><strong>The toolbar</strong>, above the page, is everything in the section above: formatting, and the settings gear.</li>
+          <li><strong>The page</strong> is the middle. It's just your writing, centred, with room to breathe.</li>
+          <li><strong>The status bar</strong>, along the bottom, is the quiet row: a tick when your work is saved and a dot when it isn't, your filename, and toggles for spellcheck and word count.</li>
+        </ul>
+        <p>Nothing here needs setting up. Open a document and start.</p>
+      </div>
+
+      <!-- ── SECTION 2 — YOUR FILES & HOW WRITELITE WORKS ── -->
+      <h3 class="docs-section-title">Your files &amp; how WriteLite works</h3>
+      <p class="docs-intro">
+        Here's the part most writing apps don't tell you: where your work
+        actually goes. With WriteLite the answer is simple — your files are real
+        files on your computer, and they stay that way. This section explains how
+        it all fits together, and why you never have to wonder where your writing
+        went.
+      </p>
+
+      <div class="about-section">
+        <div class="about-section-label">The registry</div>
+        <p>
+          WriteLite keeps a short list of where your projects are. When you open
+          the app, it reads that list and shows your projects in the sidebar — it
+          doesn't move them or copy them in, it just remembers where you put them.
+        </p>
+        <p>
+          <span class="docs-uth">Under the hood:</span> the list is a small file
+          called <span class="inline-code">writelite.json</span>, stored in your
+          computer's application-data folder. It holds your project locations, a
+          few preferences, and which project you had open last. It's WriteLite's
+          own bookkeeping — your documents are never kept in here.
+        </p>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label">Project folders</div>
+        <p>
+          A project is just a folder on your computer. You choose where it goes —
+          your Documents, a writing drive, anywhere. Inside are your documents and
+          any folders you make to organise them.
+        </p>
+        <p>
+          What makes a folder a WriteLite project is a single invisible file that
+          WriteLite tucks inside it. You'll rarely see it, and you can leave it
+          alone — it's what lets WriteLite recognise the folder and remember the
+          project's name, sort order, and which folders you had open. It's the
+          only hidden file in your project; WriteLite's own settings live
+          elsewhere, out of your way.
+        </p>
+        <p>
+          A project can't live inside another project — keep them as separate
+          top-level folders. Within a project, though, nest as many folders as
+          you like.
+        </p>
+        <p>
+          Because a project is an ordinary folder, you can move, rename, or copy
+          it like anything else. One ask: don't rename or delete that hidden file
+          outside the app. Even if it does go missing, your writing is never
+          stranded — your documents are separate files, and WriteLite can recover
+          the project by pointing it back at the folder, rebuilding the hidden
+          file as it goes. The most you'd lose is the project's name and saved
+          layout.
+        </p>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label">Backup</div>
+        <p>
+          Your projects are ordinary folders, so backing them up is ordinary too.
+          Put a project folder in a cloud drive — Dropbox, OneDrive, Google Drive
+          — or copy it to a USB stick, and it's backed up. No export step, no
+          special format.
+        </p>
+        <p>
+          If you keep your projects in a cloud folder, just point WriteLite at
+          them, and you can carry on from any computer running WriteLite.
+        </p>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label">Inside a <span class="inline-code">.wlite</span> file</div>
+        <p>
+          Every document you write is saved as a
+          <span class="inline-code">.wlite</span> file. Underneath, it's plain
+          markdown — readable text — which is what lets any editor open it.
+        </p>
+        <p>
+          At the very end of the file, WriteLite adds a small block that starts
+          with <span class="inline-code">&lt;!-- .wlite:meta</span>. That's an HTML
+          comment holding a few per-document settings, like line spacing and
+          heading styles. Because it's a comment, other editors treat it as
+          invisible and skip past it. You'll never see it while you write — it's
+          only there so your document opens looking the way you left it.
+        </p>
+        <p>
+          Best to leave it alone. It isn't meant to be edited by hand, and if
+          WriteLite can't make sense of it — because it's been altered or damaged
+          — it won't try to guess. It simply replaces it with default settings the
+          next time you save the document.
+        </p>
+        <p>
+          When you set a particular font or size for some words, WriteLite saves
+          that choice inline — as a small <span class="inline-code">&lt;span&gt;</span>
+          tag wrapped around those words, right in the text. It's a standard way to
+          mark styling in a markdown file, and it keeps each choice attached to the
+          exact words it applies to, so your formatting stays put wherever the
+          document goes.
+        </p>
+        <p>
+          Want to open a document somewhere else? Rename it from
+          <span class="inline-code">.wlite</span> to
+          <span class="inline-code">.md</span> and it opens in any markdown editor
+          — Obsidian, Typora, VS Code, or plain Notepad. Nothing is locked away.
+        </p>
+        <p>
+          Renaming changes nothing inside the file, so the font
+          <span class="inline-code">&lt;span&gt;</span> tags and the
+          <span class="inline-code">.wlite:meta</span> comment come along with it.
+          A markdown editor keeps the comment hidden and renders the fonts as
+          styling; a plain text editor will show you the underlying tags. Either
+          way nothing is lost — and opening the file in WriteLite again restores it
+          exactly.
+        </p>
+      </div>
+
+    </div><!-- /docs-body -->
   </div>
 </section>
 
@@ -1489,231 +1922,6 @@
     </div>
 
     <!-- ── DONATE WIDGET ── -->
-    <style>
-      .donate-widget { max-width: 460px; }
-
-      .donate-amt-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin-bottom: 10px;
-      }
-
-      .donate-amt-btn {
-        padding: 16px 8px;
-        border: 1px solid var(--border-strong);
-        border-radius: 4px;
-        background: var(--surface);
-        color: var(--fg-2);
-        font-family: var(--font-sans);
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.15s;
-      }
-      .donate-amt-btn:hover { background: var(--surface2); border-color: rgba(255,255,255,0.28); }
-      .donate-amt-btn.selected {
-        border: 1.5px solid var(--accent);
-        background: var(--accent-bg);
-        color: var(--accent-fg);
-      }
-      .donate-amt-custom { grid-column: 1 / -1; font-size: 14px; }
-
-      .donate-custom-input {
-        width: 100%;
-        padding: 14px 16px;
-        border: 1px solid var(--border-strong);
-        border-radius: 4px;
-        background: var(--surface);
-        color: var(--fg-2);
-        font-family: var(--font-sans);
-        font-size: 15px;
-        margin-bottom: 12px;
-        outline: none;
-        transition: border-color 0.15s;
-        -moz-appearance: textfield;
-      }
-      .donate-custom-input::-webkit-outer-spin-button,
-      .donate-custom-input::-webkit-inner-spin-button { -webkit-appearance: none; }
-      .donate-custom-input::placeholder { color: var(--fg-4); }
-      .donate-custom-input:focus { border-color: var(--accent-border); }
-      .donate-custom-input.active-field { border: 1.5px solid var(--accent); }
-
-      .donate-toggle-row {
-        padding: 14px 16px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        margin-bottom: 20px;
-        transition: opacity 0.2s;
-      }
-      .donate-toggle-inner { display: flex; align-items: center; justify-content: space-between; }
-      .donate-toggle-label { font-size: 14px; font-weight: 500; color: var(--fg-2); margin-bottom: 2px; font-family: var(--font-sans); }
-      .donate-toggle-sub   { font-size: 12px; color: var(--fg-3); font-family: var(--font-sans); }
-
-      .donate-toggle-track {
-        position: relative;
-        width: 42px; height: 24px;
-        background: var(--border-strong);
-        border-radius: 12px;
-        cursor: pointer;
-        transition: background 0.2s;
-        flex-shrink: 0;
-      }
-      .donate-toggle-track.on { background: var(--accent); }
-      .donate-toggle-track.disabled { cursor: default; }
-      .donate-toggle-thumb {
-        position: absolute;
-        top: 3px; left: 3px;
-        width: 18px; height: 18px;
-        border-radius: 50%;
-        background: white;
-        transition: transform 0.2s;
-      }
-      .donate-toggle-track.on .donate-toggle-thumb { transform: translateX(18px); }
-
-      .donate-custom-note {
-        font-size: 12px;
-        color: var(--fg-3);
-        margin-top: 10px;
-        padding-top: 10px;
-        border-top: 1px solid var(--border);
-        display: none;
-        line-height: 1.5;
-        font-family: var(--font-sans);
-      }
-      .donate-custom-note.visible { display: block; }
-
-      .donate-submit-btn {
-        width: 100%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 7px;
-        padding: 14px 16px;
-        border-radius: 4px;
-        border: none;
-        background: var(--accent);
-        color: #1a1200;
-        font-family: var(--font-sans);
-        font-size: 15px;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        cursor: pointer;
-        transition: opacity 0.15s, transform 0.1s;
-      }
-      .donate-submit-btn::after {
-        content: "";
-        width: 16px;
-        height: 16px;
-        flex-shrink: 0;
-        background-color: currentColor;
-        -webkit-mask: url("new_tab.svg") center / contain no-repeat;
-                mask: url("new_tab.svg") center / contain no-repeat;
-      }
-      .donate-submit-btn:hover { opacity: 0.88; }
-      .donate-submit-btn:active { transform: scale(0.99); }
-      .donate-submit-btn:disabled {
-        background: var(--surface2);
-        color: var(--fg-4);
-        cursor: not-allowed;
-        transform: none;
-        opacity: 1;
-      }
-
-      .donate-secure-note {
-        font-size: 12px;
-        color: var(--fg-4);
-        margin-top: 12px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        font-family: var(--font-sans);
-      }
-      .donate-lock-icon { width: 12px; height: 12px; opacity: 0.5; }
-
-      /* ── FUNDING TRACKERS ── */
-      .funding-trackers {
-        max-width: 460px;
-        margin-bottom: 40px;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-      }
-      .tracker-head {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 8px;
-      }
-      .tracker-label {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--fg-2);
-        font-family: var(--font-sans);
-      }
-      .tracker-pct {
-        font-family: var(--font-mono);
-        font-size: 13px;
-        color: var(--accent);
-        flex-shrink: 0;
-      }
-      .tracker-track {
-        position: relative;
-        height: 32px;
-        background: var(--surface);
-        border: 1px solid var(--accent);
-        border-radius: 8px;
-        overflow: hidden;
-      }
-      .tracker-fill {
-        height: 100%;
-        width: 0;
-        background: var(--accent);
-        transition: width 0.6s ease;
-      }
-      /* Done state — fires automatically at 100% (see renderTracker) */
-      .tracker.done .tracker-fill { background: var(--accent-bg); }
-      .tracker-done-label {
-        position: absolute;
-        inset: 0;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-mono);
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        color: var(--accent);
-        pointer-events: none;
-      }
-      .tracker.done .tracker-done-label { display: flex; }
-      .tracker-figure {
-        font-size: 12px;
-        color: var(--fg-3);
-        margin-top: 8px;
-        font-family: var(--font-sans);
-      }
-      .tracker-note {
-        font-size: 12px;
-        color: var(--fg-4);
-        margin-top: 6px;
-        font-family: var(--font-sans);
-      }
-      .tracker-lock-note {
-        font-size: 12px;
-        color: var(--fg-4);
-        margin-top: 8px;
-        font-family: var(--font-sans);
-        display: none;
-      }
-      /* Locked (macOS gated until monthly is funded) */
-      .tracker.locked { opacity: 0.5; }
-      .tracker.locked .tracker-pct { color: var(--fg-4); }
-      .tracker.locked .tracker-lock-note { display: block; }
-
-    </style>
 
     <div class="donate-widget">
 
@@ -1752,121 +1960,117 @@
 
     </div><!-- /donate-widget -->
 
-    <script>
-      // ── FUNDING TRACKERS — edit these numbers only ──
-      var FUNDING = {
-        monthly: { raised: 0, goal: 4000 },   // resets 1st each month
-        macos:   { raised: 0, goal: 2000 },   // one-time; unlocks at monthly goal
-      };
-
-      function fmt(n) { return '$' + n.toLocaleString('en-US'); }
-
-      function renderTracker(prefix, raised, goal) {
-        var pct = Math.min(100, (raised / goal) * 100);
-        document.getElementById(prefix + '-fill').style.width   = pct + '%';
-        document.getElementById(prefix + '-pct').textContent    = Math.round(pct) + '%';
-        document.getElementById(prefix + '-figure').textContent = fmt(raised) + ' of ' + fmt(goal);
-        document.getElementById('tracker-' + prefix).classList.toggle('done', pct >= 100);
-      }
-
-      function renderFunding() {
-        renderTracker('monthly', FUNDING.monthly.raised, FUNDING.monthly.goal);
-
-        var unlocked = FUNDING.monthly.raised >= FUNDING.monthly.goal;
-        var macosEl  = document.getElementById('tracker-macos');
-        if (unlocked) {
-          macosEl.classList.remove('locked');
-          renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
-        } else {
-          // Stay dimmed/locked, but keep showing real progress — the macOS
-          // fund accumulates across months and shouldn't appear to reset.
-          macosEl.classList.add('locked');
-          renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
-        }
-      }
-
-      renderFunding();
-
-      var donateAmount  = 3;
-      var donateMonthly = false;
-      var donateIsCustom = false;
-
-      function donateSelectAmt(val, btn) {
-        donateAmount   = val;
-        donateIsCustom = false;
-        document.querySelectorAll('.donate-amt-btn').forEach(function(b) { b.classList.remove('selected'); });
-        btn.classList.add('selected');
-        donateUpdateUI();
-      }
-
-      function donateSelectCustomBtn(btn) {
-        donateIsCustom = true;
-        donateAmount   = null;
-        document.querySelectorAll('.donate-amt-btn').forEach(function(b) { b.classList.remove('selected'); });
-        btn.classList.add('selected');
-        donateUpdateUI();
-      }
-
-      function donateFlipToggle() {
-        if (donateIsCustom) return;
-        donateMonthly = !donateMonthly;
-        document.getElementById('donate-toggle').classList.toggle('on', donateMonthly);
-        donateUpdateUI();
-      }
-
-      function donateUpdateUI() {
-        var toggle = document.getElementById('donate-toggle');
-        var note   = document.getElementById('donate-custom-note');
-        var btn    = document.getElementById('donate-submit-btn');
-
-        if (donateIsCustom) {
-          toggle.style.opacity = '0.35';
-          toggle.classList.add('disabled');
-          toggle.classList.remove('on');
-          donateMonthly = false;
-          note.classList.add('visible');
-          btn.disabled = false;
-          btn.textContent = 'Donate Your Own Amount Once';
-          return;
-        }
-
-        toggle.style.opacity = '1';
-        toggle.classList.remove('disabled');
-        note.classList.remove('visible');
-
-        if (!donateAmount) {
-          btn.disabled    = true;
-          btn.textContent = 'Enter an amount';
-          return;
-        }
-
-        btn.disabled = false;
-        var freq = donateMonthly ? 'Monthly' : 'Once';
-        btn.textContent = 'Donate $' + donateAmount + ' ' + freq;
-      }
-
-      function donateGoToStripe() {
-        if (!donateAmount && !donateIsCustom) return;
-
-        // TODO: replace these placeholder values with your real Stripe Payment Link URLs
-        var links = {
-          once:    { 3: 'https://buy.stripe.com/9B628q6dp83V2WLgCG4ow09',    5: 'https://buy.stripe.com/6oUcN431dfwn0OD1HM4ow04',    10: 'https://buy.stripe.com/dRm6oG0T5doffJx4TY4ow03'    },
-          monthly: { 3: 'https://buy.stripe.com/aFa4gy8lxesjapd2LQ4ow02', 5: 'https://buy.stripe.com/bJe00i31d4RJapd3PU4ow06', 10: 'https://buy.stripe.com/7sYfZgfNZesjcxl1HM4ow00' },
-          custom:  'https://buy.stripe.com/14A4gybxJ5VN2WLfyC4ow08'
-        };
-
-        var url = donateIsCustom ? links.custom : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);
-        window.open(url, '_blank', 'noopener');
-      }
-
-    </script>
-
   </div>
 </section>
 
-
 <!-- ── NAVIGATION SCRIPT ─────────────────────────────── -->
 <script>
+  // ── FUNDING TRACKERS — edit these numbers only ──
+  var FUNDING = {
+    monthly: { raised: 0, goal: 4000 },   // resets 1st each month
+    macos:   { raised: 0, goal: 2000 },   // one-time; unlocks at monthly goal
+  };
+
+  function fmt(n) { return '$' + n.toLocaleString('en-US'); }
+
+  function renderTracker(prefix, raised, goal) {
+    var pct = Math.min(100, (raised / goal) * 100);
+    document.getElementById(prefix + '-fill').style.width   = pct + '%';
+    document.getElementById(prefix + '-pct').textContent    = Math.round(pct) + '%';
+    document.getElementById(prefix + '-figure').textContent = fmt(raised) + ' of ' + fmt(goal);
+    document.getElementById('tracker-' + prefix).classList.toggle('done', pct >= 100);
+  }
+
+  function renderFunding() {
+    renderTracker('monthly', FUNDING.monthly.raised, FUNDING.monthly.goal);
+
+    var unlocked = FUNDING.monthly.raised >= FUNDING.monthly.goal;
+    var macosEl  = document.getElementById('tracker-macos');
+    if (unlocked) {
+      macosEl.classList.remove('locked');
+      renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
+    } else {
+      // Stay dimmed/locked, but keep showing real progress — the macOS
+      // fund accumulates across months and shouldn't appear to reset.
+      macosEl.classList.add('locked');
+      renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
+    }
+  }
+
+  renderFunding();
+
+  var donateAmount  = 3;
+  var donateMonthly = false;
+  var donateIsCustom = false;
+
+  function donateSelectAmt(val, btn) {
+    donateAmount   = val;
+    donateIsCustom = false;
+    document.querySelectorAll('.donate-amt-btn').forEach(function(b) { b.classList.remove('selected'); });
+    btn.classList.add('selected');
+    donateUpdateUI();
+  }
+
+  function donateSelectCustomBtn(btn) {
+    donateIsCustom = true;
+    donateAmount   = null;
+    document.querySelectorAll('.donate-amt-btn').forEach(function(b) { b.classList.remove('selected'); });
+    btn.classList.add('selected');
+    donateUpdateUI();
+  }
+
+  function donateFlipToggle() {
+    if (donateIsCustom) return;
+    donateMonthly = !donateMonthly;
+    document.getElementById('donate-toggle').classList.toggle('on', donateMonthly);
+    donateUpdateUI();
+  }
+
+  function donateUpdateUI() {
+    var toggle = document.getElementById('donate-toggle');
+    var note   = document.getElementById('donate-custom-note');
+    var btn    = document.getElementById('donate-submit-btn');
+
+    if (donateIsCustom) {
+      toggle.style.opacity = '0.35';
+      toggle.classList.add('disabled');
+      toggle.classList.remove('on');
+      donateMonthly = false;
+      note.classList.add('visible');
+      btn.disabled = false;
+      btn.textContent = 'Donate Your Own Amount Once';
+      return;
+    }
+
+    toggle.style.opacity = '1';
+    toggle.classList.remove('disabled');
+    note.classList.remove('visible');
+
+    if (!donateAmount) {
+      btn.disabled    = true;
+      btn.textContent = 'Enter an amount';
+      return;
+    }
+
+    btn.disabled = false;
+    var freq = donateMonthly ? 'Monthly' : 'Once';
+    btn.textContent = 'Donate $' + donateAmount + ' ' + freq;
+  }
+
+  function donateGoToStripe() {
+    if (!donateAmount && !donateIsCustom) return;
+
+    // TODO: replace these placeholder values with your real Stripe Payment Link URLs
+    var links = {
+      once:    { 3: 'https://buy.stripe.com/9B628q6dp83V2WLgCG4ow09',    5: 'https://buy.stripe.com/6oUcN431dfwn0OD1HM4ow04',    10: 'https://buy.stripe.com/dRm6oG0T5doffJx4TY4ow03'    },
+      monthly: { 3: 'https://buy.stripe.com/aFa4gy8lxesjapd2LQ4ow02', 5: 'https://buy.stripe.com/bJe00i31d4RJapd3PU4ow06', 10: 'https://buy.stripe.com/7sYfZgfNZesjcxl1HM4ow00' },
+      custom:  'https://buy.stripe.com/14A4gybxJ5VN2WLfyC4ow08'
+    };
+
+    var url = donateIsCustom ? links.custom : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);
+    window.open(url, '_blank', 'noopener');
+  }
+
   // ── HOOK LINE CYCLING ──────────────────────────────────────────
   // To add a new option: add an object with a segments array.
   // Each segment is either a plain string or { text, em: true } for highlight.
