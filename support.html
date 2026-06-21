@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WriteLite — Support the Developer</title>
+  <link rel="icon" href="wl_logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="wl_logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav>
+   <a class="nav-logo" href="index.html" style="cursor:pointer; display:flex; align-items:center; gap:2px;">
+	<img src="wl_logo.svg" alt="WriteLite logo" width="26" height="26" style="flex-shrink:0; display:block;">
+    <svg viewBox="0 0 116 26" width="116" height="26" aria-label="WriteLite" style="flex-shrink:0; display:block;">
+      <text x="0" y="21" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" letter-spacing="-0.5">
+        <tspan fill="var(--fg-1)">Write</tspan><tspan fill="var(--fg-3)">Lite</tspan>
+      </text>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a id="nav-home"     href="index.html">Home</a>
+    <a id="nav-docs"     href="documentation.html">Documentation</a>
+    <a id="nav-feedback" href="feedback.html">Feedback</a>
+  </div>
+  <a class="nav-support" href="support.html">Support the Developer</a>
+
+  <!-- Burger — mobile only -->
+  <button class="nav-burger" id="nav-burger" aria-label="Open menu" onclick="toggleMobileNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+  <a id="mnav-home"     href="index.html">Home</a>
+  <a id="mnav-docs"     href="documentation.html">Documentation</a>
+  <a id="mnav-feedback" href="feedback.html">Feedback</a>
+  <div class="mobile-nav-divider"></div>
+  <a class="mobile-nav-support" href="support.html">Support the Developer</a>
+</div>
+
+
+<!-- ── SUPPORT ───────────────────────────────────────── -->
+<section id="support" class="active">
+  <div class="support-page">
+
+    <h2 class="page-heading">Support the Developer</h2>
+    <p class="page-sub">
+      WriteLite is free. If it saves you time, gets out of your
+      way when it counts, or becomes the tool you reach for every
+      time you sit down to write — this is how you say so.
+    </p>
+
+    <!-- ── FUNDING TRACKERS ── -->
+    <div class="funding-trackers">
+
+      <!-- Monthly development -->
+      <div class="tracker" id="tracker-monthly">
+        <div class="tracker-head">
+          <span class="tracker-label">July's Development Fund</span>
+          <span class="tracker-pct" id="monthly-pct">0%</span>
+        </div>
+        <div class="tracker-track">
+          <div class="tracker-fill" id="monthly-fill"></div>
+          <div class="tracker-done-label">GOAL REACHED!</div>
+        </div>
+        <div class="tracker-figure" id="monthly-figure">$0 of $4,000</div>
+        <div class="tracker-note">Figures update at the end of the work day, Melbourne time (AEST).</div>
+      </div>
+
+      <!-- macOS release — gated behind the monthly tracker -->
+      <div class="tracker locked" id="tracker-macos">
+        <div class="tracker-head">
+          <span class="tracker-label">macOS Release Fund</span>
+          <span class="tracker-pct" id="macos-pct">0%</span>
+        </div>
+        <div class="tracker-track">
+          <div class="tracker-fill" id="macos-fill"></div>
+          <div class="tracker-done-label">GOAL REACHED!</div>
+        </div>
+        <div class="tracker-figure" id="macos-figure">$0 of $2,000</div>
+        <div class="tracker-lock-note">Unlocks once this month is funded.</div>
+      </div>
+
+    </div>
+
+    <!-- ── DONATE WIDGET ── -->
+
+    <div class="donate-widget">
+
+      <!-- Donation selection -->
+      <div id="donate-page">
+        <div class="donate-amt-grid">
+          <button class="donate-amt-btn selected" onclick="donateSelectAmt(3, this)">$3</button>
+          <button class="donate-amt-btn" onclick="donateSelectAmt(5, this)">$5</button>
+          <button class="donate-amt-btn" onclick="donateSelectAmt(10, this)">$10</button>
+          <button class="donate-amt-btn donate-amt-custom" onclick="donateSelectCustomBtn(this)">Enter Your Own Amount</button>
+        </div>
+
+        <div class="donate-toggle-row" id="donate-toggle-row">
+          <div class="donate-toggle-inner">
+            <div>
+              <p class="donate-toggle-label">Make this monthly</p>
+              <p class="donate-toggle-sub">Cancel any time through Stripe</p>
+            </div>
+            <div class="donate-toggle-track" id="donate-toggle" onclick="donateFlipToggle()">
+              <div class="donate-toggle-thumb"></div>
+            </div>
+          </div>
+          <p class="donate-custom-note" id="donate-custom-note">
+            Custom amounts are one-time only. Choose $3, $5, or $10 to set up a monthly donation.
+          </p>
+        </div>
+
+        <button class="donate-submit-btn" id="donate-submit-btn" onclick="donateGoToStripe()">Donate $3 Once</button>
+        <p class="donate-secure-note">
+          <svg class="donate-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+          </svg>
+          Payments handled securely by Stripe
+        </p>
+      </div>
+
+    </div><!-- /donate-widget -->
+
+  </div>
+</section>
+
+<!-- ── PAGE SCRIPT ───────────────────────────────────── -->
+<script>
+  // ── FUNDING TRACKERS — edit these numbers only ──
+  var FUNDING = {
+    monthly: { raised: 0, goal: 4000 },   // resets 1st each month
+    macos:   { raised: 0, goal: 2000 },   // one-time; unlocks at monthly goal
+  };
+
+  function fmt(n) { return '$' + n.toLocaleString('en-US'); }
+
+  function renderTracker(prefix, raised, goal) {
+    var pct = Math.min(100, (raised / goal) * 100);
+    document.getElementById(prefix + '-fill').style.width   = pct + '%';
+    document.getElementById(prefix + '-pct').textContent    = Math.round(pct) + '%';
+    document.getElementById(prefix + '-figure').textContent = fmt(raised) + ' of ' + fmt(goal);
+    document.getElementById('tracker-' + prefix).classList.toggle('done', pct >= 100);
+  }
+
+  function renderFunding() {
+    renderTracker('monthly', FUNDING.monthly.raised, FUNDING.monthly.goal);
+
+    var unlocked = FUNDING.monthly.raised >= FUNDING.monthly.goal;
+    var macosEl  = document.getElementById('tracker-macos');
+    if (unlocked) {
+      macosEl.classList.remove('locked');
+      renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
+    } else {
+      // Stay dimmed/locked, but keep showing real progress — the macOS
+      // fund accumulates across months and shouldn't appear to reset.
+      macosEl.classList.add('locked');
+      renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
+    }
+  }
+
+  renderFunding();
+
+  var donateAmount  = 3;
+  var donateMonthly = false;
+  var donateIsCustom = false;
+
+  function donateSelectAmt(val, btn) {
+    donateAmount   = val;
+    donateIsCustom = false;
+    document.querySelectorAll('.donate-amt-btn').forEach(function(b) { b.classList.remove('selected'); });
+    btn.classList.add('selected');
+    donateUpdateUI();
+  }
+
+  function donateSelectCustomBtn(btn) {
+    donateIsCustom = true;
+    donateAmount   = null;
+    document.querySelectorAll('.donate-amt-btn').forEach(function(b) { b.classList.remove('selected'); });
+    btn.classList.add('selected');
+    donateUpdateUI();
+  }
+
+  function donateFlipToggle() {
+    if (donateIsCustom) return;
+    donateMonthly = !donateMonthly;
+    document.getElementById('donate-toggle').classList.toggle('on', donateMonthly);
+    donateUpdateUI();
+  }
+
+  function donateUpdateUI() {
+    var toggle = document.getElementById('donate-toggle');
+    var note   = document.getElementById('donate-custom-note');
+    var btn    = document.getElementById('donate-submit-btn');
+
+    if (donateIsCustom) {
+      toggle.style.opacity = '0.35';
+      toggle.classList.add('disabled');
+      toggle.classList.remove('on');
+      donateMonthly = false;
+      note.classList.add('visible');
+      btn.disabled = false;
+      btn.textContent = 'Donate Your Own Amount Once';
+      return;
+    }
+
+    toggle.style.opacity = '1';
+    toggle.classList.remove('disabled');
+    note.classList.remove('visible');
+
+    if (!donateAmount) {
+      btn.disabled    = true;
+      btn.textContent = 'Enter an amount';
+      return;
+    }
+
+    btn.disabled = false;
+    var freq = donateMonthly ? 'Monthly' : 'Once';
+    btn.textContent = 'Donate $' + donateAmount + ' ' + freq;
+  }
+
+  function donateGoToStripe() {
+    if (!donateAmount && !donateIsCustom) return;
+
+    // TODO: replace these placeholder values with your real Stripe Payment Link URLs
+    var links = {
+      once:    { 3: 'https://buy.stripe.com/9B628q6dp83V2WLgCG4ow09',    5: 'https://buy.stripe.com/6oUcN431dfwn0OD1HM4ow04',    10: 'https://buy.stripe.com/dRm6oG0T5doffJx4TY4ow03'    },
+      monthly: { 3: 'https://buy.stripe.com/aFa4gy8lxesjapd2LQ4ow02', 5: 'https://buy.stripe.com/bJe00i31d4RJapd3PU4ow06', 10: 'https://buy.stripe.com/7sYfZgfNZesjcxl1HM4ow00' },
+      custom:  'https://buy.stripe.com/14A4gybxJ5VN2WLfyC4ow08'
+    };
+
+    var url = donateIsCustom ? links.custom : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);
+    window.open(url, '_blank', 'noopener');
+  }
+
+  // ── MOBILE NAV ─────────────────────────────────────────────────
+  function toggleMobileNav() {
+    const burger  = document.getElementById('nav-burger');
+    const drawer  = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const isOpen  = drawer.classList.contains('open');
+    if (isOpen) {
+      closeMobileNav();
+    } else {
+      burger.classList.add('open');
+      overlay.classList.add('open');
+      // Force reflow so transition plays from initial state
+      drawer.style.display = 'flex';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { drawer.classList.add('open'); });
+      });
+    }
+  }
+
+  function closeMobileNav() {
+    const burger  = document.getElementById('nav-burger');
+    const drawer  = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    // Hide after transition
+    setTimeout(() => { if (!drawer.classList.contains('open')) drawer.style.display = ''; }, 220);
+  }
+
+  // Fade in on first load
+  window.addEventListener('DOMContentLoaded', () => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelector('section.active').classList.add('visible');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

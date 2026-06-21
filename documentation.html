@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WriteLite — Documentation</title>
+  <link rel="icon" href="wl_logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="wl_logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav>
+   <a class="nav-logo" href="index.html" style="cursor:pointer; display:flex; align-items:center; gap:2px;">
+	<img src="wl_logo.svg" alt="WriteLite logo" width="26" height="26" style="flex-shrink:0; display:block;">
+    <svg viewBox="0 0 116 26" width="116" height="26" aria-label="WriteLite" style="flex-shrink:0; display:block;">
+      <text x="0" y="21" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" letter-spacing="-0.5">
+        <tspan fill="var(--fg-1)">Write</tspan><tspan fill="var(--fg-3)">Lite</tspan>
+      </text>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a id="nav-home"                   href="index.html">Home</a>
+    <a id="nav-docs"     class="active" href="documentation.html">Documentation</a>
+    <a id="nav-feedback"               href="feedback.html">Feedback</a>
+  </div>
+  <a class="nav-support" href="support.html">Support the Developer</a>
+
+  <!-- Burger — mobile only -->
+  <button class="nav-burger" id="nav-burger" aria-label="Open menu" onclick="toggleMobileNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+  <a id="mnav-home"                   href="index.html">Home</a>
+  <a id="mnav-docs"     class="active" href="documentation.html">Documentation</a>
+  <a id="mnav-feedback"               href="feedback.html">Feedback</a>
+  <div class="mobile-nav-divider"></div>
+  <a class="mobile-nav-support" href="support.html">Support the Developer</a>
+</div>
+
+
+<!-- ── DOCUMENTATION ────────────────────────────────── -->
+<section id="docs" class="active">
+  <div class="docs-page">
+    <h2 class="page-heading">Documentation</h2>
+    <p class="about-premise">"Everything you need to know, before you need to know it."</p>
+    <p class="docs-wip">Work in progress&hellip;</p>
+
+    <div class="docs-body">
+
+      <!-- ── SECTION 1 — THE BASICS ── -->
+      <h3 class="docs-section-title">The basics</h3>
+      <p class="docs-intro">
+        A quick tour of the essentials: the controls you'll use day to day,
+        and where they live.
+      </p>
+
+      <div class="about-section">
+        <div class="about-section-label">The toolbar</div>
+        <p>The toolbar above your page has three parts:</p>
+        <ul class="docs-list">
+          <li><strong>Formatting</strong> — the usual word-processor controls, where you'd expect them: fonts, size, bold/italic/underline, headings, lists, alignment, and line spacing.</li>
+          <li><strong>Fullscreen</strong> — hides everything but your page. Press it (or F11) to write distraction-free; Esc brings the rest back.</li>
+          <li><strong>Settings</strong> — the gear at the far right, for your preferences and project options.</li>
+        </ul>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label">Where everything lives</div>
+        <p>WriteLite has four areas, and that's the whole map:</p>
+        <ul class="docs-list">
+          <li><strong>The sidebar</strong>, on the left, holds your projects, folders, and documents. Click a file to open it. Right-click anywhere in the tree to create, rename, or delete — that's where your file actions live.</li>
+          <li><strong>The toolbar</strong>, above the page, is everything in the section above: formatting, and the settings gear.</li>
+          <li><strong>The page</strong> is the middle. It's just your writing, centred, with room to breathe.</li>
+          <li><strong>The status bar</strong>, along the bottom, is the quiet row: a tick when your work is saved and a dot when it isn't, your filename, and toggles for spellcheck and word count.</li>
+        </ul>
+        <p>Nothing here needs setting up. Open a document and start.</p>
+      </div>
+
+      <!-- ── SECTION 2 — YOUR FILES & HOW WRITELITE WORKS ── -->
+      <h3 class="docs-section-title">Your files &amp; how WriteLite works</h3>
+      <p class="docs-intro">
+        Here's the part most writing apps don't tell you: where your work
+        actually goes. With WriteLite the answer is simple — your files are real
+        files on your computer, and they stay that way. This section explains how
+        it all fits together, and why you never have to wonder where your writing
+        went.
+      </p>
+
+      <div class="about-section">
+        <div class="about-section-label">The registry</div>
+        <p>
+          WriteLite keeps a short list of where your projects are. When you open
+          the app, it reads that list and shows your projects in the sidebar — it
+          doesn't move them or copy them in, it just remembers where you put them.
+        </p>
+        <p>
+          <span class="docs-uth">Under the hood:</span> the list is a small file
+          called <span class="inline-code">writelite.json</span>, stored in your
+          computer's application-data folder. It holds your project locations, a
+          few preferences, and which project you had open last. It's WriteLite's
+          own bookkeeping — your documents are never kept in here.
+        </p>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label">Project folders</div>
+        <p>
+          A project is just a folder on your computer. You choose where it goes —
+          your Documents, a writing drive, anywhere. Inside are your documents and
+          any folders you make to organise them.
+        </p>
+        <p>
+          What makes a folder a WriteLite project is a single invisible file that
+          WriteLite tucks inside it. You'll rarely see it, and you can leave it
+          alone — it's what lets WriteLite recognise the folder and remember the
+          project's name, sort order, and which folders you had open. It's the
+          only hidden file in your project; WriteLite's own settings live
+          elsewhere, out of your way.
+        </p>
+        <p>
+          A project can't live inside another project — keep them as separate
+          top-level folders. Within a project, though, nest as many folders as
+          you like.
+        </p>
+        <p>
+          Because a project is an ordinary folder, you can move, rename, or copy
+          it like anything else. One ask: don't rename or delete that hidden file
+          outside the app. Even if it does go missing, your writing is never
+          stranded — your documents are separate files, and WriteLite can recover
+          the project by pointing it back at the folder, rebuilding the hidden
+          file as it goes. The most you'd lose is the project's name and saved
+          layout.
+        </p>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label">Backup</div>
+        <p>
+          Your projects are ordinary folders, so backing them up is ordinary too.
+          Put a project folder in a cloud drive — Dropbox, OneDrive, Google Drive
+          — or copy it to a USB stick, and it's backed up. No export step, no
+          special format.
+        </p>
+        <p>
+          If you keep your projects in a cloud folder, just point WriteLite at
+          them, and you can carry on from any computer running WriteLite.
+        </p>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label">Inside a <span class="inline-code">.wlite</span> file</div>
+        <p>
+          Every document you write is saved as a
+          <span class="inline-code">.wlite</span> file. Underneath, it's plain
+          markdown — readable text — which is what lets any editor open it.
+        </p>
+        <p>
+          At the very end of the file, WriteLite adds a small block that starts
+          with <span class="inline-code">&lt;!-- .wlite:meta</span>. That's an HTML
+          comment holding a few per-document settings, like line spacing and
+          heading styles. Because it's a comment, other editors treat it as
+          invisible and skip past it. You'll never see it while you write — it's
+          only there so your document opens looking the way you left it.
+        </p>
+        <p>
+          Best to leave it alone. It isn't meant to be edited by hand, and if
+          WriteLite can't make sense of it — because it's been altered or damaged
+          — it won't try to guess. It simply replaces it with default settings the
+          next time you save the document.
+        </p>
+        <p>
+          When you set a particular font or size for some words, WriteLite saves
+          that choice inline — as a small <span class="inline-code">&lt;span&gt;</span>
+          tag wrapped around those words, right in the text. It's a standard way to
+          mark styling in a markdown file, and it keeps each choice attached to the
+          exact words it applies to, so your formatting stays put wherever the
+          document goes.
+        </p>
+        <p>
+          Want to open a document somewhere else? Rename it from
+          <span class="inline-code">.wlite</span> to
+          <span class="inline-code">.md</span> and it opens in any markdown editor
+          — Obsidian, Typora, VS Code, or plain Notepad. Nothing is locked away.
+        </p>
+        <p>
+          Renaming changes nothing inside the file, so the font
+          <span class="inline-code">&lt;span&gt;</span> tags and the
+          <span class="inline-code">.wlite:meta</span> comment come along with it.
+          A markdown editor keeps the comment hidden and renders the fonts as
+          styling; a plain text editor will show you the underlying tags. Either
+          way nothing is lost — and opening the file in WriteLite again restores it
+          exactly.
+        </p>
+      </div>
+
+    </div><!-- /docs-body -->
+  </div>
+</section>
+
+<!-- ── PAGE SCRIPT ───────────────────────────────────── -->
+<script>
+  // ── MOBILE NAV ─────────────────────────────────────────────────
+  function toggleMobileNav() {
+    const burger  = document.getElementById('nav-burger');
+    const drawer  = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const isOpen  = drawer.classList.contains('open');
+    if (isOpen) {
+      closeMobileNav();
+    } else {
+      burger.classList.add('open');
+      overlay.classList.add('open');
+      // Force reflow so transition plays from initial state
+      drawer.style.display = 'flex';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { drawer.classList.add('open'); });
+      });
+    }
+  }
+
+  function closeMobileNav() {
+    const burger  = document.getElementById('nav-burger');
+    const drawer  = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    // Hide after transition
+    setTimeout(() => { if (!drawer.classList.contains('open')) drawer.style.display = ''; }, 220);
+  }
+
+  // Fade in on first load
+  window.addEventListener('DOMContentLoaded', () => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelector('section.active').classList.add('visible');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WriteLite — Feedback</title>
+  <link rel="icon" href="wl_logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="wl_logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav>
+   <a class="nav-logo" href="index.html" style="cursor:pointer; display:flex; align-items:center; gap:2px;">
+	<img src="wl_logo.svg" alt="WriteLite logo" width="26" height="26" style="flex-shrink:0; display:block;">
+    <svg viewBox="0 0 116 26" width="116" height="26" aria-label="WriteLite" style="flex-shrink:0; display:block;">
+      <text x="0" y="21" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" letter-spacing="-0.5">
+        <tspan fill="var(--fg-1)">Write</tspan><tspan fill="var(--fg-3)">Lite</tspan>
+      </text>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a id="nav-home"                    href="index.html">Home</a>
+    <a id="nav-docs"                    href="documentation.html">Documentation</a>
+    <a id="nav-feedback" class="active" href="feedback.html">Feedback</a>
+  </div>
+  <a class="nav-support" href="support.html">Support the Developer</a>
+
+  <!-- Burger — mobile only -->
+  <button class="nav-burger" id="nav-burger" aria-label="Open menu" onclick="toggleMobileNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+  <a id="mnav-home"                    href="index.html">Home</a>
+  <a id="mnav-docs"                    href="documentation.html">Documentation</a>
+  <a id="mnav-feedback" class="active" href="feedback.html">Feedback</a>
+  <div class="mobile-nav-divider"></div>
+  <a class="mobile-nav-support" href="support.html">Support the Developer</a>
+</div>
+
+
+<!-- ── FEEDBACK ──────────────────────────────────────── -->
+<section id="feedback" class="active">
+  <div class="feedback-page">
+
+    <h2 class="page-heading">Feedback</h2>
+    <p class="about-premise">How is WriteLite working for you?</p>
+
+    <!-- Form state -->
+    <div id="feedback-form">
+      <div class="feedback-field-label">Your rating</div>
+      <div class="star-row" id="star-row">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+      </div>
+
+      <div class="feedback-field-label">Anything else? <span style="color:var(--fg-4);letter-spacing:0">(optional)</span></div>
+      <textarea
+        class="feedback-textarea"
+        id="feedback-text"
+        placeholder="What's working well, what isn't, or anything else on your mind."
+      ></textarea>
+
+      <button class="nav-support" id="feedback-submit" disabled onclick="submitFeedback()">
+        Submit
+      </button>
+    </div>
+
+    <!-- Thank you state (shown after submission) -->
+    <div id="feedback-thanks" class="feedback-thanks" style="display:none">
+      <div class="feedback-thanks-stars" id="thanks-stars"></div>
+      <div class="feedback-thanks-heading">Thanks. That helps.</div>
+      <p>Your feedback has been sent.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PAGE SCRIPT ───────────────────────────────────── -->
+<script>
+  // ── FEEDBACK ───────────────────────────────────────────────────
+  // Session restraint: one submission per browser session.
+  // sessionStorage resets when the tab is closed; localStorage would persist
+  // across sessions — intentionally using sessionStorage here.
+  const FEEDBACK_KEY = 'writelite_feedback_sent';
+
+  let selectedRating = 0;
+
+  function initFeedback() {
+    if (sessionStorage.getItem(FEEDBACK_KEY)) {
+      showFeedbackThanks(false);
+      return;
+    }
+
+    const stars = document.querySelectorAll('.star');
+
+    stars.forEach(star => {
+      const val = parseInt(star.dataset.value);
+
+      star.addEventListener('click', () => {
+        selectedRating = val;
+        updateStarDisplay(selectedRating);
+        document.getElementById('feedback-submit').disabled = false;
+      });
+
+      star.addEventListener('mouseenter', () => {
+        stars.forEach(s => {
+          const sv = parseInt(s.dataset.value);
+          s.classList.remove('lit');
+          s.classList.toggle('preview', sv <= val);
+        });
+      });
+
+      star.addEventListener('mouseleave', () => {
+        stars.forEach(s => s.classList.remove('preview'));
+        updateStarDisplay(selectedRating);
+      });
+    });
+  }
+
+  function updateStarDisplay(rating) {
+    document.querySelectorAll('.star').forEach(s => {
+      s.classList.toggle('lit', parseInt(s.dataset.value) <= rating);
+    });
+  }
+
+  function showFeedbackThanks(animate) {
+    const form    = document.getElementById('feedback-form');
+    const thanks  = document.getElementById('feedback-thanks');
+    const starsEl = document.getElementById('thanks-stars');
+    if (starsEl) starsEl.textContent = '★'.repeat(selectedRating) || '★★★★★';
+    if (form)   form.style.display   = 'none';
+    if (thanks) thanks.style.display = 'block';
+  }
+
+  function submitFeedback() {
+    if (!selectedRating) return;
+
+    // Guard: block double-clicks and re-submission
+    if (sessionStorage.getItem(FEEDBACK_KEY)) return;
+
+    const btn  = document.getElementById('feedback-submit');
+    const text = document.getElementById('feedback-text').value.trim();
+    btn.disabled    = true;
+    btn.textContent = 'Sending…';
+
+    const ENDPOINT = 'https://splitforms.com/api/submit';
+
+    fetch(ENDPOINT, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify({
+        access_key: '6a0921774d55443cac72896dc9fe1f82',
+        botcheck:   '',
+        rating:     selectedRating,
+        feedback:   text || '(no comment)'
+      })
+    })
+    .catch(() => {})   // Fail silently — network errors still mark the session
+    .finally(() => {
+      sessionStorage.setItem(FEEDBACK_KEY, '1');
+      showFeedbackThanks(true);
+    });
+  }
+
+  // ── MOBILE NAV ─────────────────────────────────────────────────
+  function toggleMobileNav() {
+    const burger  = document.getElementById('nav-burger');
+    const drawer  = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const isOpen  = drawer.classList.contains('open');
+    if (isOpen) {
+      closeMobileNav();
+    } else {
+      burger.classList.add('open');
+      overlay.classList.add('open');
+      // Force reflow so transition plays from initial state
+      drawer.style.display = 'flex';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { drawer.classList.add('open'); });
+      });
+    }
+  }
+
+  function closeMobileNav() {
+    const burger  = document.getElementById('nav-burger');
+    const drawer  = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    // Hide after transition
+    setTimeout(() => { if (!drawer.classList.contains('open')) drawer.style.display = ''; }, 220);
+  }
+
+  // Initialise feedback form + fade in on first load
+  window.addEventListener('DOMContentLoaded', () => {
+    initFeedback();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelector('section.active').classList.add('visible');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
