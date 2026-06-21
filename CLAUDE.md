@@ -144,8 +144,12 @@ line whether the session is concluded or ongoing, then wait.
 
 ## Project Specifics
 
-*Fill this in once the website's stack, structure, and workflow are decided. This
-is the place for: tech stack and why, folder layout, build and deploy commands,
+This is the place for: tech stack and why, folder layout, build and deploy commands,
 hosting details, and any "always do X / never do Y" rules specific to the site.*
 
-*(Empty for now — collaboration rules above apply regardless.)*
+- Donation page targets: $4,000/month development funding; $2,000 one-time macOS release fund
+- $4,000 validated against comparable donation-funded apps (sits on the median; Krita ~€4k/mo is the closest analog)
+- Funding trackers update manually — raised/goal values in one commented config block per tracker; no Stripe integration (trackers are temporary)
+- Trackers are two stacked thick horizontal bars; the monthly bar gates the macOS bar (macOS locked/dimmed until the month is funded)
+- Tracker fill is solid amber accent on a dark track; each bar shows label, raised-of-goal, and percentage
+- Docs page: two sections — "the basics" (toolbar/controls/settings, with annotated screenshots) and "your files & how WriteLite works" (technical topics layered plain-language + under-the-hood)
