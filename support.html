@@ -43,7 +43,7 @@
 <div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
 <div class="mobile-nav-drawer" id="mobile-nav-drawer">
   <a id="mnav-home"     href="/">Home</a>
-  <a id="mnav-docs"     href="/documentation">Documentation</a>
+  <a id="mnav-docs"     href="/documentation">Learn WriteLite</a>
   <a id="mnav-synopsis" href="/synopsis">Synopsis</a>
   <a id="mnav-feedback" href="/feedback">Feedback</a>
   <div class="mobile-nav-divider"></div>
@@ -111,9 +111,9 @@
       <!-- Donation selection -->
       <div id="donate-page">
         <div class="donate-amt-grid">
-          <button class="donate-amt-btn selected" onclick="donateSelectAmt(3, this)">$3</button>
           <button class="donate-amt-btn" onclick="donateSelectAmt(5, this)">$5</button>
-          <button class="donate-amt-btn" onclick="donateSelectAmt(10, this)">$10</button>
+          <button class="donate-amt-btn selected" onclick="donateSelectAmt(10, this)">$10</button>
+          <button class="donate-amt-btn" onclick="donateSelectAmt(20, this)">$20</button>
           <button class="donate-amt-btn donate-amt-custom" onclick="donateSelectCustomBtn(this)">Enter Your Own Amount</button>
         </div>
 
@@ -132,7 +132,7 @@
           </p>
         </div>
 
-        <button class="donate-submit-btn" id="donate-submit-btn" onclick="donateGoToStripe()">Donate $3 Once</button>
+        <button class="donate-submit-btn" id="donate-submit-btn" onclick="donateGoToStripe()">Donate $10 Once</button>
         <p class="donate-secure-note">
           <svg class="donate-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
@@ -215,7 +215,7 @@
 <script>
   // ── FUNDING TRACKERS — edit these numbers only ──
   var FUNDING = {
-    monthly: { raised: 0, goal: 4000 },   // resets 1st each month
+    monthly: { raised: 2.56, goal: 4000 },   // resets 1st each month
     // macos:   { raised: 0, goal: 2000 },   // one-time; commented out while self-funding the macOS release
   };
 
@@ -249,7 +249,7 @@
 
   renderFunding();
 
-  var donateAmount  = 3;
+  var donateAmount  = 10;
   var donateMonthly = false;
   var donateIsCustom = false;
 
@@ -312,8 +312,8 @@
 
     // TODO: replace these placeholder values with your real Stripe Payment Link URLs
     var links = {
-      once:    { 3: 'https://donate.stripe.com/6oU8wOgS31Fx54T2LQ4ow0a',    5: 'https://donate.stripe.com/7sY6oGeJV1Fx2WLcmq4ow0b',    10: 'https://donate.stripe.com/fZu8wO31d6ZReFteuy4ow0c'    },
-      monthly: { 3: 'https://donate.stripe.com/aFadR88lx97Z8h5cmq4ow0e', 5: 'https://donate.stripe.com/fZuaEW9pBac3apd2LQ4ow0f', 10: 'https://donate.stripe.com/cNiaEW0T53NF9l9fyC4ow0g' },
+      once:    { 5: 'https://donate.stripe.com/7sY6oGeJV1Fx2WLcmq4ow0b',    10: 'https://donate.stripe.com/fZu8wO31d6ZReFteuy4ow0c',    20: 'https://donate.stripe.com/bJe5kC8lx5VNapdgCG4ow0h'    },
+      monthly: { 5: 'https://donate.stripe.com/fZuaEW9pBac3apd2LQ4ow0f', 10: 'https://donate.stripe.com/cNiaEW0T53NF9l9fyC4ow0g', 20: 'https://donate.stripe.com/aFa4gy7ht3NF7d19ae4ow0i' },
       custom:  'https://donate.stripe.com/28E5kC6dpfwn54T1HM4ow0d'
     };
 
