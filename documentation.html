@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" href="wl_logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Martian+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,6 +26,7 @@
   <div class="nav-links">
     <a id="nav-home"                   href="/">Home</a>
     <a id="nav-docs"     class="active" href="/documentation">Documentation</a>
+    <a id="nav-synopsis"               href="/synopsis">Synopsis</a>
     <a id="nav-feedback"               href="/feedback">Feedback</a>
   </div>
   <a class="nav-support" href="/support">Support the Developer</a>
@@ -43,6 +44,7 @@
 <div class="mobile-nav-drawer" id="mobile-nav-drawer">
   <a id="mnav-home"                   href="/">Home</a>
   <a id="mnav-docs"     class="active" href="/documentation">Documentation</a>
+  <a id="mnav-synopsis"               href="/synopsis">Synopsis</a>
   <a id="mnav-feedback"               href="/feedback">Feedback</a>
   <div class="mobile-nav-divider"></div>
   <a class="mobile-nav-support" href="/support">Support the Developer</a>
@@ -52,6 +54,21 @@
 <!-- ── DOCUMENTATION ────────────────────────────────── -->
 <section id="docs" class="active">
   <div class="docs-page">
+
+    <!-- ── CONTENTS PANEL ── -->
+    <nav class="docs-toc" aria-label="Contents">
+      <a class="docs-toc-head" href="#sec-basics">The Basics</a>
+      <a class="docs-toc-sub"  href="#sub-everything">Where Everything Lives</a>
+      <a class="docs-toc-sub"  href="#sub-toolbar">The Toolbar</a>
+
+      <a class="docs-toc-head" href="#sec-files">Understanding Your Files</a>
+      <a class="docs-toc-sub"  href="#sub-projects">Project Folders</a>
+      <a class="docs-toc-sub"  href="#sub-backup">Backup</a>
+      <a class="docs-toc-sub"  href="#sub-wlite">Inside a .wlite File</a>
+      <a class="docs-toc-sub"  href="#sub-registry">The Registry</a>
+    </nav>
+
+    <div class="docs-content">
     <h2 class="page-heading">Documentation</h2>
     <p class="about-premise">"Everything you need to know, before you need to know it."</p>
     <p class="docs-wip">Work in progress&hellip;</p>
@@ -59,62 +76,45 @@
     <div class="docs-body">
 
       <!-- ── SECTION 1 — THE BASICS ── -->
-      <h3 class="docs-section-title">The basics</h3>
+      <h3 class="docs-section-title" id="sec-basics">The Basics</h3>
       <p class="docs-intro">
         A quick tour of the essentials: the controls you'll use day to day,
         and where they live.
       </p>
 
       <div class="about-section">
-        <div class="about-section-label">The toolbar</div>
-        <p>The toolbar above your page has three parts:</p>
-        <ul class="docs-list">
-          <li><strong>Formatting</strong> — the usual word-processor controls, where you'd expect them: fonts, size, bold/italic/underline, headings, lists, alignment, and line spacing.</li>
-          <li><strong>Fullscreen</strong> — hides everything but your page. Press it (or F11) to write distraction-free; Esc brings the rest back.</li>
-          <li><strong>Settings</strong> — the gear at the far right, for your preferences and project options.</li>
-        </ul>
-      </div>
-
-      <div class="about-section">
-        <div class="about-section-label">Where everything lives</div>
-        <p>WriteLite has four areas, and that's the whole map:</p>
+        <div class="about-section-label" id="sub-everything">Where everything lives</div>
+        <p>WriteLite has four areas, each serving their own purpose:</p>
         <ul class="docs-list">
           <li><strong>The sidebar</strong>, on the left, holds your projects, folders, and documents. Click a file to open it. Right-click anywhere in the tree to create, rename, or delete — that's where your file actions live.</li>
           <li><strong>The toolbar</strong>, above the page, is everything in the section above: formatting, and the settings gear.</li>
           <li><strong>The page</strong> is the middle. It's just your writing, centred, with room to breathe.</li>
           <li><strong>The status bar</strong>, along the bottom, is the quiet row: a tick when your work is saved and a dot when it isn't, your filename, and toggles for spellcheck and word count.</li>
         </ul>
-        <p>Nothing here needs setting up. Open a document and start.</p>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label" id="sub-toolbar">The toolbar</div>
+        <p>The toolbar above your page has three parts:</p>
+        <ul class="docs-list">
+          <li><strong>Formatting</strong> — the usual word-processor controls, where you'd expect them: fonts, size, B/I/U/S (bold, italic, underline, strikethrough), headings, lists, alignment, and line spacing.</li>
+          <li><strong>Fullscreen</strong> — hides everything but your page. Press the icon or use the keybindings (F11 or Ctrl+Shift+F) to write distraction-free; Esc brings the rest back.</li>
+          <li><strong>Settings</strong> — the gear at the far right, for your preferences and project options.</li>
+        </ul>
       </div>
 
       <!-- ── SECTION 2 — YOUR FILES & HOW WRITELITE WORKS ── -->
-      <h3 class="docs-section-title">Your files &amp; how WriteLite works</h3>
+      <h3 class="docs-section-title" id="sec-files">Your Files &amp; How WriteLite Works</h3>
       <p class="docs-intro">
-        Here's the part most writing apps don't tell you: where your work
-        actually goes. With WriteLite the answer is simple — your files are real
+        Here's the part most writing apps keep hidden: where your work
+        actually goes. WriteLite makes everything simple — your files are real
         files on your computer, and they stay that way. This section explains how
         it all fits together, and why you never have to wonder where your writing
         went.
       </p>
 
       <div class="about-section">
-        <div class="about-section-label">The registry</div>
-        <p>
-          WriteLite keeps a short list of where your projects are. When you open
-          the app, it reads that list and shows your projects in the sidebar — it
-          doesn't move them or copy them in, it just remembers where you put them.
-        </p>
-        <p>
-          <span class="docs-uth">Under the hood:</span> the list is a small file
-          called <span class="inline-code">writelite.json</span>, stored in your
-          computer's application-data folder. It holds your project locations, a
-          few preferences, and which project you had open last. It's WriteLite's
-          own bookkeeping — your documents are never kept in here.
-        </p>
-      </div>
-
-      <div class="about-section">
-        <div class="about-section-label">Project folders</div>
+        <div class="about-section-label" id="sub-projects">Project folders</div>
         <p>
           A project is just a folder on your computer. You choose where it goes —
           your Documents, a writing drive, anywhere. Inside are your documents and
@@ -124,9 +124,7 @@
           What makes a folder a WriteLite project is a single invisible file that
           WriteLite tucks inside it. You'll rarely see it, and you can leave it
           alone — it's what lets WriteLite recognise the folder and remember the
-          project's name, sort order, and which folders you had open. It's the
-          only hidden file in your project; WriteLite's own settings live
-          elsewhere, out of your way.
+          project's name, sort order, and which folders you had open.
         </p>
         <p>
           A project can't live inside another project — keep them as separate
@@ -134,18 +132,18 @@
           you like.
         </p>
         <p>
-          Because a project is an ordinary folder, you can move, rename, or copy
+          Because a project is an ordinary folder, you can move or rename
           it like anything else. One ask: don't rename or delete that hidden file
-          outside the app. Even if it does go missing, your writing is never
+          outside the app. If it does go missing, your writing is never
           stranded — your documents are separate files, and WriteLite can recover
           the project by pointing it back at the folder, rebuilding the hidden
           file as it goes. The most you'd lose is the project's name and saved
-          layout.
+          layout. Never your writing. Only you can delete that.
         </p>
       </div>
 
       <div class="about-section">
-        <div class="about-section-label">Backup</div>
+        <div class="about-section-label" id="sub-backup">Backup</div>
         <p>
           Your projects are ordinary folders, so backing them up is ordinary too.
           Put a project folder in a cloud drive — Dropbox, OneDrive, Google Drive
@@ -159,11 +157,11 @@
       </div>
 
       <div class="about-section">
-        <div class="about-section-label">Inside a <span class="inline-code">.wlite</span> file</div>
+        <div class="about-section-label" id="sub-wlite">Inside a <span class="inline-code">.wlite</span> file</div>
         <p>
           Every document you write is saved as a
-          <span class="inline-code">.wlite</span> file. Underneath, it's plain
-          markdown — readable text — which is what lets any editor open it.
+          <span class="inline-code">.wlite</span> file. Underneath, it's a plain
+          markdown — readable text — and HTML for select settings like fonts.
         </p>
         <p>
           At the very end of the file, WriteLite adds a small block that starts
@@ -198,13 +196,37 @@
           <span class="inline-code">&lt;span&gt;</span> tags and the
           <span class="inline-code">.wlite:meta</span> comment come along with it.
           A markdown editor keeps the comment hidden and renders the fonts as
-          styling; a plain text editor will show you the underlying tags. Either
-          way nothing is lost — and opening the file in WriteLite again restores it
+          styling; a plain text editor will show you the underlying tags. However,
+          some formatting options like text alignment will display the HTML. Either
+          way nothing is lost and opening the file in WriteLite again restores it
           exactly.
+        </p>
+        <p>
+          Want a clean text or markdown file? Use the export options for .txt or .md respecivly;
+          but be aware that this will strip different formatting options depending on the file
+          type you choose. For example, .txt files will lose all formatting, while .md files will
+          only lose alignment, font size and font family.
+        </p>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label" id="sub-registry">The registry</div>
+        <p>
+          WriteLite keeps a short list of where your projects are. When you open
+          the app, it reads that list and shows your projects in the sidebar — it
+          doesn't move them or copy them in, it just remembers where you put them.
+        </p>
+        <p>
+          <span class="docs-uth">Under the hood:</span> the registry list is a small file
+          called <span class="inline-code">writelite.json</span>, stored in your
+          computer's application-data folder. It holds your project locations, a
+          few preferences, and which project you had open last. It's WriteLite's
+          own bookkeeping — your documents are never kept in here.
         </p>
       </div>
 
     </div><!-- /docs-body -->
+    </div><!-- /docs-content -->
   </div>
 </section>
 

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WriteLite — Synopsis</title>
+  <link rel="icon" href="wl_logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="wl_logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav>
+   <a class="nav-logo" href="/" style="cursor:pointer; display:flex; align-items:center; gap:2px;">
+	<img src="wl_logo.svg" alt="WriteLite logo" width="26" height="26" style="flex-shrink:0; display:block;">
+    <svg viewBox="0 0 116 26" width="116" height="26" aria-label="WriteLite" style="flex-shrink:0; display:block;">
+      <text x="0" y="21" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" letter-spacing="-0.5">
+        <tspan fill="var(--fg-1)">Write</tspan><tspan fill="var(--fg-3)">Lite</tspan>
+      </text>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a id="nav-home"                       href="/">Home</a>
+    <a id="nav-docs"                       href="/documentation">Documentation</a>
+    <a id="nav-synopsis"  class="active"   href="/synopsis">Synopsis</a>
+    <a id="nav-feedback"                   href="/feedback">Feedback</a>
+  </div>
+  <a class="nav-support" href="/support">Support the Developer</a>
+
+  <!-- Burger — mobile only -->
+  <button class="nav-burger" id="nav-burger" aria-label="Open menu" onclick="toggleMobileNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+  <a id="mnav-home"                       href="/">Home</a>
+  <a id="mnav-docs"                       href="/documentation">Documentation</a>
+  <a id="mnav-synopsis"  class="active"   href="/synopsis">Synopsis</a>
+  <a id="mnav-feedback"                   href="/feedback">Feedback</a>
+  <div class="mobile-nav-divider"></div>
+  <a class="mobile-nav-support" href="/support">Support the Developer</a>
+</div>
+
+
+<!-- ── SYNOPSIS ──────────────────────────────────────── -->
+<section id="synopsis" class="active">
+  <div class="synopsis-page">
+
+    <h2 class="page-heading">Synopsis &#8212; Where WriteLite is Going</h2>
+    <p class="docs-wip">Work in progress&hellip;</p>
+
+  </div>
+</section>
+
+<!-- ── PAGE SCRIPT ───────────────────────────────────── -->
+<script>
+  // ── MOBILE NAV ─────────────────────────────────────────────────
+  function toggleMobileNav() {
+    const burger  = document.getElementById('nav-burger');
+    const drawer  = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const isOpen  = drawer.classList.contains('open');
+    if (isOpen) {
+      closeMobileNav();
+    } else {
+      burger.classList.add('open');
+      overlay.classList.add('open');
+      // Force reflow so transition plays from initial state
+      drawer.style.display = 'flex';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { drawer.classList.add('open'); });
+      });
+    }
+  }
+
+  function closeMobileNav() {
+    const burger  = document.getElementById('nav-burger');
+    const drawer  = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    // Hide after transition
+    setTimeout(() => { if (!drawer.classList.contains('open')) drawer.style.display = ''; }, 220);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelector('section.active').classList.add('visible');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

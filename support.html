@@ -25,8 +25,9 @@
   </a>
   <div class="nav-links">
     <a id="nav-home"     href="/">Home</a>
-    <a id="nav-docs"     href="/documentation">Documentation</a>
-    <a id="nav-feedback" href="/feedback">Feedback</a>
+    <a id="nav-docs"      href="/documentation">Documentation</a>
+    <a id="nav-synopsis"  href="/synopsis">Synopsis</a>
+    <a id="nav-feedback"  href="/feedback">Feedback</a>
   </div>
   <a class="nav-support" href="/support">Support the Developer</a>
 
@@ -43,6 +44,7 @@
 <div class="mobile-nav-drawer" id="mobile-nav-drawer">
   <a id="mnav-home"     href="/">Home</a>
   <a id="mnav-docs"     href="/documentation">Documentation</a>
+  <a id="mnav-synopsis" href="/synopsis">Synopsis</a>
   <a id="mnav-feedback" href="/feedback">Feedback</a>
   <div class="mobile-nav-divider"></div>
   <a class="mobile-nav-support" href="/support">Support the Developer</a>
@@ -52,6 +54,10 @@
 <!-- ── SUPPORT ───────────────────────────────────────── -->
 <section id="support" class="active">
   <div class="support-page">
+   <div class="support-grid">
+
+    <!-- ── LEFT: DONATION ── -->
+    <div class="support-main">
 
     <h2 class="page-heading">Support the Developer</h2>
     <p class="page-sub">
@@ -66,7 +72,7 @@
       <!-- Monthly development -->
       <div class="tracker" id="tracker-monthly">
         <div class="tracker-head">
-          <span class="tracker-label">July's Development Fund</span>
+          <span class="tracker-label">Monthly Development Fund</span>
           <span class="tracker-pct" id="monthly-pct">0%</span>
         </div>
         <div class="tracker-track">
@@ -77,19 +83,24 @@
         <div class="tracker-note">Figures update at the end of the work day, Melbourne time (AEST).</div>
       </div>
 
-      <!-- macOS release — gated behind the monthly tracker -->
-      <div class="tracker locked" id="tracker-macos">
-        <div class="tracker-head">
-          <span class="tracker-label">macOS Release Fund</span>
-          <span class="tracker-pct" id="macos-pct">0%</span>
+      <!-- macOS release fund — commented out while self-funding the macOS
+           release toward v1.0.0. Restore this block (and the FUNDING.macos
+           config + render logic below) to bring the bar back.
+
+        <div class="tracker locked" id="tracker-macos">
+          <div class="tracker-head">
+            <span class="tracker-label">macOS Release Fund</span>
+            <span class="tracker-pct" id="macos-pct">0%</span>
+          </div>
+          <div class="tracker-track">
+            <div class="tracker-fill" id="macos-fill"></div>
+            <div class="tracker-done-label">GOAL REACHED!</div>
+          </div>
+          <div class="tracker-figure" id="macos-figure">$0 of $2,000</div>
+          <div class="tracker-lock-note">Unlocks once this month is funded.</div>
         </div>
-        <div class="tracker-track">
-          <div class="tracker-fill" id="macos-fill"></div>
-          <div class="tracker-done-label">GOAL REACHED!</div>
-        </div>
-        <div class="tracker-figure" id="macos-figure">$0 of $2,000</div>
-        <div class="tracker-lock-note">Unlocks once this month is funded.</div>
-      </div>
+      -->
+
 
     </div>
 
@@ -132,6 +143,71 @@
 
     </div><!-- /donate-widget -->
 
+    </div><!-- /support-main -->
+
+    <!-- ── RIGHT: COPY ── -->
+    <div class="support-copy">
+      <h2 class="page-heading">Why Support WriteLite</h2>
+
+      <p>Hello, I'm NEL — a writer who builds things.</p>
+
+      <p>
+        Long before I wrote a line of code, I wrote stories. Primarily fiction, 
+        I have also enjoyed writing poetry, essays and I maintain a daily journalling
+        habit. Over the years, nearly every writing tool I reached for felt like it got in the way 
+        — bloated with features I'd never touch, asking me to wrangle a project before
+        I'd written a sentence.
+      </p>
+
+      <p>
+        I wanted something simpler. Software that opens fast, gets out of the
+        way, and lets the writer write. Free to use, but genuinely capable — a
+        robust set of tools for serious writing, with none of the clutter that
+        breaks your focus. I looked for it for a long time. When I couldn't find
+        it, I decided to build it myself.
+      </p>
+
+      <p>That's WriteLite. The writing app I always wanted and never found.</p>
+
+      <p>
+        For a while I built it in the margins — evenings, days off, whatever
+        hours I could carve out around work. Then, over the long weekend June, I 
+        lost my job without notice. It's easy for bumps in the road like this 
+        to push back the projects we maintain on the side. They can delay us 
+        weeks, or even months. It would have been easy to call this another setback.
+      </p>
+
+      <p>
+        Instead, I've decided to treat it as a beginning. With enough savings to get me through 
+        the month, a working protoype undergoing polish and and a clear roadmap for a robust 
+        set of features, I'm pouring the time I suddenly have into WriteLite — pushing development 
+        harder than I ever could when I was maintaining a full-time job. I'm building the thing I
+        believe should exist, properly and out in the open.
+      </p>
+
+        <p><strong>That's where you come in.</strong></p>
+
+      <p>
+        WriteLite is free and always will be. It stands a testiment to my ethos that
+        writing tools shouldn't hide behind a pay-wall, be restrained to an operating system or
+        hide the words we write in files we can't access. But building it full-time while
+        out of work is its own kind of tightrope. If WriteLite is something you'd want to exist 
+        — or something you already use and value — a small contribution goes further than you'd 
+        think. Enough to pay a bill. Enough to fill a plate. Enough to keep the lights on and the
+        ball rolling while I build.
+      </p>
+
+      <p>
+        Nothing here is expected. Every bit is appreciated. Even the simple act of
+        sharing this with another writer helps keep this dream moving forward.
+      </p>
+
+      <p>For that I am eternally grateful.</p>
+
+      <p class="support-sign">— NEL</p>
+    </div>
+
+   </div><!-- /support-grid -->
   </div>
 </section>
 
@@ -140,7 +216,7 @@
   // ── FUNDING TRACKERS — edit these numbers only ──
   var FUNDING = {
     monthly: { raised: 0, goal: 4000 },   // resets 1st each month
-    macos:   { raised: 0, goal: 2000 },   // one-time; unlocks at monthly goal
+    // macos:   { raised: 0, goal: 2000 },   // one-time; commented out while self-funding the macOS release
   };
 
   function fmt(n) { return '$' + n.toLocaleString('en-US'); }
@@ -156,17 +232,19 @@
   function renderFunding() {
     renderTracker('monthly', FUNDING.monthly.raised, FUNDING.monthly.goal);
 
-    var unlocked = FUNDING.monthly.raised >= FUNDING.monthly.goal;
-    var macosEl  = document.getElementById('tracker-macos');
-    if (unlocked) {
-      macosEl.classList.remove('locked');
-      renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
-    } else {
-      // Stay dimmed/locked, but keep showing real progress — the macOS
-      // fund accumulates across months and shouldn't appear to reset.
-      macosEl.classList.add('locked');
-      renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
-    }
+    // macOS tracker commented out while self-funding the macOS release.
+    // Restore alongside the HTML block and FUNDING.macos config to bring it back.
+    // var unlocked = FUNDING.monthly.raised >= FUNDING.monthly.goal;
+    // var macosEl  = document.getElementById('tracker-macos');
+    // if (unlocked) {
+    //   macosEl.classList.remove('locked');
+    //   renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
+    // } else {
+    //   // Stay dimmed/locked, but keep showing real progress — the macOS
+    //   // fund accumulates across months and shouldn't appear to reset.
+    //   macosEl.classList.add('locked');
+    //   renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
+    // }
   }
 
   renderFunding();
@@ -234,9 +312,9 @@
 
     // TODO: replace these placeholder values with your real Stripe Payment Link URLs
     var links = {
-      once:    { 3: 'https://buy.stripe.com/9B628q6dp83V2WLgCG4ow09',    5: 'https://buy.stripe.com/6oUcN431dfwn0OD1HM4ow04',    10: 'https://buy.stripe.com/dRm6oG0T5doffJx4TY4ow03'    },
-      monthly: { 3: 'https://buy.stripe.com/aFa4gy8lxesjapd2LQ4ow02', 5: 'https://buy.stripe.com/bJe00i31d4RJapd3PU4ow06', 10: 'https://buy.stripe.com/7sYfZgfNZesjcxl1HM4ow00' },
-      custom:  'https://buy.stripe.com/14A4gybxJ5VN2WLfyC4ow08'
+      once:    { 3: 'https://donate.stripe.com/6oU8wOgS31Fx54T2LQ4ow0a',    5: 'https://donate.stripe.com/7sY6oGeJV1Fx2WLcmq4ow0b',    10: 'https://donate.stripe.com/fZu8wO31d6ZReFteuy4ow0c'    },
+      monthly: { 3: 'https://donate.stripe.com/aFadR88lx97Z8h5cmq4ow0e', 5: 'https://donate.stripe.com/fZuaEW9pBac3apd2LQ4ow0f', 10: 'https://donate.stripe.com/cNiaEW0T53NF9l9fyC4ow0g' },
+      custom:  'https://donate.stripe.com/28E5kC6dpfwn54T1HM4ow0d'
     };
 
     var url = donateIsCustom ? links.custom : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);

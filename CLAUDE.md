@@ -2,8 +2,14 @@
 
 # CLAUDE.md — WriteLite Website
 
-This file is read by the agent at the start of every session in this repo. It
-describes how to work with Nelson. Keep it current as the way we work evolves.
+Read the following files at the beginning of every session before you respond to any prompt.
+Read files -> process first prompt.
+The files:
+- index.html
+- support.html
+- feedback.html
+- documentation.html
+- styles.css
 
 This is a behaviour file, not a technical spec. It says how to collaborate, not
 what the website is built on — add stack, structure, and build commands below in
