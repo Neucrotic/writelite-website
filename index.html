@@ -338,15 +338,22 @@
   }
 
   function handleDownloadClick(e, platform) {
-    if (!isMobile()) return; // desktop: let the link do its thing normally
+    if (!isMobile()) {
+      fetch("https://shiny-pond-7f70writelite-downloads-counter.nelsonhain.workers.dev/count?platform=" + platform, { method: "POST" }).catch(function(){});
+      return; // desktop: let the link do its thing normally
+    }
     e.preventDefault();
+
     var label = platform === 'windows' ? 'a Windows' : 'a Mac';
     document.getElementById('mobile-notice-platform').textContent = label + ' computer';
+
     var notice = document.getElementById('mobile-notice');
+
     // Reset animation by forcing reflow
     notice.classList.remove('visible');
     void notice.offsetWidth;
     notice.classList.add('visible');
+    
     // Auto-dismiss after 6 seconds
     clearTimeout(window._noticeTimer);
     window._noticeTimer = setTimeout(closeMobileNotice, 6000);
