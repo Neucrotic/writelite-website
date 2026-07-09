@@ -103,7 +103,7 @@
         <p>The toolbar above your page has two parts:</p>
         <ul class="docs-list">
           <li><strong>Formatting</strong> — the usual word-processor controls, where you'd expect them: fonts, size, B/I/U/S, headings, lists, alignment, and line spacing.</li>
-          <li><strong>Fullscreen</strong> — hides everything but your page. Press the icon or use the keybindings (<kbd class="kbd">F11</kbd> or <kbd class="kbd">Ctrl+Shift+F</kbd>) to write distraction-free; <kbd class="kbd">Esc</kbd> brings the rest back.</li>
+          <li><strong>Fullscreen</strong> — hides everything but your page. Press the icon or use the keybindings (<span class="keys-win"><kbd class="kbd">F11</kbd> or <kbd class="kbd">Ctrl</kbd> + <kbd class="kbd">Shift</kbd> + <kbd class="kbd">F</kbd></span><span class="keys-mac" style="display:none"><kbd class="kbd">⌘</kbd> + <kbd class="kbd">⌃</kbd> + <kbd class="kbd">F</kbd></span>) to write distraction-free; <kbd class="kbd">Esc</kbd> brings the rest back.</li>
         </ul>
       </div>
 
@@ -111,7 +111,7 @@
         <div class="about-section-label" id="sub-tabrail">The tab rail</div>
         <p>The tab rail keeps your sidebar clean.</p>
         <ul class="docs-list">
-          <li><strong>Projects</strong> — collapse or expand the project list by clicking the icon, or using <kbd class="kbd">⌘P</kbd> (mac) and <kbd class="kbd">Ctrl+P</kbd> (windows).</li>
+          <li><strong>Projects</strong> — collapse or expand the project list by clicking the icon, or using <span class="keys-win"><kbd class="kbd">Ctrl</kbd> + <kbd class="kbd">P</kbd></span><span class="keys-mac" style="display:none"><kbd class="kbd">⌘</kbd> + <kbd class="kbd">P</kbd></span>.</li>
           <li><strong>Settings</strong> — the gear at the far right, for your preferences and project options.</li>
         </ul>
       </div>
@@ -372,6 +372,11 @@
 
   // Fade in on first load
   window.addEventListener('DOMContentLoaded', () => {
+    // Swap keybindings to the macOS shortcuts on Apple devices (Mac + iOS)
+    if (/Mac|iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      document.querySelectorAll('.keys-win').forEach(el => { el.style.display = 'none'; });
+      document.querySelectorAll('.keys-mac').forEach(el => { el.style.display = ''; });
+    }
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         document.querySelector('section.active').classList.add('visible');
