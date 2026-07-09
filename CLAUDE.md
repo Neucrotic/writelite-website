@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-06-20 -->
+<!-- Last updated: 2026-07-09 -->
 
 # CLAUDE.md — WriteLite Website
 
@@ -10,6 +10,7 @@ The files:
 - feedback.html
 - documentation.html
 - styles.css
+- site-config.js
 
 This is a behaviour file, not a technical spec. It says how to collaborate, not
 what the website is built on — add stack, structure, and build commands below in
@@ -153,9 +154,14 @@ line whether the session is concluded or ongoing, then wait.
 This is the place for: tech stack and why, folder layout, build and deploy commands,
 hosting details, and any "always do X / never do Y" rules specific to the site.*
 
-- Donation page targets: $4,000/month development funding; $2,000 one-time macOS release fund
+- Funding trackers are currently hidden/disabled on /support — the monthly bar is commented out ("hidden for now"), the macOS bar commented out while self-funding the macOS release; the FUNDING config and renderTracker calls are commented out with it. Everything below is the restore reference, not the live state.
+- Donation page targets (when restored): $4,000/month development funding; $2,000 one-time macOS release fund
 - $4,000 validated against comparable donation-funded apps (sits on the median; Krita ~€4k/mo is the closest analog)
 - Funding trackers update manually — raised/goal values in one commented config block per tracker; no Stripe integration (trackers are temporary)
 - Trackers are two stacked thick horizontal bars; the monthly bar gates the macOS bar (macOS locked/dimmed until the month is funded)
 - Tracker fill is solid amber accent on a dark track; each bar shows label, raised-of-goal, and percentage
-- Docs page: two sections — "the basics" (toolbar/controls/settings, with annotated screenshots) and "your files & how WriteLite works" (technical topics layered plain-language + under-the-hood)
+- Docs page: three sections — "The Basics" (toolbar/controls/settings, with annotated screenshots), "Markdown Syntax" (text styling, structure, links & code blocks), and "Understanding Your Files" (technical topics layered plain-language + under-the-hood)
+- Page flow:
+  - Nav pages: home, documentation, synopsis, feedback, support ("Support the Developer")
+  - Flow-only, not in nav: download (reached from any download CTA — CTAs route here, never download directly) → thanks (Stripe redirect after payment)
+  - synopsis is the single authority for roadmap + patch notes; home carries a trimmed roadmap teaser that links there

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WriteLite — Documentation</title>
+  <title>WriteLite — Learn</title>
   <link rel="icon" href="wl_logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="wl_logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,6 +60,12 @@
       <a class="docs-toc-head" href="#sec-basics">The Basics</a>
       <a class="docs-toc-sub"  href="#sub-everything">Where Everything Lives</a>
       <a class="docs-toc-sub"  href="#sub-toolbar">The Toolbar</a>
+      <a class="docs-toc-sub"  href="#sub-tabrail">The Tab Rail</a>
+
+      <a class="docs-toc-head" href="#sec-markdown">Markdown Syntax</a>
+      <a class="docs-toc-sub"  href="#sub-md-text">Text Styling</a>
+      <a class="docs-toc-sub"  href="#sub-md-structure">Structure</a>
+      <a class="docs-toc-sub"  href="#sub-md-links">Links &amp; Code Blocks</a>
 
       <a class="docs-toc-head" href="#sec-files">Understanding Your Files</a>
       <a class="docs-toc-sub"  href="#sub-projects">Project Folders</a>
@@ -71,7 +77,6 @@
     <div class="docs-content">
     <h2 class="page-heading">Documentation</h2>
     <p class="about-premise">"Everything you need to know, before you need to know it."</p>
-    <p class="docs-wip">Work in progress&hellip;</p>
 
     <div class="docs-body">
 
@@ -95,12 +100,114 @@
 
       <div class="about-section">
         <div class="about-section-label" id="sub-toolbar">The toolbar</div>
-        <p>The toolbar above your page has three parts:</p>
+        <p>The toolbar above your page has two parts:</p>
         <ul class="docs-list">
-          <li><strong>Formatting</strong> — the usual word-processor controls, where you'd expect them: fonts, size, B/I/U/S (bold, italic, underline, strikethrough), headings, lists, alignment, and line spacing.</li>
-          <li><strong>Fullscreen</strong> — hides everything but your page. Press the icon or use the keybindings (F11 or Ctrl+Shift+F) to write distraction-free; Esc brings the rest back.</li>
+          <li><strong>Formatting</strong> — the usual word-processor controls, where you'd expect them: fonts, size, B/I/U/S, headings, lists, alignment, and line spacing.</li>
+          <li><strong>Fullscreen</strong> — hides everything but your page. Press the icon or use the keybindings (<kbd class="kbd">F11</kbd> or <kbd class="kbd">Ctrl+Shift+F</kbd>) to write distraction-free; <kbd class="kbd">Esc</kbd> brings the rest back.</li>
+        </ul>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label" id="sub-tabrail">The tab rail</div>
+        <p>The tab rail keeps your sidebar clean.</p>
+        <ul class="docs-list">
+          <li><strong>Projects</strong> — collapse or expand the project list by clicking the icon, or using <kbd class="kbd">⌘P</kbd> (mac) and <kbd class="kbd">Ctrl+P</kbd> (windows).</li>
           <li><strong>Settings</strong> — the gear at the far right, for your preferences and project options.</li>
         </ul>
+      </div>
+
+      <!-- ── SECTION — MARKDOWN SYNTAX ── -->
+      <h3 class="docs-section-title" id="sec-markdown">Markdown Syntax</h3>
+      <p class="docs-intro">
+        Every WriteLite document is mostly markdown underneath with some HTML to
+        support it. You'll rarely need to type it by hand — the toolbar does it
+        for you — but it's useful to know if you're pasting text in, writing on
+        the fly, or opening a <span class="inline-code">.wlite</span> file in
+        another editor.
+      </p>
+
+      <div class="about-section">
+        <div class="md-guide-head">
+          <div class="about-section-label" id="sub-md-text">Text styling</div>
+          <div class="md-guide-head-cols">
+            <span>What you type</span>
+            <span>What you see</span>
+          </div>
+        </div>
+        <div class="md-guide">
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Bold</strong> — wrap text in two asterisks on each side.</div>
+            <div class="md-guide-eg"><span class="inline-code">**bold text**</span> <span class="md-arrow">→</span> <strong>bold text</strong></div>
+          </div>
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Italic</strong> — use a single asterisk on each side instead.</div>
+            <div class="md-guide-eg"><span class="inline-code">*italic text*</span> <span class="md-arrow">→</span> <em>italic text</em></div>
+          </div>
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Bold &amp; italic</strong> — use three asterisks for both at once.</div>
+            <div class="md-guide-eg"><span class="inline-code">***both***</span> <span class="md-arrow">→</span> <strong><em>both</em></strong></div>
+          </div>
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Strikethrough</strong> — two tildes draw a line through the words.</div>
+            <div class="md-guide-eg"><span class="inline-code">~~struck out~~</span> <span class="md-arrow">→</span> <s>struck out</s></div>
+          </div>
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Inline code</strong> — a pair of backticks marks text as code.</div>
+            <div class="md-guide-eg"><span class="inline-code">`some code text`</span> <span class="md-arrow">→</span> <span class="md-render-code">some code text</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <div class="md-guide-head">
+          <div class="about-section-label" id="sub-md-structure">Structure</div>
+          <div class="md-guide-head-cols">
+            <span>What you type</span>
+            <span>What you see</span>
+          </div>
+        </div>
+        <div class="md-guide">
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Heading</strong> — start a line with a hash and a space; add hashes to step down through six sizes.</div>
+            <div class="md-guide-eg"><span class="inline-code"># Heading</span> <span class="md-arrow">→</span> <span class="md-render-h">Heading</span></div>
+          </div>
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Bullet list</strong> — start each line with a dash and a space.</div>
+            <div class="md-guide-eg"><span class="inline-code">- item</span> <span class="md-arrow">→</span> <span>• item</span></div>
+          </div>
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Numbered list</strong> — start each line with a number, a period, and a space.</div>
+            <div class="md-guide-eg"><span class="inline-code">1. item</span> <span class="md-arrow">→</span> <span>1. item</span></div>
+          </div>
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Blockquote</strong> — start a line with a greater-than sign.</div>
+            <div class="md-guide-eg"><span class="inline-code">&gt; quoted line</span> <span class="md-arrow">→</span> <span class="md-render-quote">quoted line</span></div>
+          </div>
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Horizontal rule</strong> — put three dashes on a line by themselves.</div>
+            <div class="md-guide-eg"><span class="inline-code">---</span> <span class="md-arrow"></span> <span class="md-render-hr"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <div class="md-guide-head">
+          <div class="about-section-label" id="sub-md-links">Links &amp; code blocks</div>
+          <div class="md-guide-head-cols">
+            <span>What you type</span>
+            <span>What you see</span>
+          </div>
+        </div>
+        <div class="md-guide">
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Link</strong> — square brackets around the words, parentheses around the address.</div>
+            <div class="md-guide-eg"><span class="inline-code">[link text](url)</span> <span class="md-arrow">→</span> <a href="https://example.com">link text</a></div>
+          </div>
+          <div class="md-guide-row">
+            <div class="md-guide-desc"><strong>Code block</strong> — fence a block with three backticks on their own line, above and below.</div>
+            <div class="md-guide-eg"><span class="inline-code">```<br>your code<br>```</span> <span class="md-arrow">→</span> <span class="md-render-codeblock">your code</span></div>
+          </div>
+        </div>
       </div>
 
       <!-- ── SECTION 2 — YOUR FILES & HOW WRITELITE WORKS ── -->

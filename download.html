@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WriteLite — Support the Developer</title>
+  <title>WriteLite — Download</title>
   <link rel="icon" href="wl_logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="wl_logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,65 +51,19 @@
 </div>
 
 
-<!-- ── SUPPORT ───────────────────────────────────────── -->
-<section id="support" class="active">
-  <div class="support-page">
-   <div class="support-grid">
+<!-- ── DOWNLOAD ──────────────────────────────────────── -->
+<section id="download" class="active">
+  <div class="download-page">
 
-    <!-- ── LEFT: DONATION ── -->
-    <div class="support-main">
-
-    <h2 class="page-heading">Support the Developer</h2>
+    <h2 class="page-heading">Free Download – Support is Optional</h2>
     <p class="page-sub">
-      WriteLite is free because of the users who choose to support its development. If it saves you time, gets out of your
-      way when it counts, or becomes the tool you reach for every
-      time you sit down to write — this is how you say so.
+      Thank you for choosing to support WriteLite. These contributions make
+      on-going development possible, even a small contribution goes a long way.
     </p>
 
-    <!-- ── FUNDING TRACKERS ─────────────────────────────────────────
-         Both bars are hidden for now. To bring them back, uncomment the
-         whole .funding-trackers block below, then restore the matching
-         FUNDING config entries and the renderTracker calls in the script.
-         (The macOS bar stays dimmed/locked until the monthly bar is funded.)
-
-    <div class="funding-trackers">
-
-      Monthly development
-      <div class="tracker" id="tracker-monthly">
-        <div class="tracker-head">
-          <span class="tracker-label">Monthly Development Fund</span>
-          <span class="tracker-pct" id="monthly-pct">0%</span>
-        </div>
-        <div class="tracker-track">
-          <div class="tracker-fill" id="monthly-fill"></div>
-          <div class="tracker-done-label">GOAL REACHED!</div>
-        </div>
-        <div class="tracker-figure" id="monthly-figure">$0 of $4,000</div>
-        <div class="tracker-note">Figures update at the end of the work day, Melbourne time (AEST).</div>
-      </div>
-
-      macOS release fund
-      <div class="tracker locked" id="tracker-macos">
-        <div class="tracker-head">
-          <span class="tracker-label">macOS Release Fund</span>
-          <span class="tracker-pct" id="macos-pct">0%</span>
-        </div>
-        <div class="tracker-track">
-          <div class="tracker-fill" id="macos-fill"></div>
-          <div class="tracker-done-label">GOAL REACHED!</div>
-        </div>
-        <div class="tracker-figure" id="macos-figure">$0 of $2,000</div>
-        <div class="tracker-lock-note">Unlocks once this month is funded.</div>
-      </div>
-
-    </div>
-    ───────────────────────────────────────────────────────────────── -->
-
     <!-- ── DONATE WIDGET ── -->
-
     <div class="donate-widget">
 
-      <!-- Donation selection -->
       <div id="donate-page">
         <div class="donate-amt-grid">
           <button class="donate-amt-btn" onclick="donateSelectAmt(5, this)">$5</button>
@@ -144,111 +98,56 @@
 
     </div><!-- /donate-widget -->
 
-    </div><!-- /support-main -->
+    <!-- ── FREE DOWNLOAD ── -->
+    <div class="free-download">
+      <div class="free-download-label">Changed your mind? Download free</div>
 
-    <!-- ── RIGHT: COPY ── -->
-    <div class="support-copy">
-      <h2 class="page-heading">Why Support WriteLite</h2>
+      <!-- Detected / passed platform — revealed by renderFreeDownload() -->
+      <div id="fd-primary" style="display:none">
+        <a class="btn-download-free" id="fd-primary-btn" download>Download free</a>
+        <p class="fd-other">Also available for <a id="fd-other-link" href="#" download>the other platform</a></p>
+      </div>
 
-      <p>Hello, I'm NEL — a writer who builds things.</p>
+      <!-- Fallback (Linux / unknown) — both platforms, equal weight. Default state. -->
+      <div id="fd-fallback">
+        <a class="btn-download-free" data-wl-download="windows" download onclick="handleDownloadClick(event, 'windows')">Download free for Windows 11</a>
+        <a class="btn-download-free" data-wl-download="mac"     download onclick="handleDownloadClick(event, 'mac')">Download free for macOS</a>
+      </div>
 
-      <p>
-        Long before I wrote a line of code, I wrote stories. Primarily fiction, 
-        I have also enjoyed writing poetry, essays and I maintain a daily journalling
-        habit. Over the years, nearly every writing tool I reached for felt like it got in the way 
-        — bloated with features I'd never touch, asking me to wrangle a project before
-        I'd written a sentence.
-      </p>
+      <p class="fd-version">Current version <span data-wl-version></span></p>
+    </div><!-- /free-download -->
 
-      <p>
-        I wanted something simple. Software that opens fast, gets out of the
-        way, and lets the writer write. Free to use, but genuinely capable — a
-        robust set of tools for serious writing, with none of the clutter that
-        breaks your focus. I looked for it for a long time. When I couldn't find
-        it, I decided to build it myself.
-      </p>
+  </div><!-- /download-page -->
 
-      <p>
-        WriteLite is the writing app I always wanted and never found, a passion project that 
-        I will continuously improve, and a tool for focused writing.
-      </p>
-
-      <p><strong>That's where you come in.</strong></p>
-
-      <p>
-        WriteLite is for writers and relies on community feedback to keep the fetures focused yet robust.
-        Join the conversation on <a data-wl-discord target="_blank" rel="noopener noreferrer">Discord</a>, leave a comment via <a href="https://www.instagram.com/writelite_app/" target="_blank" rel="noopener noreferrer">Instagram</a> or fill out the form on the <a href="/feedback">feedback</a> page.
-        Your input helps me to build tools for all writers. Creative or otherwise.
-      </p>
-
-      <p>
-        WriteLite is free. It stands a testiment to my ethos that
-        writing tools shouldn't hide behind a pay-wall, be restrained to an operating system or
-        hide the words we write in files we can't access; but building it full-time is its own kind
-        of tightrope. If WriteLite is something you want to exist 
-        — or something you already use and value — a small contribution goes further than you'd 
-        think. Enough to pay a bill. Enough to fill a plate. Enough to keep the lights on and the
-        ball rolling while I build.
-      </p>
-
-      <p>
-        Nothing here is expected. Every bit is appreciated. Even the simple act of
-        sharing this with another writer helps keep my dream moving forward.
-      </p>
-
-      <p>For that I am eternally grateful.</p>
-
-      <p class="support-sign">— NEL</p>
+  <!-- Mobile download notice (shown by handleDownloadClick on mobile) -->
+  <div class="mobile-notice" id="mobile-notice" role="alert">
+    <div class="mobile-notice-header">
+      <span class="mobile-notice-title">WriteLite is a desktop app</span>
+      <button class="mobile-notice-close" onclick="closeMobileNotice()" aria-label="Dismiss">&#215;</button>
     </div>
-
-   </div><!-- /support-grid -->
+    <p>To download, visit this page on a <span id="mobile-notice-platform">Windows or Mac</span> computer.</p>
   </div>
+
 </section>
 
+<!-- ── SHARED SITE CONFIG (version, URLs, downloads) ──── -->
 <script src="site-config.js"></script>
 
 <!-- ── PAGE SCRIPT ───────────────────────────────────── -->
 <script>
-  // ── FUNDING TRACKERS — edit these numbers only ──
-  var FUNDING = {
-    // monthly: { raised: 0, goal: 4000 },   // resets 1st each month — commented out, hidden for now
-    // macos:   { raised: 0, goal: 2000 },   // one-time; commented out while self-funding the macOS release
+  // ── STRIPE PAYMENT LINKS — download page ──────────────────────────
+  // PLACEHOLDERS — swap for the real Payment Link set before pushing.
+  // Kept separate from /support's links so the two pages stay independent.
+  var links = {
+    once:    { 5:'https://placeholder.com/STRIPE-ONCE-5',    10:'https://placeholder.com/STRIPE-ONCE-10',    20:'https://placeholder.com/STRIPE-ONCE-20' },
+    monthly: { 5:'https://placeholder.com/STRIPE-MONTHLY-5', 10:'https://placeholder.com/STRIPE-MONTHLY-10', 20:'https://placeholder.com/STRIPE-MONTHLY-20' },
+    custom:  'https://placeholder.com/STRIPE-CUSTOM'
   };
+  // ──────────────────────────────────────────────────────────────────
 
-  function fmt(n) { return '$' + n.toLocaleString('en-US'); }
-
-  function renderTracker(prefix, raised, goal) {
-    var pct = Math.min(100, (raised / goal) * 100);
-    document.getElementById(prefix + '-fill').style.width   = pct + '%';
-    document.getElementById(prefix + '-pct').textContent    = Math.round(pct) + '%';
-    document.getElementById(prefix + '-figure').textContent = fmt(raised) + ' of ' + fmt(goal);
-    document.getElementById('tracker-' + prefix).classList.toggle('done', pct >= 100);
-  }
-
-  function renderFunding() {
-    // Monthly tracker hidden for now. Restore alongside the HTML block and
-    // FUNDING.monthly config to bring it back.
-    // renderTracker('monthly', FUNDING.monthly.raised, FUNDING.monthly.goal);
-
-    // macOS tracker commented out while self-funding the macOS release.
-    // Restore alongside the HTML block and FUNDING.macos config to bring it back.
-    // var unlocked = FUNDING.monthly.raised >= FUNDING.monthly.goal;
-    // var macosEl  = document.getElementById('tracker-macos');
-    // if (unlocked) {
-    //   macosEl.classList.remove('locked');
-    //   renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
-    // } else {
-    //   // Stay dimmed/locked, but keep showing real progress — the macOS
-    //   // fund accumulates across months and shouldn't appear to reset.
-    //   macosEl.classList.add('locked');
-    //   renderTracker('macos', FUNDING.macos.raised, FUNDING.macos.goal);
-    // }
-  }
-
-  renderFunding();
-
-  var donateAmount  = 10;
-  var donateMonthly = false;
+  // ── DONATE WIDGET ──────────────────────────────────────────────
+  var donateAmount   = 10;
+  var donateMonthly  = false;
   var donateIsCustom = false;
 
   function donateSelectAmt(val, btn) {
@@ -307,16 +206,33 @@
 
   function donateGoToStripe() {
     if (!donateAmount && !donateIsCustom) return;
-
-    // TODO: replace these placeholder values with your real Stripe Payment Link URLs
-    var links = {
-      once:    { 5: 'https://donate.stripe.com/7sY6oGeJV1Fx2WLcmq4ow0b',    10: 'https://donate.stripe.com/fZu8wO31d6ZReFteuy4ow0c',    20: 'https://donate.stripe.com/bJe5kC8lx5VNapdgCG4ow0h'    },
-      monthly: { 5: 'https://donate.stripe.com/fZuaEW9pBac3apd2LQ4ow0f', 10: 'https://donate.stripe.com/cNiaEW0T53NF9l9fyC4ow0g', 20: 'https://donate.stripe.com/aFa4gy7ht3NF7d19ae4ow0i' },
-      custom:  'https://donate.stripe.com/28E5kC6dpfwn54T1HM4ow0d'
-    };
-
     var url = donateIsCustom ? links.custom : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);
     window.open(url, '_blank', 'noopener');
+  }
+
+  // ── FREE DOWNLOAD — platform resolve ───────────────────────────
+  // ?platform=windows|mac (explicit choice from home) overrides detection;
+  // otherwise re-detect. Null → leave the two-button fallback visible.
+  function renderFreeDownload() {
+    var passed   = new URLSearchParams(location.search).get('platform');
+    var platform = (passed === 'windows' || passed === 'mac') ? passed : WriteLite.detectPlatform();
+    if (!platform) return;
+
+    var names = { windows: 'Windows 11', mac: 'macOS' };
+    var other = platform === 'windows' ? 'mac' : 'windows';
+
+    var pbtn = document.getElementById('fd-primary-btn');
+    pbtn.textContent = 'Download free for ' + names[platform];
+    pbtn.href        = WriteLite.config.downloads[platform];
+    pbtn.onclick     = function(e) { WriteLite.handleDownloadClick(e, platform); };
+
+    var olink = document.getElementById('fd-other-link');
+    olink.textContent = names[other];
+    olink.href        = WriteLite.config.downloads[other];
+    olink.onclick     = function(e) { WriteLite.handleDownloadClick(e, other); };
+
+    document.getElementById('fd-fallback').style.display = 'none';
+    document.getElementById('fd-primary').style.display  = '';
   }
 
   // ── MOBILE NAV ─────────────────────────────────────────────────
@@ -349,8 +265,9 @@
     setTimeout(() => { if (!drawer.classList.contains('open')) drawer.style.display = ''; }, 220);
   }
 
-  // Fade in on first load
+  // Resolve platform + fade in on first load
   window.addEventListener('DOMContentLoaded', () => {
+    renderFreeDownload();
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         document.querySelector('section.active').classList.add('visible');

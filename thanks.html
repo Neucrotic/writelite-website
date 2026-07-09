@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WriteLite — Thank You</title>
+  <link rel="icon" href="wl_logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="wl_logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav>
+   <a class="nav-logo" href="/" style="cursor:pointer; display:flex; align-items:center; gap:2px;">
+	<img src="wl_logo.svg" alt="WriteLite logo" width="26" height="26" style="flex-shrink:0; display:block;">
+    <svg viewBox="0 0 116 26" width="116" height="26" aria-label="WriteLite" style="flex-shrink:0; display:block;">
+      <text x="0" y="21" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" letter-spacing="-0.5">
+        <tspan fill="var(--fg-1)">Write</tspan><tspan fill="var(--fg-3)">Lite</tspan>
+      </text>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a id="nav-home"     href="/">Home</a>
+    <a id="nav-docs"      href="/documentation">How To WriteLite</a>
+    <a id="nav-synopsis"  href="/synopsis">Synopsis</a>
+    <a id="nav-feedback"  href="/feedback">Feedback</a>
+  </div>
+  <a class="nav-support" href="/support">Support the Developer</a>
+
+  <!-- Burger — mobile only -->
+  <button class="nav-burger" id="nav-burger" aria-label="Open menu" onclick="toggleMobileNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav-drawer" id="mobile-nav-drawer">
+  <a id="mnav-home"     href="/">Home</a>
+  <a id="mnav-docs"     href="/documentation">How To WriteLite</a>
+  <a id="mnav-synopsis" href="/synopsis">Synopsis</a>
+  <a id="mnav-feedback" href="/feedback">Feedback</a>
+  <div class="mobile-nav-divider"></div>
+  <a class="mobile-nav-support" href="/support">Support the Developer</a>
+</div>
+
+
+<!-- ── THANKS ────────────────────────────────────────── -->
+<section id="thanks" class="active">
+  <div class="download-page">
+
+    <!-- PAID arrival (from Stripe). PLACEHOLDER — Nelson replaces with final words. -->
+    <h2 class="page-heading" id="thanks-heading">Thank you</h2>
+    <p class="page-sub" id="thanks-sub">
+      Your support keeps WriteLite free and moving forward — it means more than you know.
+    </p>
+    <!-- /PLACEHOLDER -->
+
+    <!-- FREE arrival (?start=1). "click here" is the manual fallback for the auto-download. -->
+    <p class="page-sub" id="free-msg" style="display:none">
+      Thank you for using WriteLite. If your download does not start automatically,
+      <a id="free-dl-link" download>click here</a>.
+    </p>
+
+    <!-- ── DOWNLOAD ── -->
+    <div class="free-download">
+
+      <!-- Detected platform — revealed by renderFreeDownload() -->
+      <div id="fd-primary" style="display:none">
+        <a class="btn-download-free" id="fd-primary-btn" download>Download</a>
+        <p class="fd-other">Also available for <a id="fd-other-link" href="#" download>the other platform</a></p>
+      </div>
+
+      <!-- Fallback (Linux / unknown) — both platforms, equal weight. Default state. -->
+      <div id="fd-fallback">
+        <a class="btn-download-free" data-wl-download="windows" download onclick="handleDownloadClick(event, 'windows')">Download for Windows 11</a>
+        <a class="btn-download-free" data-wl-download="mac"     download onclick="handleDownloadClick(event, 'mac')">Download for macOS</a>
+      </div>
+
+      <div class="thanks-brand" id="thanks-brand">
+        <img src="wl_logo.svg" alt="WriteLite logo" width="30" height="30">
+        <svg viewBox="0 0 116 26" width="116" height="26" aria-label="WriteLite">
+          <text x="0" y="21" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" letter-spacing="-0.5">
+            <tspan fill="var(--fg-1)">Write</tspan><tspan fill="var(--fg-3)">Lite</tspan>
+          </text>
+        </svg>
+      </div>
+
+      <p class="fd-version">Current version <span data-wl-version></span></p>
+    </div><!-- /free-download -->
+
+  </div><!-- /download-page -->
+
+  <!-- Mobile download notice (shown by handleDownloadClick on mobile) -->
+  <div class="mobile-notice" id="mobile-notice" role="alert">
+    <div class="mobile-notice-header">
+      <span class="mobile-notice-title">WriteLite is a desktop app</span>
+      <button class="mobile-notice-close" onclick="closeMobileNotice()" aria-label="Dismiss">&#215;</button>
+    </div>
+    <p>To download, visit this page on a <span id="mobile-notice-platform">Windows or Mac</span> computer.</p>
+  </div>
+
+</section>
+
+<!-- ── SHARED SITE CONFIG (version, URLs, downloads) ──── -->
+<script src="site-config.js"></script>
+
+<!-- ── PAGE SCRIPT ───────────────────────────────────── -->
+<script>
+  // ── ARRIVAL TYPE ───────────────────────────────────────────────
+  // ?start=1 → FREE arrival (from the home "Download Free" button): swap to the
+  // "using WriteLite" line and auto-start the download. No flag → PAID arrival
+  // (from Stripe): the unchanged manual thank-you page below.
+  function renderThanks() {
+    var isFree = new URLSearchParams(location.search).get('start') === '1';
+    if (!isFree) { renderFreeDownload(); return; }
+
+    document.getElementById('thanks-heading').style.display = 'none';
+    document.getElementById('thanks-sub').style.display     = 'none';
+    document.getElementById('free-msg').style.display       = '';
+
+    var platform = WriteLite.detectPlatform();
+    if (!platform) {
+      // Unknown OS: no single file to auto-fetch — offer the two-button chooser.
+      document.getElementById('free-msg').textContent =
+        'Thank you for using WriteLite. Choose your download below.';
+      return; // #fd-fallback is visible by default
+    }
+
+    // Known OS: point "click here" at the installer, hide the big buttons, and
+    // fire the download automatically via the shared click handler (which counts
+    // on desktop and shows the desktop-only notice on mobile).
+    var link = document.getElementById('free-dl-link');
+    link.href    = WriteLite.config.downloads[platform];
+    link.onclick = function (e) { WriteLite.handleDownloadClick(e, platform); };
+
+    document.getElementById('fd-primary').style.display  = 'none';
+    document.getElementById('fd-fallback').style.display = 'none';
+
+    link.click();
+  }
+
+  // ── DOWNLOAD — platform resolve ────────────────────────────────
+  // Stripe's redirect carries no platform context, so this page always
+  // re-detects. Null → leave the two-button fallback visible.
+  function renderFreeDownload() {
+    var platform = WriteLite.detectPlatform();
+    if (!platform) return;
+
+    var names = { windows: 'Windows 11', mac: 'macOS' };
+    var other = platform === 'windows' ? 'mac' : 'windows';
+
+    var pbtn = document.getElementById('fd-primary-btn');
+    pbtn.textContent = 'Download for ' + names[platform];
+    pbtn.href        = WriteLite.config.downloads[platform];
+    pbtn.onclick     = function(e) { WriteLite.handleDownloadClick(e, platform); };
+
+    var olink = document.getElementById('fd-other-link');
+    olink.textContent = names[other];
+    olink.href        = WriteLite.config.downloads[other];
+    olink.onclick     = function(e) { WriteLite.handleDownloadClick(e, other); };
+
+    document.getElementById('fd-fallback').style.display = 'none';
+    document.getElementById('fd-primary').style.display  = '';
+  }
+
+  // ── MOBILE NAV ─────────────────────────────────────────────────
+  function toggleMobileNav() {
+    const burger  = document.getElementById('nav-burger');
+    const drawer  = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const isOpen  = drawer.classList.contains('open');
+    if (isOpen) {
+      closeMobileNav();
+    } else {
+      burger.classList.add('open');
+      overlay.classList.add('open');
+      // Force reflow so transition plays from initial state
+      drawer.style.display = 'flex';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { drawer.classList.add('open'); });
+      });
+    }
+  }
+
+  function closeMobileNav() {
+    const burger  = document.getElementById('nav-burger');
+    const drawer  = document.getElementById('mobile-nav-drawer');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    // Hide after transition
+    setTimeout(() => { if (!drawer.classList.contains('open')) drawer.style.display = ''; }, 220);
+  }
+
+  // Resolve platform + fade in on first load
+  window.addEventListener('DOMContentLoaded', () => {
+    renderThanks();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelector('section.active').classList.add('visible');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

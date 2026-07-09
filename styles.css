@@ -37,6 +37,17 @@
       --success:         #6a9955;
       --danger:          #f48771;
 
+      /* ── Roadmap status tags — "cool trio", saturated, clear of amber ── */
+      --status-next:        #34d399;                    /* emerald */
+      --status-next-bg:     rgba(52,211,153,0.12);
+      --status-next-border: rgba(52,211,153,0.32);
+      --status-planned:        #38bdf8;                 /* sky blue */
+      --status-planned-bg:     rgba(56,189,248,0.12);
+      --status-planned-border: rgba(56,189,248,0.32);
+      --status-exploring:        #a78bfa;               /* violet */
+      --status-exploring-bg:     rgba(167,139,250,0.12);
+      --status-exploring-border: rgba(167,139,250,0.32);
+
       /* ── Fonts ── */
       --font-sans:       'Public Sans', system-ui, -apple-system, sans-serif;
       --font-mono:       'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
@@ -168,108 +179,135 @@
       margin-bottom: 24px;
     }
 
-    .hero-cta-group {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+    /* ── HERO — PLATFORM CARD (detected OS) ─────── */
+    /* Width is set by the instruction line above; cards fill it. */
+    .hero-cta {
+      width: max-content;
+      max-width: 100%;
     }
 
-    .download-cards {
+    .hero-download {
       display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: stretch;
+      flex-direction: column;
+      align-items: center;
       margin-top: 6px;
     }
 
-    .download-card {
-      flex: 0 0 auto;
-      width: 246px;
-      background: var(--surface);
-      border: 1px solid var(--border-strong);
+    .platform-card {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      background: linear-gradient(180deg, var(--accent-muted) 0%, var(--surface) 60%);
+      border: 1px solid var(--accent-border);
       border-radius: 18px;
-      padding: 16px 16px 14px;
+      padding: 22px 24px 20px;
       display: flex;
       flex-direction: column;
+      align-items: center;
+    }
+    .platform-card > * { position: relative; }
+
+    /* Amber glow from centre-top */
+    .platform-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 80% at 50% 0%, rgba(212,160,48,0.09), transparent 70%);
+      pointer-events: none;
     }
 
-    .download-card-title {
-      display: flex;
-      align-items: baseline;
-      justify-content: center;
-      gap: 10px;
+    /* Gradient top edge */
+    .platform-card::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent) 30%, var(--accent-fg) 50%, var(--accent) 70%, transparent);
+    }
+
+    .platform-card-name {
       font-family: var(--font-sans);
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: 0.01em;
       color: var(--fg-1);
-      margin-bottom: 10px;
     }
 
-    .download-card-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 10px 0;
-    }
-
-    .download-card-row + .download-card-row {
-      border-top: 1px solid var(--border);
-    }
-
-    .download-card-info {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2px;
-      min-width: 0;
-      text-align: left;
-    }
-
-    .download-card-version {
+    .platform-card-version {
       font-family: var(--font-mono);
-      font-size: 18px;
+      font-size: 13px;
       color: var(--fg-3);
+      margin-top: 4px;
+      margin-bottom: 38px;
     }
 
-    .btn-card-download {
-      flex-shrink: 0;
-      background: var(--accent-bg);
-      border: 1px solid var(--accent-border);
-      color: var(--accent);
-      font-family: var(--font-sans);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      padding: 6px 13px;
-      border-radius: 3px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.15s, border-color 0.15s;
-      white-space: nowrap;
-    }
-
-    .btn-card-download:hover {
-      background: rgba(212,160,48,0.18);
-      border-color: rgba(212,160,48,0.55);
-    }
-
-    /* macOS — coming soon */
-    .download-card-soon {
-      opacity: 0.55;
+    /* Full accent fill — matches .btn-download-free / .donate-submit-btn */
+    .btn-platform-download {
+      width: 100%;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      padding: 13px 16px;
+      border-radius: 4px;
+      border: none;
+      background: var(--accent);
+      color: #1a1200;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      text-decoration: none;
       text-align: center;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn-platform-download:hover  { opacity: 0.88; }
+    .btn-platform-download:active { transform: scale(0.99); }
+
+    /* Free / Pay split — two equal buttons with a quiet OR between */
+    .platform-choice-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .platform-choice-row .btn-platform-download {
+      flex: 1;
+      width: auto;
+    }
+    .platform-or {
+      flex-shrink: 0;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--fg-4);
     }
 
-    .download-card-soon .download-card-title { margin-bottom: 8px; }
-
-    .download-card-soon-note {
+    .platform-other {
+      font-size: 13px;
+      color: var(--fg-4);
+      margin-top: 14px;
       font-family: var(--font-sans);
-      font-size: 12.5px;
-      color: var(--fg-3);
+    }
+    .platform-other a { color: var(--accent); text-decoration: none; }
+    .platform-other a:hover { text-decoration: underline; }
+
+    /* Fallback — two equal-weight buttons + version */
+    .platform-fallback {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .platform-fallback .btn-platform-download + .btn-platform-download {
+      margin-top: 10px;
+    }
+    .platform-fallback-version {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--fg-4);
+      text-align: center;
+      margin-top: 14px;
     }
 
     /* ── HOME — LOWER (PREVIEW + BLURB) ─────────── */
@@ -501,7 +539,7 @@
 
     /* Long-form docs copy — readable left-aligned column under the header */
     .docs-body {
-      max-width: 720px;
+      max-width: 820px;
       text-align: justify;
     }
 
@@ -520,7 +558,6 @@
       color: var(--fg-3);
       line-height: 1.9;
       margin-bottom: 32px;
-      max-width: 640px;
       font-family: var(--font-sans);
     }
 
@@ -555,6 +592,108 @@
       font-style: italic;
       color: var(--fg-4);
     }
+
+    /* ── KEYBOARD KEYCAPS ── */
+    .kbd {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1;
+      color: var(--fg-2);
+      background: var(--surface2);
+      border: 1px solid var(--border-strong);
+      border-bottom-width: 2px;
+      border-radius: 4px;
+      padding: 3px 6px;
+      white-space: nowrap;
+      vertical-align: baseline;
+    }
+
+    /* ── MARKDOWN GUIDE (two-column rows) ── */
+    .md-guide-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+    .md-guide-head .about-section-label { margin-bottom: 0; }
+    .md-guide-head-cols {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-4);
+      font-family: var(--font-sans);
+    }
+    .md-guide { display: flex; flex-direction: column; margin-top: 4px; }
+    .md-guide-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 24px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      align-items: center;
+    }
+    .md-guide-row:first-child { border-top: none; padding-top: 0; }
+    .md-guide-desc {
+      font-size: 15px; color: var(--fg-3); line-height: 1.7;
+      font-family: var(--font-sans);
+    }
+    .md-guide-desc strong { color: var(--fg-2); font-weight: 600; }
+    .md-guide-eg {
+      font-size: 15px; color: var(--fg-2); line-height: 1.7;
+      font-family: var(--font-sans);
+      background: var(--editor-bg);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      border-radius: 6px;
+      padding: 10px 14px;
+      display: grid;
+      grid-template-columns: 130px 1.6em 1fr;
+      align-items: center;
+    }
+    .md-guide-eg > .inline-code { justify-self: start; }
+    .md-arrow { color: var(--fg-4); justify-self: center; }
+    .md-guide-eg > :last-child { justify-self: end; }
+    .md-guide-eg a { color: var(--accent); }
+
+    /* Rendered-result helpers (right of the arrow) */
+    .md-render-h {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--fg-1);
+    }
+    .md-render-quote {
+      border-left: 2px solid var(--accent);
+      padding-left: 10px;
+      color: var(--fg-3);
+      font-style: italic;
+    }
+    .md-render-hr {
+      display: inline-block;
+      width: 100%;
+      min-width: 80px;
+      height: 0;
+      border-top: 1px solid var(--border-strong);
+      vertical-align: middle;
+    }
+    .md-render-code,
+    .md-render-codeblock {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--fg-1);
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+    }
+    .md-render-code { padding: 2px 7px; }
+    .md-render-codeblock { display: inline-block; padding: 6px 10px; }
 
     /* ── ABOUT ───────────────────────────────────── */
     .about-page {
@@ -664,6 +803,84 @@
       background: var(--surface2);
     }
 
+    /* ── HOME ROADMAP TEASER ─────────────────────── */
+    .roadmap-teaser {
+      max-width: 720px;
+      margin: 56px auto 0;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .roadmap-teaser-card {
+      position: relative;
+      padding: 28px 32px;
+      border-radius: 10px;
+      border: 1px solid var(--accent-border);
+      background: linear-gradient(160deg, var(--accent-muted) 0%, var(--surface) 60%);
+      overflow: hidden;
+    }
+
+    /* Amber halo behind the top-left */
+    .roadmap-teaser-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 80% at 20% 0%, rgba(212,160,48,0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Gradient top edge */
+    .roadmap-teaser-card::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent) 30%, var(--accent-fg) 50%, var(--accent) 70%, transparent);
+    }
+
+    .roadmap-teaser-badge {
+      position: relative;
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--bg);
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-fg), var(--accent));
+      margin-bottom: 16px;
+    }
+
+    .roadmap-teaser-title {
+      position: relative;
+      font-family: var(--font-sans);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--fg-1);
+      margin-bottom: 18px;
+    }
+
+    .roadmap-teaser-link {
+      position: relative;
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 120ms ease;
+    }
+    .roadmap-teaser-link:hover { color: var(--accent-fg); }
+
+    @media (max-width: 640px) {
+      .roadmap-teaser { margin-top: 40px; padding-top: 36px; }
+      .roadmap-teaser-card { padding: 24px 22px; }
+      .roadmap-teaser-title { font-size: 19px; }
+    }
+
     /* ── SUPPORT ─────────────────────────────────── */
     .support-page {
       min-height: calc(100vh - var(--nav-h));
@@ -692,6 +909,8 @@
     }
     .support-copy .page-heading { line-height: 1.6; }
     .support-copy p { margin: 0 0 18px; text-align: justify; }
+    .support-copy a { color: var(--accent); text-decoration: none; }
+    .support-copy a:hover { text-decoration: underline; }
     .support-copy .support-sign {
       margin-top: 24px;
       color: var(--fg-2);
@@ -914,20 +1133,372 @@
       .tracker.locked .tracker-pct { color: var(--fg-4); }
       .tracker.locked .tracker-lock-note { display: block; }
 
+    /* ── DOWNLOAD PAGE ──────────────────────────── */
+    .download-page {
+      min-height: calc(100vh - var(--nav-h));
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 64px 40px 96px;
+    }
+    .download-page .page-heading { margin-bottom: 14px; }
+
+    /* Widen page content to the full 640px container (overrides shared caps) */
+    .download-page .donate-widget,
+    .download-page .page-sub { max-width: 640px; }
+
+    .free-download {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .free-download-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--fg-4);
+      margin-bottom: 16px;
+      font-family: var(--font-sans);
+    }
+
+    /* Same visual weight as .donate-submit-btn, minus the new-tab glyph */
+    .btn-download-free {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 16px;
+      border-radius: 4px;
+      border: none;
+      background: var(--accent);
+      color: #1a1200;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn-download-free:hover  { opacity: 0.88; }
+    .btn-download-free:active { transform: scale(0.99); }
+    .btn-download-free + .btn-download-free { margin-top: 10px; }
+
+    .fd-other {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--fg-3);
+      text-align: center;
+      font-family: var(--font-sans);
+    }
+    .fd-other a { color: var(--accent); text-decoration: none; }
+    .fd-other a:hover { text-decoration: underline; }
+
+    .fd-version {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--fg-4);
+      text-align: center;
+      font-family: var(--font-sans);
+    }
+    .fd-version span { font-family: var(--font-mono); }
+
+    /* ── THANKS PAGE ────────────────────────────── */
+    /* Match the gap above the divider to the gap below it (28px both sides). */
+    #thanks .page-sub      { margin-bottom: 28px; }
+    #thanks .free-download { margin-top: 0; }
+    #free-dl-link { color: var(--accent); text-decoration: underline; cursor: pointer; }
+    .thanks-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      margin-top: 30px;
+      opacity: 0.9;
+    }
+    .thanks-brand img,
+    .thanks-brand svg { display: block; flex-shrink: 0; }
+
     /* ── SYNOPSIS PAGE ──────────────────────────── */
+    /* Wide two-row layout: percentage side margins, not a fixed max-width. */
     .synopsis-page {
       min-height: calc(100vh - var(--nav-h));
-      max-width: 600px;
       margin: 0 auto;
-      padding: 64px 64px 96px;
+      padding: 64px 5vw 40px;
     }
 
     .synopsis-page .page-heading { margin-bottom: 10px; }
 
-    .synopsis-page .docs-wip {
-      margin-bottom: 48px;
-      padding-bottom: 10px;
+    .synopsis-intro {
+      font-size: 15px;
+      color: var(--fg-3);
+      line-height: 1.9;
+      font-family: var(--font-sans);
+      margin-bottom: 8px;
+    }
+
+    /* Intro aligns to the Roadmap column (5fr of the 5fr/3fr band, 40px gap) */
+    .synopsis-page .synopsis-intro { max-width: calc(62.5% - 25px); }
+
+    /* Anchor targets clear the fixed nav when jumped to */
+    .synopsis-section-title { scroll-margin-top: calc(var(--nav-h) + 24px); }
+
+    /* Row 1 — roadmap / patch notes, ratio held at 5:3 */
+    .synopsis-band {
+      display: grid;
+      grid-template-columns: 5fr 3fr;
+      gap: 40px;
+      margin-top: 40px;
+      align-items: start;
+    }
+
+    /* Row 2 — community (45%) / support (45%) */
+    .synopsis-row2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .synopsis-section-title {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--fg-1);
+      margin-bottom: 22px;
+    }
+
+    /* ── Section panels ── */
+    /* All four sections are cards. Roadmap + support (the forward-looking
+       pair) wear the amber-gradient treatment from the home download card;
+       patch notes + community sit back in quiet surface panels. */
+    .synopsis-roadmap,
+    .synopsis-patch,
+    .synopsis-community,
+    .synopsis-support {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      padding: 28px 30px;
+    }
+
+    /* ── Roadmap — amber card; gradient + glow pooling at the bottom-right ── */
+    .synopsis-roadmap {
+      border: 1px solid var(--accent-border);
+      background:
+        radial-gradient(120% 90% at 100% 100%, rgba(212,160,48,0.18), transparent 65%),
+        linear-gradient(315deg, var(--accent-muted) 0%, var(--surface) 55%);
+    }
+
+    /* ── Patch notes — top-right gradient, toned down for the smaller
+         card; no edge bars, no shadow. Tune the glow intensity (0.10) ── */
+    .synopsis-patch {
+      border: 1px solid var(--accent-border);
+      background:
+        radial-gradient(100% 80% at 100% 0%, rgba(212,160,48,0.10), transparent 60%),
+        linear-gradient(225deg, var(--accent-muted) 0%, var(--surface) 50%);
+    }
+
+    /* ── Community + Support — mirrored side glows, as if lit from the gap
+         between them; toned down to match patch notes. Tune glow (0.10) ── */
+    .synopsis-community,
+    .synopsis-support {
+      border: 1px solid var(--accent-border);
+    }
+    /* Community sits on the left — lit from its bottom-right corner */
+    .synopsis-community {
+      background:
+        radial-gradient(100% 80% at 100% 100%, rgba(212,160,48,0.10), transparent 60%),
+        linear-gradient(315deg, var(--accent-muted) 0%, var(--surface) 50%);
+    }
+    /* Support sits on the right — lit from its bottom-left corner */
+    .synopsis-support {
+      background:
+        radial-gradient(100% 80% at 0% 100%, rgba(212,160,48,0.10), transparent 60%),
+        linear-gradient(45deg, var(--accent-muted) 0%, var(--surface) 50%);
+    }
+
+    /* ── Roadmap list ── */
+    .roadmap-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .roadmap-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding-bottom: 20px;
       border-bottom: 1px solid var(--border);
+    }
+    .roadmap-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .roadmap-status {
+      flex-shrink: 0;
+      width: 92px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 0;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .roadmap-status.is-next {
+      color: var(--status-next);
+      background: var(--status-next-bg);
+      border-color: var(--status-next-border);
+    }
+    .roadmap-status.is-building {
+      color: var(--accent);
+      background: var(--accent-bg);
+      border-color: var(--accent);
+    }
+    .roadmap-status.is-planned {
+      color: var(--status-planned);
+      background: var(--status-planned-bg);
+      border-color: var(--status-planned-border);
+    }
+    .roadmap-status.is-exploring {
+      color: var(--status-exploring);
+      background: var(--status-exploring-bg);
+      border-color: var(--status-exploring-border);
+    }
+
+    .roadmap-item-title {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--fg-1);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .roadmap-item-desc {
+      font-size: 14px;
+      color: var(--fg-3);
+      line-height: 1.6;
+      font-family: var(--font-sans);
+    }
+
+    /* ── Patch notes — append-only; template in WEBSITE_UPDATES.md ── */
+    .patch-block {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .patch-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .patch-head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .patch-version {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--fg-1);
+    }
+    .patch-date {
+      margin-left: auto;
+      font-size: 13px;
+      color: var(--fg-4);
+      font-family: var(--font-sans);
+    }
+    .patch-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .patch-list li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 14px;
+      color: var(--fg-3);
+      line-height: 1.6;
+      font-family: var(--font-sans);
+    }
+    .patch-list li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: var(--font-mono);
+    }
+
+    /* ── Community intent ── */
+    .synopsis-community p {
+      font-size: 15px;
+      color: var(--fg-3);
+      line-height: 1.9;
+      margin-bottom: 14px;
+      font-family: var(--font-sans);
+    }
+    .synopsis-community p:last-child { margin-bottom: 0; }
+
+    .synopsis-community-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 28px;
+    }
+    .synopsis-community-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    /* neutralise the right-push .community-icon uses inside index's box */
+    .synopsis-community-links .community-icon {
+      margin-left: 0;
+    }
+    .synopsis-community-link-title {
+      font-size: 22px;
+      font-family: var(--font-mono);
+      color: var(--fg-3);
+      line-height: 1.4;
+    }
+
+    /* ── Support CTA copy — matches community text (panel styling shared above) ── */
+    .synopsis-support p {
+      font-size: 15px;
+      color: var(--fg-3);
+      line-height: 1.9;
+      margin-bottom: 14px;
+      font-family: var(--font-sans);
+    }
+    .synopsis-support p:last-of-type { margin-bottom: 18px; }
+    .synopsis-support-cta {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-border);
+      padding-bottom: 2px;
+      transition: border-color 0.15s ease;
+    }
+    .synopsis-support-cta:hover { border-color: var(--accent); }
+
+    /* Stack everything below 720px */
+    @media (max-width: 720px) {
+      .synopsis-page .synopsis-intro { max-width: none; }
+      .synopsis-band,
+      .synopsis-row2 { grid-template-columns: 1fr; gap: 32px; }
+      .synopsis-row2 { margin-top: 40px; padding-top: 32px; }
+      .synopsis-roadmap,
+      .synopsis-patch,
+      .synopsis-community,
+      .synopsis-support { padding: 22px 20px; }
     }
 
     /* ── FEEDBACK PAGE ───────────────────────────── */
@@ -939,6 +1510,16 @@
     }
 
     .feedback-page .page-heading { margin-bottom: 10px; }
+
+    /* Spacing separates the intro sentence from the "How is WriteLite…" line */
+    .feedback-page .synopsis-intro {
+      margin-bottom: 32px;
+    }
+
+    .feedback-page .about-premise {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
 
     .feedback-field-label {
       font-size: 10px;
@@ -1148,9 +1729,6 @@
       .hero { padding: 40px 24px; min-height: calc(70vh - var(--nav-h)); }
       .hero-hook { font-size: clamp(18px, 5.5vw, 28px); }
       .hero-instruction { font-size: 13px; letter-spacing: 0.05em; }
-      .hero-version { font-size: 11px; }
-      .download-card-title { font-size: 14px; }
-      .btn-card-download { font-size: 12px; padding: 6px 13px; }
 
       /* Home lower */
       .preview-col { padding: 32px 24px; }
@@ -1160,9 +1738,11 @@
       .about-page    { padding: 48px 24px 72px; }
       .docs-page     { padding: 48px 24px 72px; }
       .docs-toc      { display: none; }
+      .md-guide-row  { grid-template-columns: 1fr; gap: 6px; }
       .synopsis-page { padding: 48px 24px 72px; }
       .feedback-page { padding: 48px 24px 72px; }
       .support-page  { padding: 48px 24px 72px; }
+      .download-page { padding: 48px 24px 72px; }
 
       /* Feedback */
       .feedback-textarea { min-height: 90px; }
@@ -1176,8 +1756,6 @@
 
     @media (max-width: 400px) {
       .hero-hook { font-size: 18px; }
-      .download-cards { flex-direction: column; }
-      .download-card { border-radius: 16px; padding: 16px 18px 14px; }
       nav { padding: 0 16px; }
     }
 
