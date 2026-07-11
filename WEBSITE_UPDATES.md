@@ -2,13 +2,11 @@
 *Reference file — living document, updated in place. Read by Nelson or any agent posting a release, patch note, or roadmap change to the website.*
 *The site's structure and design are owned by the site files themselves; this file owns only the posting procedure.*
 
-> **Until the redesign ships** (`WEBSITE_REDESIGN.md`), file names below marked ⚠ describe the post-redesign site. Once the redesign is live, remove this note and the markers.
-
 ---
 
 ## The site in one paragraph
 
-writelite.net is a static GitHub Pages site — plain HTML, one shared `styles.css`, no build step. Nelson deploys by pushing to the repo. The current app version and per-platform release URLs live in one shared config file ⚠ (`site-config.js`); every download button on every page reads from it. The synopsis page owns patch notes and the roadmap; the home page carries only a trimmed roadmap teaser that links there.
+writelite.net is a static GitHub Pages site — plain HTML, one shared `styles.css`, no build step. Nelson deploys by pushing to the repo. The current app version and per-platform release URLs live in one shared config file (`site-config.js`); every download button on every page reads from it. The synopsis page owns patch notes and the roadmap; the home page carries only a trimmed roadmap teaser that links there.
 
 ---
 
@@ -16,7 +14,7 @@ writelite.net is a static GitHub Pages site — plain HTML, one shared `styles.c
 
 Do these in order. Steps 1–3 are the release itself; 4 is conditional.
 
-**1. Update the site config** ⚠
+**1. Update the site config**
 Edit `site-config.js` only:
 - Version string
 - Windows release URL

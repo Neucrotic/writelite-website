@@ -1256,7 +1256,7 @@
     /* Row 1 — roadmap / patch notes, ratio held at 5:3 */
     .synopsis-band {
       display: grid;
-      grid-template-columns: 5fr 3fr;
+      grid-template-columns: 3fr 5fr;
       gap: 40px;
       margin-top: 40px;
       align-items: start;
@@ -1303,8 +1303,8 @@
         linear-gradient(315deg, var(--accent-muted) 0%, var(--surface) 55%);
     }
 
-    /* ── Patch notes — top-right gradient, toned down for the smaller
-         card; no edge bars, no shadow. Tune the glow intensity (0.10) ── */
+    /* ── Patch notes — top-right gradient, toned down; no edge bars,
+         no shadow. Tune the glow intensity (0.10) ── */
     .synopsis-patch {
       border: 1px solid var(--accent-border);
       background:

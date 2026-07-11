@@ -120,10 +120,30 @@
         </ul>
       </div>
 
-      <!-- Patch notes (30%) — append-only history, newest first.
+      <!-- Patch notes — append-only history, newest first.
            Template: WEBSITE_UPDATES.md. Never edit or delete past blocks. -->
       <div class="synopsis-patch">
         <h3 class="synopsis-section-title" id="patch-notes">Patch Notes</h3>
+
+        <!-- ── v1.0.1 — 11 July 2026 ── -->
+        <div class="patch-block">
+          <div class="patch-head">
+            <span class="patch-version">v1.0.1</span>
+            <span class="patch-date">11 July 2026</span>
+          </div>
+          <ul class="patch-list">
+            <li>Switching between projects now opens the correct document instead of leaving the previous file on screen, and each project remembers the last file you had open.</li>
+            <li>Links you add are kept when you reopen a file &mdash; previously they could vanish on reload. You can also type a link inline as <span class="inline-code">[text](https://&hellip;)</span> and it becomes clickable.</li>
+            <li>Imported files are better supported &mdash; .txt and .md files now open alongside .wlite.</li>
+            <li>Importing now offers a &ldquo;keep original format&rdquo; option so files come in as-is.</li>
+            <li>Re-adding an existing project no longer resets its settings &mdash; sort order, expanded folders, and name are preserved.</li>
+            <li>Fixed a problem where renaming a project could break it and make it show as &ldquo;missing&rdquo; after a restart.</li>
+            <li>The formatting toolbar is now centred and scrolls when there isn&rsquo;t room to show every button.</li>
+            <li>Entering and leaving fullscreen is now a smooth transition.</li>
+            <li>On macOS, the fullscreen shortcut hint now correctly shows &#8963;&#8984;F &mdash; it previously listed a shortcut that did nothing.</li>
+            <li>Renamed the &ldquo;Documentation&rdquo; menu item to &ldquo;Guides &amp; How-Tos&rdquo;.</li>
+          </ul>
+        </div>
 
         <!-- ── v1.0.0 — 01 July 2026 ── -->
         <div class="patch-block">
