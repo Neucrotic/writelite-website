@@ -110,7 +110,7 @@
 
     .nav-support {
       background: var(--accent-bg);
-      border: 1px solid var(--accent-border);
+      border: 1px solid var(--accent);
       color: var(--accent);
       font-family: var(--font-sans);
       font-size: 14px;
@@ -1253,13 +1253,14 @@
     /* Anchor targets clear the fixed nav when jumped to */
     .synopsis-section-title { scroll-margin-top: calc(var(--nav-h) + 24px); }
 
-    /* Row 1 — roadmap / patch notes, ratio held at 5:3 */
+    /* Row 1 — roadmap / patch notes, ratio held at 5:3.
+       Default align-items (stretch) + the height:0 trick on .synopsis-patch
+       make the roadmap card the sole height authority for the row. */
     .synopsis-band {
       display: grid;
       grid-template-columns: 3fr 5fr;
       gap: 40px;
       margin-top: 40px;
-      align-items: start;
     }
 
     /* Row 2 — community (45%) / support (45%) */
@@ -1305,11 +1306,35 @@
 
     /* ── Patch notes — top-right gradient, toned down; no edge bars,
          no shadow. Tune the glow intensity (0.10) ── */
+    /* height: 0 keeps this card from contributing to the grid row's size —
+       the roadmap card alone sets the row height — while min-height: 100%
+       stretches it back to fill that height. Overflow scrolls in .patch-scroll. */
     .synopsis-patch {
       border: 1px solid var(--accent-border);
       background:
         radial-gradient(100% 80% at 100% 0%, rgba(212,160,48,0.10), transparent 60%),
         linear-gradient(225deg, var(--accent-muted) 0%, var(--surface) 50%);
+      height: 0;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .synopsis-patch .synopsis-section-title { flex-shrink: 0; }
+
+    /* Scrollable version history under the pinned "Patch Notes" title */
+    .patch-scroll {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding-right: 12px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-strong) transparent;
+    }
+    .patch-scroll::-webkit-scrollbar { width: 8px; }
+    .patch-scroll::-webkit-scrollbar-track { background: transparent; }
+    .patch-scroll::-webkit-scrollbar-thumb {
+      background: var(--border-strong);
+      border-radius: 4px;
     }
 
     /* ── Community + Support — mirrored side glows, as if lit from the gap
@@ -1403,12 +1428,38 @@
       border-bottom: 1px solid var(--border);
     }
     .patch-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    /* Summary row — the always-visible header of each <details> block */
     .patch-head {
       display: flex;
       align-items: baseline;
       gap: 10px;
-      margin-bottom: 10px;
+      cursor: pointer;
+      list-style: none;              /* hide the browser's default marker */
+      user-select: none;
     }
+    .patch-head::-webkit-details-marker { display: none; }
+    .patch-head:focus-visible {
+      outline: 1px solid var(--accent-border);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    /* Gap below the header only when the block is open */
+    details[open] > .patch-head { margin-bottom: 10px; }
+
+    /* Caret — chevron right of the version number; points right when
+       collapsed, rotates to point down when open */
+    .patch-caret {
+      align-self: center;
+      width: 7px;
+      height: 7px;
+      flex-shrink: 0;
+      border-right: 1.5px solid var(--fg-4);
+      border-bottom: 1.5px solid var(--fg-4);
+      transform: rotate(-45deg);
+      transition: transform 0.18s ease, border-color 0.15s ease;
+    }
+    details[open] > .patch-head .patch-caret { transform: rotate(45deg); }
+    .patch-head:hover .patch-caret { border-color: var(--accent); }
     .patch-version {
       font-family: var(--font-mono);
       font-size: 14px;
@@ -1420,6 +1471,13 @@
       font-size: 13px;
       color: var(--fg-4);
       font-family: var(--font-sans);
+    }
+    .patch-intro {
+      font-size: 14px;
+      color: var(--fg-3);
+      line-height: 1.6;
+      font-family: var(--font-sans);
+      margin-bottom: 10px;
     }
     .patch-list {
       list-style: none;
@@ -1507,6 +1565,16 @@
       .synopsis-patch,
       .synopsis-community,
       .synopsis-support { padding: 22px 20px; }
+
+      /* Stacked cards: patch notes returns to natural height, no inner
+         scroll — collapsed versions keep it compact */
+      .synopsis-patch { height: auto; min-height: 0; }
+      .patch-scroll {
+        flex: none;
+        min-height: auto;
+        overflow: visible;
+        padding-right: 0;
+      }
     }
 
     /* ── FEEDBACK PAGE ───────────────────────────── */

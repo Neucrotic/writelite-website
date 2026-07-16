@@ -121,16 +121,43 @@
       </div>
 
       <!-- Patch notes — append-only history, newest first.
-           Template: WEBSITE_UPDATES.md. Never edit or delete past blocks. -->
+           Template: WEBSITE_UPDATES.md. Never edit or delete past blocks.
+           Each version is a <details> block: the newest carries the `open`
+           attribute — when adding a release, give the new block `open` and
+           remove it from the previous latest. -->
       <div class="synopsis-patch">
         <h3 class="synopsis-section-title" id="patch-notes">Patch Notes</h3>
+        <div class="patch-scroll">
+
+        <!-- ── v1.0.3 — 15 July 2026 ── -->
+        <details class="patch-block" open>
+          <summary class="patch-head">
+            <span class="patch-version">v1.0.3</span>
+            <span class="patch-caret" aria-hidden="true"></span>
+            <span class="patch-date">15 July 2026</span>
+          </summary>
+          <p class="patch-intro">
+            This patch brings a new welcome experience. The first time you open
+            WriteLite it now walks you through the app and lets users set their theme preference from the start.
+          </p>
+          <ul class="patch-list">
+            <li>Choose your theme during setup &mdash; Dark, Light, or System. System follows your computer&rsquo;s own appearance setting and switches along with it while the app is open, and WriteLite now opens in the right theme straight away instead of flashing the wrong one first.</li>
+            <li>Blank lines you deliberately leave in a document no longer disappear when it reloads.</li>
+            <li>Fixed a bug that prevented sorting files by &ldquo;Last Updated&rdquo;.</li>
+            <li>Fixed markdown rendering inconsistencies across .wlite and .md files.</li>
+            <li>Fixed some awkward UI bugs that left old information on the page.</li>
+            <li>Improved support for imported files.</li>
+            <li><strong>Known issue:</strong> very large documents (100,000+ words) are slow to open, and the window may stop responding while they load.</li>
+          </ul>
+        </details>
 
         <!-- ── v1.0.2 — 12 July 2026 ── -->
-        <div class="patch-block">
-          <div class="patch-head">
+        <details class="patch-block">
+          <summary class="patch-head">
             <span class="patch-version">v1.0.2</span>
+            <span class="patch-caret" aria-hidden="true"></span>
             <span class="patch-date">12 July 2026</span>
-          </div>
+          </summary>
           <ul class="patch-list">
             <li>The File View window now has a full menu bar on macOS, matching Windows.</li>
             <li>Settings has moved into the menu bar, so it is quicker to reach.</li>
@@ -140,14 +167,15 @@
             <li>Links now stand out in the accent colour.</li>
             <li>In the light theme, faint and disabled text is clearer and easier to tell apart from ordinary text.</li>
           </ul>
-        </div>
+        </details>
 
         <!-- ── v1.0.1 — 11 July 2026 ── -->
-        <div class="patch-block">
-          <div class="patch-head">
+        <details class="patch-block">
+          <summary class="patch-head">
             <span class="patch-version">v1.0.1</span>
+            <span class="patch-caret" aria-hidden="true"></span>
             <span class="patch-date">11 July 2026</span>
-          </div>
+          </summary>
           <ul class="patch-list">
             <li>Switching between projects now opens the correct document instead of leaving the previous file on screen, and each project remembers the last file you had open.</li>
             <li>Links you add are kept when you reopen a file &mdash; previously they could vanish on reload. You can also type a link inline as <span class="inline-code">[text](https://&hellip;)</span> and it becomes clickable.</li>
@@ -160,18 +188,21 @@
             <li>On macOS, the fullscreen shortcut hint now correctly shows &#8963;&#8984;F &mdash; it previously listed a shortcut that did nothing.</li>
             <li>Renamed the &ldquo;Documentation&rdquo; menu item to &ldquo;Guides &amp; How-Tos&rdquo;.</li>
           </ul>
-        </div>
+        </details>
 
         <!-- ── v1.0.0 — 01 July 2026 ── -->
-        <div class="patch-block">
-          <div class="patch-head">
+        <details class="patch-block">
+          <summary class="patch-head">
             <span class="patch-version">v1.0.0</span>
+            <span class="patch-caret" aria-hidden="true"></span>
             <span class="patch-date">01 July 2026</span>
-          </div>
+          </summary>
           <ul class="patch-list">
             <li>WriteLite published.</li>
           </ul>
-        </div>
+        </details>
+
+        </div><!-- /patch-scroll -->
       </div>
 
     </div><!-- /synopsis-band -->
