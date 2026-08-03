@@ -15,7 +15,7 @@
 
   // Discord invite — kept out of CONFIG on purpose: it changes on its own
   // cadence, not per release. Edit here when the invite changes.
-  var DISCORD_URL = 'https://discord.gg/qb2Cj7rTS';
+  var DISCORD_URL = 'https://discord.gg/hxxdt8tP5';
 
   function isMobile() {
     return /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent);
