@@ -273,8 +273,8 @@
         <p>
           At the very end of the file, WriteLite adds a small block that starts
           with <span class="inline-code">&lt;!-- .wlite:meta</span>. That's an HTML
-          comment holding a few per-document settings, like line spacing and
-          heading styles. Because it's a comment, other editors treat it as
+          comment holding your document level settings, like line spacing and
+          how your headings look. Because it's a comment, other editors treat it as
           invisible and skip past it. You'll never see it while you write — it's
           only there so your document opens looking the way you left it.
         </p>
@@ -285,12 +285,9 @@
           next time you save the document.
         </p>
         <p>
-          When you set a particular font or size for some words, WriteLite saves
-          that choice inline — as a small <span class="inline-code">&lt;span&gt;</span>
-          tag wrapped around those words, right in the text. It's a standard way to
-          mark styling in a markdown file, and it keeps each choice attached to the
-          exact words it applies to, so your formatting stays put wherever the
-          document goes.
+          Fonts, sizes and alignment are kept in the text itself, alongside the
+          words they apply to. Headings are set once for the whole document, so a
+          heading in your text stays a plain markdown heading.
         </p>
         <p>
           Want to open a document somewhere else? Rename it from
@@ -299,14 +296,11 @@
           — Obsidian, Typora, VS Code, or plain Notepad. Nothing is locked away.
         </p>
         <p>
-          Renaming changes nothing inside the file, so the font
-          <span class="inline-code">&lt;span&gt;</span> tags and the
+          Renaming changes nothing inside the file, so your formatting and the
           <span class="inline-code">.wlite:meta</span> comment come along with it.
-          A markdown editor keeps the comment hidden and renders the fonts as
-          styling; a plain text editor will show you the underlying tags. However,
-          some formatting options like text alignment will display the HTML. Either
-          way nothing is lost and opening the file in WriteLite again restores it
-          exactly.
+          A markdown editor keeps the comment hidden and renders your formatting as
+          styling; a plain text editor will show you the tags underneath. Nothing is
+          lost, and opening the file in WriteLite again restores it exactly.
         </p>
         <p>
           Want a clean text or markdown file? Use the export options for .txt or .md respecivly;

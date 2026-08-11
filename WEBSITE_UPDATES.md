@@ -26,23 +26,35 @@ Copy the template below into `synopsis.html`'s patch-notes section, **newest at 
 
 ```html
 <!-- ── vX.Y.Z — DD Month YYYY ── -->
-<div class="patch-block">
-  <div class="patch-head">
+<details class="patch-block" open>
+  <summary class="patch-head">
     <span class="patch-version">vX.Y.Z</span>
+    <span class="patch-caret" aria-hidden="true"></span>
     <span class="patch-date">DD Month YYYY</span>
-  </div>
+  </summary>
   <ul class="patch-list">
     <li>Change one</li>
     <li>Change two</li>
   </ul>
-</div>
+</details>
 ```
+
+Two rules the template can't carry on its own:
+- Only the newest block carries `open` — remove it from the block below. That is the one permitted edit to a past block.
+- A `<p class="patch-intro">` may sit between the summary and the list for a release worth framing. Omit it otherwise.
 
 Writing the notes:
 - Short, declarative, user-facing — what changed for the writer, not the commit log
 - Sentence case, British-leaning spelling, no exclamation marks, no emoji
 - Bug fixes can be grouped ("Fixed three sidebar bugs…") when the detail wouldn't matter to a user
-- Source material: Nelson supplies the change list (BUG_LOG.md entries are his reference, not the agent's to fetch)
+
+Source material — Nelson supplies the change list. Whether it is reproduced or
+rewritten depends on how he hands it over:
+- **He calls them the patch notes** ("the patch notes are here", "these are the notes") — reproduce them verbatim. No rewording, no reordering, no tidying. Ask before changing so much as a full stop.
+- **He asks for patch notes to be generated or written** — draft them from his change list in the voice above.
+- **Neither signalled** — draft, then show him before writing to the page.
+
+(BUG_LOG.md entries are his reference, not the agent's to fetch.)
 
 **3. Check the roadmap**
 If the release completes a roadmap item:
