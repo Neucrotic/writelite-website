@@ -1,6 +1,6 @@
 <!-- Last updated: 2026-07-09 -->
 
-# CLAUDE.md — WriteLite Website
+# AGENTS.md — WriteLite Website
 
 Read the following files at the beginning of every session before you respond to any prompt.
 Read files -> process first prompt.
@@ -162,6 +162,6 @@ hosting details, and any "always do X / never do Y" rules specific to the site.*
 - Tracker fill is solid amber accent on a dark track; each bar shows label, raised-of-goal, and percentage
 - Docs page: three sections — "The Basics" (toolbar/controls/settings, with annotated screenshots), "Markdown Syntax" (text styling, structure, links & code blocks), and "Understanding Your Files" (technical topics layered plain-language + under-the-hood)
 - Page flow:
-  - Nav pages: home, documentation, synopsis, feedback, support ("Support the Developer")
+  - Nav pages: home, documentation, feedback, support ("Support the Developer")
   - Flow-only, not in nav: download (reached from any download CTA — CTAs route here, never download directly) → thanks (Stripe redirect after payment)
-  - synopsis is the single authority for roadmap + patch notes; home carries a trimmed roadmap teaser that links there
+  - Home is the single authority for roadmap + patch notes

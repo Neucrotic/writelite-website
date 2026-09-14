@@ -25,7 +25,6 @@
   </a>
   <div class="nav-links">
     <a id="nav-home"     class="active" href="/">Home</a>
-    <a id="nav-synopsis"               href="/synopsis">Synopsis</a>
     <a id="nav-docs"                    href="/documentation">How To WriteLite</a>
     <a id="nav-feedback"               href="/feedback">Feedback</a>
   </div>
@@ -43,7 +42,6 @@
 <div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
 <div class="mobile-nav-drawer" id="mobile-nav-drawer">
   <a id="mnav-home"     class="active" href="/">Home</a>
-  <a id="mnav-synopsis"               href="/synopsis">Synopsis</a>
   <a id="mnav-docs"                    href="/documentation">How To WriteLite</a>
   <a id="mnav-feedback"               href="/feedback">Feedback</a>
   <div class="mobile-nav-divider"></div>
@@ -86,18 +84,8 @@
     </div><!-- /hero-cta -->
   </div>
 
-  <!-- App Preview + Blurb -->
+  <!-- Why WriteLite + App Preview (stacked: blurb then wide screenshot) -->
   <div class="home-lower">
-    <div class="preview-col">
-	  <div class="preview-label">WriteLite in use</div>
-        <img
-          src="media/screenshot.png"
-          alt="WriteLite editor showing a document open and in progress"
-          style="width:100%;border-radius:6px;border:1px solid rgba(255,255,255,0.12)"
-        >
-    </div><!-- /preview-col -->
-
-    <!-- Blurb -->
     <div class="blurb-col">
       <div class="blurb-heading">Why WriteLite?</div>
       <ul class="blurb-points">
@@ -108,33 +96,16 @@
         <li>Your folders. Your location. Your drive.</li>
         <li>Back up to the cloud or USB like any other folder.</li>
       </ul>
+    </div><!-- /blurb-col -->
 
-      <!-- Community — Discord -->
-      <div class="community-box community-box-discord">
-        <span class="community-text">Join us on Discord</span>
-        <a class="community-icon" data-wl-discord
-           target="_blank" rel="noopener noreferrer" aria-label="Join the Discord">
-          <svg viewBox="0 0 127.14 96.36" fill="#fff" aria-hidden="true">
-            <path d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- Community — Instagram -->
-      <div class="community-box">
-        <span class="community-text">Follow on Instagram</span>
-        <a class="community-icon community-icon-ig" href="https://www.instagram.com/writelite_app/"
-           target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-          </svg>
-        </a>
-      </div>
-    </div>
-
+    <div class="preview-col">
+	  <div class="preview-label">WriteLite in use</div>
+        <img
+          src="media/screenshot.png"
+          alt="WriteLite editor showing a document open and in progress"
+          style="width:100%;border-radius:6px;border:1px solid rgba(255,255,255,0.12)"
+        >
+    </div><!-- /preview-col -->
   </div><!-- /home-lower -->
 
   <!-- About — inline on home page, scroll to read more -->
@@ -229,14 +200,206 @@
       </div>
     </div><!-- /about-sections-grid -->
 
-    <!-- Roadmap teaser — trimmed slice; /synopsis owns the full roadmap. Update per WEBSITE_UPDATES.md. -->
-    <div class="roadmap-teaser">
-      <div class="roadmap-teaser-card">
-        <span class="roadmap-teaser-badge">v1.1.0 &middot; Next</span>
-        <div class="roadmap-teaser-title">Custom Sorting Order with Drag and Drop File Placement</div>
-        <a class="roadmap-teaser-link" href="/synopsis">See the full roadmap &rarr;</a>
+    <!-- Roadmap, Patch Notes, Community — copied from synopsis; stacked ~720px -->
+    <div class="home-synopsis-stack">
+
+      <div class="synopsis-roadmap">
+        <h3 class="synopsis-section-title" id="roadmap">Roadmap</h3>
+        <ul class="roadmap-list">
+
+          <li class="roadmap-item">
+            <span class="roadmap-status is-building">Building</span>
+            <div>
+              <div class="roadmap-item-title">UI/UX Improvements and Bug Fixes</div>
+            </div>
+          </li>
+
+          <li class="roadmap-item">
+            <span class="roadmap-status is-next">Next</span>
+            <div>
+              <div class="roadmap-item-title">Custom drag and drop</div>
+              <p class="roadmap-item-desc">Reorder your files and folders by hand.</p>
+            </div>
+          </li>
+
+          <li class="roadmap-item">
+            <span class="roadmap-status is-planned">Planned</span>
+            <div>
+              <div class="roadmap-item-title">Wider import support</div>
+              <p class="roadmap-item-desc">Open .doc and .docx files directly.</p>
+            </div>
+          </li>
+
+          <li class="roadmap-item">
+            <span class="roadmap-status is-planned">Planned</span>
+            <div>
+              <div class="roadmap-item-title">Wider export support</div>
+              <p class="roadmap-item-desc">Save your work out to .doc and .pdf.</p>
+            </div>
+          </li>
+
+          <li class="roadmap-item">
+            <span class="roadmap-status is-planned">Planned</span>
+            <div>
+              <div class="roadmap-item-title">Windows shell integration</div>
+              <p class="roadmap-item-desc">Right-click the desktop or a folder and choose New &rarr; WriteLite Document.</p>
+            </div>
+          </li>
+
+          <li class="roadmap-item">
+            <span class="roadmap-status is-exploring">Exploring</span>
+            <div>
+              <div class="roadmap-item-title">Themes</div>
+              <p class="roadmap-item-desc">Eight distinct themes to make WriteLite feel like yours.</p>
+            </div>
+          </li>
+
+        </ul>
       </div>
-    </div>
+
+      <!-- Patch notes — append-only history, newest first.
+           Template: WEBSITE_UPDATES.md. Never edit or delete past blocks.
+           Each version is a <details> block: the newest carries the `open`
+           attribute — when adding a release, give the new block `open` and
+           remove it from the previous latest. -->
+      <div class="synopsis-patch">
+        <h3 class="synopsis-section-title" id="patch-notes">Patch Notes</h3>
+        <div class="patch-scroll">
+
+        <!-- ── v1.0.4 — 11 August 2026 ── -->
+        <details class="patch-block" open>
+          <summary class="patch-head">
+            <span class="patch-version">v1.0.4</span>
+            <span class="patch-caret" aria-hidden="true"></span>
+            <span class="patch-date">11 August 2026</span>
+          </summary>
+          <ul class="patch-list">
+            <li>.wlite files are markdown + some HTML under the hood. This patch cleaned up the file format so the raw markup view is cleaner.</li>
+            <li>The .wlite icon appear less squashed</li>
+            <li>Users can now set their own default settings per file. Per project settings coming soon.</li>
+            <li>System theme option available from the menu bar</li>
+            <li>Fixed an issue where files would occasionally open WriteLite at the wrong project</li>
+          </ul>
+        </details>
+
+        <!-- ── v1.0.3 — 15 July 2026 ── -->
+        <details class="patch-block">
+          <summary class="patch-head">
+            <span class="patch-version">v1.0.3</span>
+            <span class="patch-caret" aria-hidden="true"></span>
+            <span class="patch-date">15 July 2026</span>
+          </summary>
+          <p class="patch-intro">
+            This patch brings a new welcome experience. The first time you open
+            WriteLite it now walks you through the app and lets users set their theme preference from the start.
+          </p>
+          <ul class="patch-list">
+            <li>Choose your theme during setup &mdash; Dark, Light, or System. System follows your computer&rsquo;s own appearance setting and switches along with it while the app is open, and WriteLite now opens in the right theme straight away instead of flashing the wrong one first.</li>
+            <li>Blank lines you deliberately leave in a document no longer disappear when it reloads.</li>
+            <li>Fixed a bug that prevented sorting files by &ldquo;Last Updated&rdquo;.</li>
+            <li>Fixed markdown rendering inconsistencies across .wlite and .md files.</li>
+            <li>Fixed some awkward UI bugs that left old information on the page.</li>
+            <li>Improved support for imported files.</li>
+            <li><strong>Known issue:</strong> very large documents (100,000+ words) are slow to open, and the window may stop responding while they load.</li>
+          </ul>
+        </details>
+
+        <!-- ── v1.0.2 — 12 July 2026 ── -->
+        <details class="patch-block">
+          <summary class="patch-head">
+            <span class="patch-version">v1.0.2</span>
+            <span class="patch-caret" aria-hidden="true"></span>
+            <span class="patch-date">12 July 2026</span>
+          </summary>
+          <ul class="patch-list">
+            <li>The File View window now has a full menu bar on macOS, matching Windows.</li>
+            <li>Settings has moved into the menu bar, so it is quicker to reach.</li>
+            <li>WriteLite now reopens the files you had open in File View when you last closed it &mdash; you can turn this off in Settings.</li>
+            <li>You can now close individual file tabs with the &times; button or by right-clicking, instead of closing the whole window.</li>
+            <li>On macOS, double-clicking a file in Finder &mdash; or dragging it onto the app &mdash; now opens it directly, instead of launching to the default window.</li>
+            <li>Links now stand out in the accent colour.</li>
+            <li>In the light theme, faint and disabled text is clearer and easier to tell apart from ordinary text.</li>
+          </ul>
+        </details>
+
+        <!-- ── v1.0.1 — 11 July 2026 ── -->
+        <details class="patch-block">
+          <summary class="patch-head">
+            <span class="patch-version">v1.0.1</span>
+            <span class="patch-caret" aria-hidden="true"></span>
+            <span class="patch-date">11 July 2026</span>
+          </summary>
+          <ul class="patch-list">
+            <li>Switching between projects now opens the correct document instead of leaving the previous file on screen, and each project remembers the last file you had open.</li>
+            <li>Links you add are kept when you reopen a file &mdash; previously they could vanish on reload. You can also type a link inline as <span class="inline-code">[text](https://&hellip;)</span> and it becomes clickable.</li>
+            <li>Imported files are better supported &mdash; .txt and .md files now open alongside .wlite.</li>
+            <li>Importing now offers a &ldquo;keep original format&rdquo; option so files come in as-is.</li>
+            <li>Re-adding an existing project no longer resets its settings &mdash; sort order, expanded folders, and name are preserved.</li>
+            <li>Fixed a problem where renaming a project could break it and make it show as &ldquo;missing&rdquo; after a restart.</li>
+            <li>The formatting toolbar is now centred and scrolls when there isn&rsquo;t room to show every button.</li>
+            <li>Entering and leaving fullscreen is now a smooth transition.</li>
+            <li>On macOS, the fullscreen shortcut hint now correctly shows &#8963;&#8984;F &mdash; it previously listed a shortcut that did nothing.</li>
+            <li>Renamed the &ldquo;Documentation&rdquo; menu item to &ldquo;Guides &amp; How-Tos&rdquo;.</li>
+          </ul>
+        </details>
+
+        <!-- ── v1.0.0 — 01 July 2026 ── -->
+        <details class="patch-block">
+          <summary class="patch-head">
+            <span class="patch-version">v1.0.0</span>
+            <span class="patch-caret" aria-hidden="true"></span>
+            <span class="patch-date">01 July 2026</span>
+          </summary>
+          <ul class="patch-list">
+            <li>WriteLite published.</li>
+          </ul>
+        </details>
+
+        </div><!-- /patch-scroll -->
+      </div>
+
+      <div class="synopsis-community">
+        <h3 class="synopsis-section-title" id="community">Community</h3>
+        <p>
+          WriteLite has a Discord Community Server where writers of all
+          genres, styles and experience levels to gather, share, and discuss the
+          craft of writing. Competitions will be hosted in the future.
+        </p>
+        <p>
+          Following the WriteLite Instagram page is a great way to keep track of updates,
+          connect with other writers or share snippets of your work.
+        </p>
+        <p>
+          These are both places where you can reach out to the developer directly with
+          questions, suggestions and feedback.
+        </p>
+
+        <div class="synopsis-community-links">
+          <div class="synopsis-community-link">
+            <a class="community-icon" data-wl-discord
+               target="_blank" rel="noopener noreferrer" aria-label="Join the Discord">
+              <svg viewBox="0 0 127.14 96.36" fill="#fff" aria-hidden="true">
+                <path d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"/>
+              </svg>
+            </a>
+            <span class="synopsis-community-link-title">Discord</span>
+          </div>
+          <div class="synopsis-community-link">
+            <a class="community-icon community-icon-ig" href="https://www.instagram.com/writelite_app/"
+               target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <span class="synopsis-community-link-title">Instagram</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /home-synopsis-stack -->
 
   </div><!-- /about-on-home -->
 

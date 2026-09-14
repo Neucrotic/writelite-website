@@ -6,7 +6,7 @@
 
 ## The site in one paragraph
 
-writelite.net is a static GitHub Pages site — plain HTML, one shared `styles.css`, no build step. Nelson deploys by pushing to the repo. The current app version and per-platform release URLs live in one shared config file (`site-config.js`); every download button on every page reads from it. The synopsis page owns patch notes and the roadmap; the home page carries only a trimmed roadmap teaser that links there.
+writelite.net is a static GitHub Pages site — plain HTML, one shared `styles.css`, no build step. Nelson deploys by pushing to the repo. The current app version and per-platform release URLs live in one shared config file (`site-config.js`); every download button on every page reads from it. The home page owns patch notes and the roadmap.
 
 ---
 
@@ -21,8 +21,8 @@ Edit `site-config.js` only:
 - macOS release URL
 No other file contains these values. If a version number or release URL is found hardcoded anywhere else, that is a bug — fix it by pointing the page at the config, and flag it to Nelson.
 
-**2. Add a patch-note block to the synopsis page**
-Copy the template below into `synopsis.html`'s patch-notes section, **newest at the top**. Never edit or delete previous blocks — patch notes are append-only history (the one exception to the site's rewrite-in-place habit, because they are a public record).
+**2. Add a patch-note block to the home page**
+Copy the template below into `index.html`'s patch-notes section, **newest at the top**. Never edit or delete previous blocks — patch notes are append-only history (the one exception to the site's rewrite-in-place habit, because they are a public record).
 
 ```html
 <!-- ── vX.Y.Z — DD Month YYYY ── -->
@@ -58,8 +58,7 @@ rewritten depends on how he hands it over:
 
 **3. Check the roadmap**
 If the release completes a roadmap item:
-- Move or remove that item on the **synopsis page** (the roadmap's single authority)
-- Update the **home teaser** so it shows the next one or two upcoming items — the teaser must never lag behind the synopsis page or show something already shipped
+- Move or remove that item on the **home page** (the roadmap's single authority)
 
 **4. If copy mentions the version anywhere in prose** — rare — search the site for the old version string and update it. The config file should make this a no-op.
 
@@ -67,8 +66,7 @@ If the release completes a roadmap item:
 
 ## When only the roadmap changes (no release)
 
-- Edit the roadmap on the synopsis page
-- Re-check the home teaser against it (same rule as step 3 above)
+- Edit the roadmap on the home page
 - No patch note — patch notes are for shipped versions only
 
 ---
