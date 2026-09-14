@@ -335,6 +335,12 @@
       margin-bottom: 20px;
     }
 
+    .screenshot {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
     /* ── SHARED — INLINE ELEMENTS ────────────────── */
     .inline-code {
       color: var(--accent);
@@ -438,17 +444,28 @@
       padding: 22px 64px;
       font-size: 13px;
       color: var(--fg-4);
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
       letter-spacing: 0.04em;
       font-family: var(--font-sans);
+    }
+
+    .site-footer > :first-child {
+      justify-self: start;
     }
 
     .footer-quote {
       font-family: var(--font-mono);
       color: var(--accent);
       letter-spacing: -0.01em;
+      justify-self: center;
+      text-align: center;
+    }
+
+    .site-footer > :last-child {
+      justify-self: end;
+      text-align: right;
     }
 
     /* ── DOCUMENTATION ───────────────────────────── */
@@ -1862,7 +1879,8 @@
       .feedback-textarea { min-height: 90px; }
 
       /* Footer */
-      .site-footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+      .site-footer { padding: 20px 24px; display: flex; flex-direction: column; gap: 8px; text-align: center; }
+      .site-footer > :last-child { text-align: center; }
 
       /* Sub headings */
       .page-sub { font-size: 15px; margin-bottom: 36px; }
