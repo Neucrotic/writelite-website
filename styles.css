@@ -37,16 +37,16 @@
       --success:         #6a9955;
       --danger:          #f48771;
 
-      /* ── Roadmap status tags — "cool trio", saturated, clear of amber ── */
-      --status-next:        #34d399;                    /* emerald */
-      --status-next-bg:     rgba(52,211,153,0.12);
-      --status-next-border: rgba(52,211,153,0.32);
-      --status-planned:        #38bdf8;                 /* sky blue */
-      --status-planned-bg:     rgba(56,189,248,0.12);
-      --status-planned-border: rgba(56,189,248,0.32);
-      --status-exploring:        #a78bfa;               /* violet */
+      /* ── Roadmap status tags — Planned / Fixing / Exploring ── */
+      --status-planned:        var(--accent);                 /* amber — was Building */
+      --status-planned-bg:     var(--accent-bg);
+      --status-planned-border: var(--accent);                 /* solid accent, not accent-border */
+      --status-fixing:        #f2553d;                       /* bright orange-red */
+      --status-fixing-bg:     rgba(242,85,61,0.12);
+      --status-fixing-border: #f2553d;                       /* solid, matches text */
+      --status-exploring:        #a78bfa;                     /* violet — unchanged */
       --status-exploring-bg:     rgba(167,139,250,0.12);
-      --status-exploring-border: rgba(167,139,250,0.32);
+      --status-exploring-border: #a78bfa;                     /* solid, matches text */
 
       /* ── Fonts ── */
       --font-sans:       'Public Sans', system-ui, -apple-system, sans-serif;
@@ -1436,20 +1436,15 @@
       border-radius: 999px;
       border: 1px solid transparent;
     }
-    .roadmap-status.is-next {
-      color: var(--status-next);
-      background: var(--status-next-bg);
-      border-color: var(--status-next-border);
-    }
-    .roadmap-status.is-building {
-      color: var(--accent);
-      background: var(--accent-bg);
-      border-color: var(--accent);
-    }
     .roadmap-status.is-planned {
       color: var(--status-planned);
       background: var(--status-planned-bg);
       border-color: var(--status-planned-border);
+    }
+    .roadmap-status.is-fixing {
+      color: var(--status-fixing);
+      background: var(--status-fixing-bg);
+      border-color: var(--status-fixing-border);
     }
     .roadmap-status.is-exploring {
       color: var(--status-exploring);
