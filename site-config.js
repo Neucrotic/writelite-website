@@ -11,7 +11,8 @@
   };
   // ─────────────────────────────────────────────────────
 
-  var COUNTER_URL = 'https://shiny-pond-7f70writelite-downloads-counter.nelsonhain.workers.dev/count';
+  var SPLITFORMS_ENDPOINT = 'https://splitforms.com/api/submit';
+  var DOWNLOADS_ACCESS_KEY = 'a64cf333975141a1a5ef2e75bc8f90da';
 
   // Discord invite — kept out of CONFIG on purpose: it changes on its own
   // cadence, not per release. Edit here when the invite changes.
@@ -30,7 +31,15 @@
   }
 
   function countDownload(platform) {
-    fetch(COUNTER_URL + '?platform=' + platform, { method: 'POST' }).catch(function () {});
+    fetch(SPLITFORMS_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: DOWNLOADS_ACCESS_KEY,
+        botcheck: '',
+        platform: platform
+      })
+    }).catch(function () {});
   }
 
   // Shared download-button handler. Desktop: count + let it download.
