@@ -33,6 +33,7 @@
   function countDownload(platform) {
     fetch(SPLITFORMS_ENDPOINT, {
       method: 'POST',
+      keepalive: true,
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         access_key: DOWNLOADS_ACCESS_KEY,
@@ -42,10 +43,23 @@
     }).catch(function () {});
   }
 
-  // Shared download-button handler. Desktop: count + let it download.
+  // Shared download-button handler. Desktop: start installer, then count.
   // Mobile: block, show the desktop-only notice if the page has one.
   function handleDownloadClick(e, platform) {
-    if (!isMobile()) { countDownload(platform); return; }
+    if (!isMobile()) {
+      e.preventDefault();
+      var url = CONFIG.downloads[platform];
+      if (url) {
+        var a = document.createElement('a');
+        a.href = url;
+        a.setAttribute('download', ''); // matches existing markup; ignored cross-origin, harmless
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+      countDownload(platform);
+      return;
+    }
     e.preventDefault();
     var notice = document.getElementById('mobile-notice');
     if (!notice) return;
