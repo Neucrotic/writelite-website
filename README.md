@@ -1,0 +1,1 @@
+Have a screenshot for mac and windows, shot each depending on detected system same as the download buttons. Image needs to be a half and half between the dark and light versions OR a swap button near the image OR it switches with the website theme and there is a website theme button.
