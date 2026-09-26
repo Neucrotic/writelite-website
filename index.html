@@ -64,9 +64,9 @@
         <div class="platform-card-name" id="platform-card-name"></div>
         <div class="platform-card-version">Version <span data-wl-version></span></div>
         <div class="platform-choice-row">
-          <a class="btn-platform-download" href="/thanks?start=1">Download Free</a>
+          <a class="btn-platform-download" id="platform-dl-free" href="/thanks?start=1">Download Free</a>
           <span class="platform-or">OR</span>
-          <a class="btn-platform-download" href="/download">Pay What Feels Good</a>
+          <a class="btn-platform-download" id="platform-dl-pay" href="/download">Pay What Feels Good</a>
         </div>
       </div>
       <p class="platform-other" id="platform-other" style="display:none">
@@ -543,6 +543,9 @@
     var other = platform === 'windows' ? 'mac' : 'windows';
 
     document.getElementById('platform-card-name').textContent = names[platform];
+
+    document.getElementById('platform-dl-free').href = '/thanks?start=1&platform=' + platform;
+    document.getElementById('platform-dl-pay').href  = '/download?platform=' + platform;
 
     var olink = document.getElementById('platform-other-link');
     olink.textContent = names[other];

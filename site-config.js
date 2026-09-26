@@ -24,13 +24,30 @@
 
   // 'windows' | 'mac' | null  (null → fallback card, used from stage 4 on)
   function detectPlatform() {
+    var uad = navigator.userAgentData && navigator.userAgentData.platform;
+    if (uad) {
+      if (/^mac/i.test(uad)) return 'mac';
+      if (/^win/i.test(uad)) return 'windows';
+    }
+    var np = navigator.platform;
+    if (np) {
+      if (/^Mac/i.test(np)) return 'mac';
+      if (/^Win/i.test(np)) return 'windows';
+    }
     var ua = navigator.userAgent;
     if (/Mac/.test(ua) && !/iPhone|iPad|iPod/.test(ua)) return 'mac';
     if (/Windows/.test(ua)) return 'windows';
     return null;
   }
 
-  function countDownload(platform) {
+  function platformFromUrl(url) {
+    if (!url) return null;
+    if (/\.dmg(\?|$)/i.test(url)) return 'mac';
+    if (/\.exe(\?|$)/i.test(url)) return 'windows';
+    return null;
+  }
+
+  function postDownloadPlatform(platform) {
     fetch(SPLITFORMS_ENDPOINT, {
       method: 'POST',
       keepalive: true,
@@ -43,7 +60,7 @@
     }).catch(function () {});
   }
 
-  // Shared download-button handler. Desktop: start installer, then count.
+  // Shared download-button handler. Desktop: start installer, then post platform.
   // Mobile: block, show the desktop-only notice if the page has one.
   function handleDownloadClick(e, platform) {
     if (!isMobile()) {
@@ -57,7 +74,10 @@
         a.click();
         a.remove();
       }
-      countDownload(platform);
+      var posted = platformFromUrl(url) || platform;
+      if (posted === 'windows' || posted === 'mac') {
+        postDownloadPlatform(posted);
+      }
       return;
     }
     e.preventDefault();
@@ -100,7 +120,7 @@
     discordUrl:          DISCORD_URL,
     isMobile:            isMobile,
     detectPlatform:      detectPlatform,
-    countDownload:       countDownload,
+    postDownloadPlatform: postDownloadPlatform,
     handleDownloadClick: handleDownloadClick,
     closeMobileNotice:   closeMobileNotice,
     hydrate:             hydrate
