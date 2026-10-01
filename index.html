@@ -208,10 +208,10 @@
         <ul class="roadmap-list">
 
           <li class="roadmap-item">
-            <span class="roadmap-status is-planned">Planned</span>
+            <span class="roadmap-status is-planned">Building</span>
             <div>
-              <div class="roadmap-item-title">TypeWriter Mode</div>
-              <p class="roadmap-item-desc">A focus mode that shows only 1-10 lines of text on the screen at a time and hides the UI completely.</p>
+              <div class="roadmap-item-title">Spellcheck Engine</div>
+              <p class="roadmap-item-desc">A custom spellcheck engine that is faster, more accurate and allows the choice to save a word or a name. Inline UI element so the writer doesn't have to take their eyes of the peice.</p>
             </div>
           </li>
 
@@ -220,14 +220,6 @@
             <div>
               <div class="roadmap-item-title">Session Goals</div>
               <p class="roadmap-item-desc">Set a time or word count goal and track your progress in the status bar.</p>
-            </div>
-          </li>
-
-          <li class="roadmap-item">
-            <span class="roadmap-status is-fixing">Fixing</span>
-            <div>
-              <div class="roadmap-item-title">Spellcheck on macOS – Circumstantial</div>
-              <p class="roadmap-item-desc">Redlines aren't going away after spellcheck is turned off on some macOS files.</p>
             </div>
           </li>
 
@@ -267,8 +259,31 @@
         <h3 class="synopsis-section-title" id="patch-notes">Patch Notes</h3>
         <div class="patch-scroll">
 
-        <!-- ── v1.1.0 — 25 September 2026 ── -->
+        <!-- ── v1.2.0 — 01 October 2026 ── -->
         <details class="patch-block" open>
+          <summary class="patch-head">
+            <span class="patch-version">v1.2.0</span>
+            <span class="patch-caret" aria-hidden="true"></span>
+            <span class="patch-date">01 October 2026</span>
+          </summary>
+          <p class="patch-intro">
+            Typewriter mode lands in this release — a focus mode that keeps only a
+            few lines on screen and gets the UI out of the way.
+          </p>
+          <ul class="patch-list">
+            <li>Typewriter mode — Command+Shift+T on Mac, Control+Shift+T on Windows.</li>
+            <li>Closed folders expand when dragged and hovered over.</li>
+            <li>Right-click a .wlite file to export.</li>
+            <li>Drag a file into WriteLite to import it.</li>
+            <li>Fixed a bug that stopped the app from opening with the correct text floor settings.</li>
+            <li>On Windows: right-click → New → WriteLite Document.</li>
+            <li>Small UI improvements, including aligned folders and subfolders.</li>
+            <li>Fixed an issue with the spellcheck toggle. Custom spellchecker engine coming soon.</li>
+          </ul>
+        </details>
+
+        <!-- ── v1.1.0 — 25 September 2026 ── -->
+        <details class="patch-block">
           <summary class="patch-head">
             <span class="patch-version">v1.1.0</span>
             <span class="patch-caret" aria-hidden="true"></span>
