@@ -1238,7 +1238,8 @@
       font-family: var(--font-sans);
     }
 
-    /* Same visual weight as .donate-submit-btn, minus the new-tab glyph */
+    /* Default: same visual weight as .donate-submit-btn (thanks page).
+       .download-page overrides below to nav-outline style. */
     .btn-download-free {
       width: 100%;
       display: inline-flex;
@@ -1261,6 +1262,35 @@
     .btn-download-free:hover  { opacity: 0.88; }
     .btn-download-free:active { transform: scale(0.99); }
     .btn-download-free + .btn-download-free { margin-top: 10px; }
+
+    /* Download page: shrink-wrap + nav-support outline */
+    .download-page #fd-primary,
+    .download-page #fd-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .download-page .btn-download-free {
+      width: auto;
+      white-space: nowrap;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 6px 16px;
+      border-radius: 3px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .download-page .btn-download-free:hover {
+      opacity: 1;
+      background: rgba(212,160,48,0.18);
+      border-color: rgba(212,160,48,0.55);
+    }
+    .download-page .btn-download-free:active {
+      transform: none;
+    }
 
     .fd-other {
       margin-top: 12px;
