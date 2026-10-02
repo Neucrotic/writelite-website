@@ -7,6 +7,7 @@
       --accent-fg:       #f0c060;
       --accent-muted:    #2a1f08;
       --accent-border:   rgba(212,160,48,0.35);
+      --accent-studio:   #139fe8;
 
       /* ── Surfaces ── */
       --bg:              #0c0c0a;
@@ -453,6 +454,22 @@
 
     .site-footer > :first-child {
       justify-self: start;
+    }
+
+    .footer-studio {
+      color: var(--accent-studio);
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    .footer-studio:visited {
+      color: var(--accent-studio);
+    }
+
+    .footer-studio:hover,
+    .footer-studio:focus-visible {
+      color: var(--accent-studio);
+      font-weight: 700;
     }
 
     .footer-quote {
