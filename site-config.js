@@ -3,10 +3,10 @@
 (function () {
   // ── EDIT ON EACH RELEASE ─────────────────────────────
   var CONFIG = {
-    version: 'v1.2.0',
+    version: 'v1.2.1',
     downloads: {
-      windows: 'https://github.com/Neucrotic/writelite-release/releases/download/v1.2.0/WriteLite_1.2.0_x64-setup.exe',
-      mac:     'https://github.com/Neucrotic/writelite-release/releases/download/v1.2.0/WriteLite_1.2.0_aarch64.dmg'
+      windows: 'https://github.com/Neucrotic/writelite-release/releases/download/v1.2.1/WriteLite_1.2.1_x64-setup.exe',
+      mac:     'https://github.com/Neucrotic/writelite-release/releases/download/v1.2.1/WriteLite_1.2.1_aarch64.dmg'
     }
   };
   // ─────────────────────────────────────────────────────
