@@ -113,25 +113,18 @@
           <button class="donate-amt-btn" onclick="donateSelectAmt(5, this)">$5</button>
           <button class="donate-amt-btn selected" onclick="donateSelectAmt(10, this)">$10</button>
           <button class="donate-amt-btn" onclick="donateSelectAmt(20, this)">$20</button>
-          <button class="donate-amt-btn donate-amt-custom" onclick="donateSelectCustomBtn(this)">Enter Your Own Amount</button>
+          <button class="donate-amt-btn donate-amt-custom" onclick="donateSelectCustomBtn()">Enter Your Own Amount</button>
         </div>
 
-        <div class="donate-toggle-row" id="donate-toggle-row">
-          <div class="donate-toggle-inner">
-            <div>
-              <p class="donate-toggle-label">Make this monthly</p>
-              <p class="donate-toggle-sub">Cancel any time through Stripe</p>
-            </div>
-            <div class="donate-toggle-track" id="donate-toggle" onclick="donateFlipToggle()">
-              <div class="donate-toggle-thumb"></div>
-            </div>
+        <div class="donate-toggle-row" id="donate-amount-row">
+          <label class="donate-toggle-label" for="donate-amount-input">Amount</label>
+          <div class="donate-amount-entry">
+            <span class="donate-amount-prefix" aria-hidden="true">$</span>
+            <input class="donate-amount-input" id="donate-amount-input" type="number" step="any" value="10" oninput="donateOnAmountInput()">
           </div>
-          <p class="donate-custom-note" id="donate-custom-note">
-            Custom amounts are one-time only. Choose $5, $10, or $20 to set up a monthly donation.
-          </p>
         </div>
 
-        <button class="donate-submit-btn" id="donate-submit-btn" onclick="donateGoToStripe()">Donate $10 Once</button>
+        <button class="donate-submit-btn" id="donate-submit-btn" onclick="donateGoToStripe()">Donate $10</button>
         <p class="donate-secure-note">
           <svg class="donate-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
@@ -245,75 +238,63 @@
 
   renderFunding();
 
-  var donateAmount  = 10;
-  var donateMonthly = false;
+  // ── DONATE WIDGET ──────────────────────────────────────────────
+  var donateAmount = 10;
   var donateIsCustom = false;
 
+  function donateParsedAmount() {
+    var n = parseFloat(document.getElementById('donate-amount-input').value);
+    return (isFinite(n) && n > 0) ? n : null;
+  }
+
+  function donateMarkSelected(preset) {
+    document.querySelectorAll('.donate-amt-btn').forEach(function(b) { b.classList.remove('selected'); });
+    if (preset === 5 || preset === 10 || preset === 20) {
+      document.querySelectorAll('.donate-amt-btn').forEach(function(b) {
+        if (b.textContent === '$' + preset) b.classList.add('selected');
+      });
+    }
+  }
+
   function donateSelectAmt(val, btn) {
-    donateAmount   = val;
+    donateAmount = val;
     donateIsCustom = false;
+    document.getElementById('donate-amount-input').value = val;
     document.querySelectorAll('.donate-amt-btn').forEach(function(b) { b.classList.remove('selected'); });
     btn.classList.add('selected');
     donateUpdateUI();
   }
 
-  function donateSelectCustomBtn(btn) {
+  function donateSelectCustomBtn() {
     donateIsCustom = true;
-    donateAmount   = null;
+    donateAmount = donateParsedAmount();
     document.querySelectorAll('.donate-amt-btn').forEach(function(b) { b.classList.remove('selected'); });
-    btn.classList.add('selected');
+    document.getElementById('donate-amount-input').focus();
     donateUpdateUI();
   }
 
-  function donateFlipToggle() {
-    if (donateIsCustom) return;
-    donateMonthly = !donateMonthly;
-    document.getElementById('donate-toggle').classList.toggle('on', donateMonthly);
+  function donateOnAmountInput() {
+    var next = donateParsedAmount();
+    if (donateIsCustom && next !== donateAmount) donateIsCustom = false;
+    donateAmount = next;
+    donateMarkSelected(donateIsCustom ? 'custom' : next);
     donateUpdateUI();
   }
 
   function donateUpdateUI() {
-    var toggle = document.getElementById('donate-toggle');
-    var note   = document.getElementById('donate-custom-note');
-    var btn    = document.getElementById('donate-submit-btn');
-
-    if (donateIsCustom) {
-      toggle.style.opacity = '0.35';
-      toggle.classList.add('disabled');
-      toggle.classList.remove('on');
-      donateMonthly = false;
-      note.classList.add('visible');
-      btn.disabled = false;
-      btn.textContent = 'Donate Your Own Amount Once';
-      return;
-    }
-
-    toggle.style.opacity = '1';
-    toggle.classList.remove('disabled');
-    note.classList.remove('visible');
-
-    if (!donateAmount) {
-      btn.disabled    = true;
+    var btn = document.getElementById('donate-submit-btn');
+    if (!(isFinite(donateAmount) && donateAmount > 0)) {
+      btn.disabled = true;
       btn.textContent = 'Enter an amount';
       return;
     }
-
     btn.disabled = false;
-    var freq = donateMonthly ? 'Monthly' : 'Once';
-    btn.textContent = 'Donate $' + donateAmount + ' ' + freq;
+    btn.textContent = 'Donate $' + donateAmount;
   }
 
   function donateGoToStripe() {
-    if (!donateAmount && !donateIsCustom) return;
-
-    // TODO: replace these placeholder values with your real Stripe Payment Link URLs
-    var links = {
-      once:    { 5: 'https://donate.stripe.com/7sY6oGeJV1Fx2WLcmq4ow0b',    10: 'https://donate.stripe.com/fZu8wO31d6ZReFteuy4ow0c',    20: 'https://donate.stripe.com/bJe5kC8lx5VNapdgCG4ow0h'    },
-      monthly: { 5: 'https://donate.stripe.com/fZuaEW9pBac3apd2LQ4ow0f', 10: 'https://donate.stripe.com/cNiaEW0T53NF9l9fyC4ow0g', 20: 'https://donate.stripe.com/aFa4gy7ht3NF7d19ae4ow0i' },
-      custom:  'https://donate.stripe.com/28E5kC6dpfwn54T1HM4ow0d'
-    };
-
-    var url = donateIsCustom ? links.custom : (donateMonthly ? links.monthly[donateAmount] : links.once[donateAmount]);
+    if (!(isFinite(donateAmount) && donateAmount > 0)) return;
+    var url = 'https://donate.stripe.com/aFa00ibxJfwnbth7264ow0p?prefilled_amount=' + Math.round(donateAmount * 100);
     window.open(url, '_blank', 'noopener');
   }
 
